@@ -17,7 +17,7 @@ const TITLES = [
 ReactDOM.render(
     <App
       placesToStayCount={Settings.PLACES_TO_STAY_COUNT}
-      offersTitles={TITLES}
+      offerTitles={TITLES}
     />,
     document.querySelector(`#root`)
 );
