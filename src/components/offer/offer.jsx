@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Offer = (props) => {
-  // eslint-disable-next-line react/prop-types
   const {title} = props;
 
   return (
@@ -40,6 +40,10 @@ const Offer = (props) => {
       </div>
     </article>
   );
+};
+
+Offer.propTypes = {
+  title: PropTypes.string.isRequired
 };
 
 export default Offer;
