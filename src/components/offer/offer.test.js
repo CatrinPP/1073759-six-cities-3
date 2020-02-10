@@ -5,6 +5,7 @@ import Offer from './offer.jsx';
 it(`Should render Offer correctly`, () => {
   const tree = renderer
     .create(<Offer
+      onPlaceCardNameClick={() => {}}
       title={`Wood and stone place`}
     />)
     .toJSON();

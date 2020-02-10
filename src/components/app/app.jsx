@@ -3,12 +3,15 @@ import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
 
 const App = (props) => {
-  const {placesToStayCount, offerTitles} = props;
+  const {offerTitles, placesToStayCount} = props;
+
+  const placeCardNameHandler = () => {};
 
   return (
     <Main
-      placesToStayCount={placesToStayCount}
       offerTitles={offerTitles}
+      placesToStayCount={placesToStayCount}
+      onPlaceCardNameClick={placeCardNameHandler}
     />
   );
 };
