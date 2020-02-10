@@ -3,7 +3,7 @@ import Offer from '../offer/offer.jsx';
 import PropTypes from 'prop-types';
 
 const Main = (props) => {
-  const {placesToStayCount, offerTitles} = props;
+  const {offerTitles, onPlaceCardNameClick, placesToStayCount} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -89,7 +89,7 @@ const Main = (props) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {offerTitles.map((it, i) => <Offer key={it + i} title={it} />)}
+                {offerTitles.map((it, i) => <Offer key={it + i} onPlaceCardNameClick={onPlaceCardNameClick} title={it} />)}
               </div>
             </section>
             <div className="cities__right-section">
@@ -103,8 +103,9 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  placesToStayCount: PropTypes.number.isRequired,
-  offerTitles: PropTypes.arrayOf(PropTypes.string).isRequired
+  offerTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onPlaceCardNameClick: PropTypes.func.isRequired,
+  placesToStayCount: PropTypes.number.isRequired
 };
 
 export default Main;
