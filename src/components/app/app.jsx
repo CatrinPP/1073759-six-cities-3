@@ -10,15 +10,15 @@ const App = (props) => {
   return (
     <Main
       offerTitles={offerTitles}
-      placesToStayCount={placesToStayCount}
       onPlaceCardNameClick={placeCardNameHandler}
+      placesToStayCount={placesToStayCount}
     />
   );
 };
 
 App.propTypes = {
-  placesToStayCount: PropTypes.number.isRequired,
-  offerTitles: PropTypes.arrayOf(PropTypes.string).isRequired
+  offerTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  placesToStayCount: PropTypes.number.isRequired
 };
 
 export default App;

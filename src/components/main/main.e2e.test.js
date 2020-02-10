@@ -12,9 +12,9 @@ it(`Should place card name be pressed`, () => {
 
   const main = mount(
       <Main
-        placesToStayCount={312}
         offerTitles={[`Beautiful & luxurious apartment at great location`, `Wood and stone place`, `Canal View Prinsengracht`, `Nice, cozy, warm big bed apartment`, `Wood and stone place`]}
         onPlaceCardNameClick={onPlaceCardNameCLick}
+        placesToStayCount={312}
       />
   );
 

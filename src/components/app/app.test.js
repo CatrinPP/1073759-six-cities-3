@@ -5,8 +5,8 @@ import App from './app.jsx';
 it(`Render App`, () => {
   const tree = renderer
     .create(<App
-      placesToStayCount={312}
       offerTitles={[`Beautiful & luxurious apartment at great location`, `Wood and stone place`, `Canal View Prinsengracht`, `Nice, cozy, warm big bed apartment`, `Wood and stone place`]}
+      placesToStayCount={312}
     />)
     .toJSON();
 
