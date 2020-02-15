@@ -3,13 +3,13 @@
 exports[`Should render Offer correctly 1`] = `
 <article
   className="cities__place-card place-card"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="place-card__mark"
   >
-    <span>
-      Premium
-    </span>
+    <span />
   </div>
   <div
     className="cities__image-wrapper place-card__image-wrapper"
@@ -21,7 +21,7 @@ exports[`Should render Offer correctly 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="img/apartment-01.jpg"
+        src="img/room.jpg"
         width="260"
       />
     </a>
@@ -38,7 +38,9 @@ exports[`Should render Offer correctly 1`] = `
         <b
           className="place-card__price-value"
         >
-          €120 
+          €
+          98
+           
         </b>
         <span
           className="place-card__price-text"
@@ -75,7 +77,7 @@ exports[`Should render Offer correctly 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "0%",
             }
           }
         />
@@ -93,13 +95,13 @@ exports[`Should render Offer correctly 1`] = `
         href="#"
         onClick={[Function]}
       >
-        Wood and stone place
+        Cozy Studio
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Apartment
+      Studio
     </p>
   </div>
 </article>
