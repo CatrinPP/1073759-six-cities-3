@@ -3,22 +3,29 @@ import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
 
 const App = (props) => {
-  const {offerTitles, placesToStayCount} = props;
+  const {offers, placesToStayCount} = props;
 
   const placeCardNameHandler = () => {};
 
   return (
     <Main
-      offerTitles={offerTitles}
-      placesToStayCount={placesToStayCount}
+      offers={offers}
       onPlaceCardNameClick={placeCardNameHandler}
+      placesToStayCount={placesToStayCount}
     />
   );
 };
 
 App.propTypes = {
-  placesToStayCount: PropTypes.number.isRequired,
-  offerTitles: PropTypes.arrayOf(PropTypes.string).isRequired
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.oneOf([`Apartment`, `Bungalow`, `House`, `Room`, `Studio`, `Villa`]).isRequired,
+  })).isRequired,
+  placesToStayCount: PropTypes.number.isRequired
 };
 
 export default App;
