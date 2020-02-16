@@ -5,20 +5,20 @@ import Offer from '../offer/offer.jsx';
 class OffersList extends PureComponent {
   constructor(props) {
     super(props);
-    this.hoverOff = this.hoverOff.bind(this);
-    this.hoverOn = this.hoverOn.bind(this);
+    this.handlePlaceCardHoverOff = this.handlePlaceCardHoverOff.bind(this);
+    this.handlePlaceCardHoverOn = this.handlePlaceCardHoverOn.bind(this);
     this.state = {
       activeOffer: null
     };
   }
 
-  hoverOff() {
+  handlePlaceCardHoverOff() {
     this.setState({
       activeOffer: null
     });
   }
 
-  hoverOn(currentOffer) {
+  handlePlaceCardHoverOn(currentOffer) {
     this.setState({
       activeOffer: currentOffer
     });
@@ -51,8 +51,8 @@ class OffersList extends PureComponent {
             <Offer
               key={it + i}
               offer={offers[i]}
-              onMouseEnter={() => this.hoverOn(offers[i])}
-              onMouseLeave={this.hoverOff}
+              onMouseEnter={() => this.handlePlaceCardHoverOn(offers[i])}
+              onMouseLeave={this.handlePlaceCardHoverOff}
               onPlaceCardNameClick={onPlaceCardNameClick}
             />
           ))}
