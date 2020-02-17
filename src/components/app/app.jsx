@@ -1,6 +1,7 @@
 import React from 'react';
 import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
+import {offerShape} from '../../const.js';
 
 const App = (props) => {
   const {offers, placesToStayCount} = props;
@@ -17,14 +18,7 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([`Apartment`, `Bungalow`, `House`, `Room`, `Studio`, `Villa`]).isRequired,
-  })).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   placesToStayCount: PropTypes.number.isRequired
 };
 
