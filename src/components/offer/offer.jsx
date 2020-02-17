@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import offerShape from '../../const.js';
+import {offerShape} from '../../const.js';
 
 const Offer = (props) => {
   const {offer, onMouseEnter, onMouseLeave, onPlaceCardNameClick} = props;
