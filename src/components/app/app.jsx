@@ -1,6 +1,8 @@
 import React from 'react';
-import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import Main from '../main/main.jsx';
+import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
 import {offerShape} from '../../const.js';
 
 const App = (props) => {
@@ -9,11 +11,20 @@ const App = (props) => {
   const placeCardNameHandler = () => {};
 
   return (
-    <Main
-      offers={offers}
-      onPlaceCardNameClick={placeCardNameHandler}
-      placesToStayCount={placesToStayCount}
-    />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Main
+            offers={offers}
+            onPlaceCardNameClick={placeCardNameHandler}
+            placesToStayCount={placesToStayCount}
+          />
+        </Route>
+        <Route exact path="/dev-offer">
+          <DetailedOffer/>
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 
