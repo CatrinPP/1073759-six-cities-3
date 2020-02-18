@@ -20,9 +20,12 @@ class OffersList extends PureComponent {
   }
 
   handlePlaceCardHoverOn(currentOffer) {
-    this.setState({
-      activeOffer: currentOffer
-    });
+    const handleMouseOver = () => {
+      this.setState({
+        activeOffer: currentOffer
+      });
+    };
+    return handleMouseOver;
   }
 
   render() {
@@ -52,7 +55,7 @@ class OffersList extends PureComponent {
             <Offer
               key={it.id}
               offer={offers[i]}
-              onMouseEnter={() => this.handlePlaceCardHoverOn(offers[i])}
+              onMouseEnter={this.handlePlaceCardHoverOn(offers[i])}
               onMouseLeave={this.handlePlaceCardHoverOff}
               onPlaceCardNameClick={onPlaceCardNameClick}
             />
