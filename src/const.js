@@ -1,5 +1,14 @@
 import PropTypes from 'prop-types';
 
+const PlaceType = {
+  APARTMENT: `Apartment`,
+  BUNGALOW: `Bungalow`,
+  HOUSE: `House`,
+  ROOM: `Room`,
+  STUDIO: `Studio`,
+  VILLA: `Villa`
+};
+
 const features = [
   `Wifi`,
   `Heating`,
@@ -11,15 +20,6 @@ const features = [
   `Dishwasher`,
   `Towels`,
   `Baby seat`
-];
-
-const placeTypes = [
-  `Apartment`,
-  `Bungalow`,
-  `House`,
-  `Room`,
-  `Studio`,
-  `Villa`
 ];
 
 const offerShape = {
@@ -37,7 +37,7 @@ const offerShape = {
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(placeTypes).isRequired,
+  type: PropTypes.oneOf([PlaceType.APARTMENT, PlaceType.BUNGALOW, PlaceType.HOUSE, PlaceType.ROOM, PlaceType.STUDIO, PlaceType.VILLA]).isRequired,
 };
 
 export {offerShape};
