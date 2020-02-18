@@ -9,6 +9,7 @@ export default [
       name: `Angelina`,
       isStar: true
     },
+    id: `01`,
     images: [`img/room.jpg`, `img/room.jpg`, `img/room.jpg`, `img/room.jpg`, `img/room.jpg`, `img/room.jpg`],
     isPremium: false,
     price: 98,
@@ -25,6 +26,7 @@ export default [
       name: `Max`,
       isStar: false
     },
+    id: `02`,
     images: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
     isPremium: false,
     price: 34,
@@ -41,6 +43,7 @@ export default [
       name: `Angelina`,
       isStar: true
     },
+    id: `03`,
     images: [`img/apartment-02.jpg`, `img/apartment-02.jpg`, `img/apartment-02.jpg`, `img/apartment-02.jpg`, `img/apartment-02.jpg`, `img/apartment-02.jpg`],
     isPremium: false,
     price: 70,
@@ -57,6 +60,7 @@ export default [
       name: `Max`,
       isStar: false
     },
+    id: `04`,
     images: [`img/apartment-03.jpg`, `img/apartment-03.jpg`, `img/apartment-03.jpg`, `img/apartment-03.jpg`, `img/apartment-03.jpg`, `img/apartment-03.jpg`],
     isPremium: true,
     price: 320,
