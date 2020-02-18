@@ -8,7 +8,7 @@ Enzyme.configure({
 });
 
 const mock = {
-  image: `img/apartment-01.jpg`,
+  images: [`img/apartment-01.jpg`],
   isPremium: true,
   price: 200,
   title: `Amazing Apartment`,
@@ -17,22 +17,15 @@ const mock = {
 };
 
 it(`Get offer data on place card hover`, () => {
-  let data;
-
-  const writeData = (it) => {
-    data = Object.assign({}, it);
-  };
+  const onMouseEnterMock = jest.fn();
 
   const placeCard = shallow(
       <Offer
         offer={mock}
-        onMouseEnter={writeData(mock)}
+        onMouseEnter={onMouseEnterMock}
       />
   );
 
-  placeCard.simulate(`mousenter`);
-  expect(data.title).toBe(`Amazing Apartment`);
-  expect(data.isPremium).toBe(true);
-  expect(data.type).toBe(`Apartment`);
-  expect(data.rating).toBe(92);
+  placeCard.simulate(`mouseEnter`);
+  expect(onMouseEnterMock).toHaveBeenCalledTimes(1);
 });
