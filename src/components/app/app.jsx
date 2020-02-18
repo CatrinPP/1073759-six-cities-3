@@ -21,7 +21,9 @@ const App = (props) => {
           />
         </Route>
         <Route exact path="/dev-offer">
-          <DetailedOffer/>
+          <DetailedOffer
+            offer={offers[0]}
+          />
         </Route>
       </Switch>
     </BrowserRouter>
