@@ -16,16 +16,32 @@ const mock = {
   rating: 92
 };
 
-it(`Get offer data on place card hover`, () => {
-  const onMouseEnterMock = jest.fn();
+describe(`Events`, () => {
+  it(`Get function on card hover`, () => {
+    const onMouseEnterMock = jest.fn();
 
-  const placeCard = shallow(
-      <Offer
-        offer={mock}
-        onMouseEnter={onMouseEnterMock}
-      />
-  );
+    const placeCard = shallow(
+        <Offer
+          offer={mock}
+          onMouseEnter={onMouseEnterMock}
+        />
+    );
 
-  placeCard.simulate(`mouseEnter`);
-  expect(onMouseEnterMock).toHaveBeenCalledTimes(1);
+    placeCard.simulate(`mouseEnter`);
+    expect(onMouseEnterMock).toHaveBeenCalledTimes(1);
+  });
+
+  it(`Get function on title click`, () => {
+    const onPlaceCardNameClickMock = jest.fn();
+
+    const placeCard = shallow(
+        <Offer
+          offer={mock}
+          onPlaceCardNameClick={onPlaceCardNameClickMock}
+        />
+    );
+
+    placeCard.find(`.place-card__name a`).simulate(`click`);
+    expect(onPlaceCardNameClickMock).toHaveBeenCalledTimes(1);
+  });
 });
