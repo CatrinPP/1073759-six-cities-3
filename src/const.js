@@ -9,23 +9,23 @@ const PlaceType = {
   VILLA: `Villa`
 };
 
-const features = [
-  `Wifi`,
-  `Heating`,
-  `Kitchen`,
-  `Cable TV`,
-  `Fridge`,
-  `Washing machine`,
-  `Coffee machine`,
-  `Dishwasher`,
-  `Towels`,
-  `Baby seat`
-];
+const Feature = {
+  WI_FI: `Wifi`,
+  HEATING: `Heating`,
+  KITCHEN: `Kitchen`,
+  CABLE_TV: `Cable TV`,
+  FRIDGE: `Fridge`,
+  WASHING_MACHINE: `Washing machine`,
+  COFFEE_MACHINE: `Coffee machine`,
+  DISHWASHER: `Dishwasher`,
+  TOWELS: `Towels`,
+  BABY_SEAT: `Baby seat`
+};
 
 const offerShape = {
   bedrooms: PropTypes.number,
   description: PropTypes.string,
-  features: PropTypes.oneOf(features),
+  features: PropTypes.arrayOf(PropTypes.oneOf([Feature.WI_FI, Feature.HEATING, Feature.KITCHEN, Feature.CABLE_TV, Feature.FRIDGE, Feature.WASHING_MACHINE, Feature.COFFEE_MACHINE, Feature.DISHWASHER, Feature.TOWELS, Feature.BABY_SEAT])),
   guests: PropTypes.number,
   host: PropTypes.shape({
     avatar: PropTypes.string,

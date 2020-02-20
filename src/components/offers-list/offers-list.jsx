@@ -62,13 +62,13 @@ class OffersList extends PureComponent {
           </ul>
         </form>
         <div className="cities__places-list places__list tabs__content">
-          {offers.map((it, i) => (
+          {offers.map((it) => (
             <Offer
               key={it.id}
-              offer={offers[i]}
-              onMouseEnter={this.handlePlaceCardHoverOn(offers[i])}
+              offer={it}
+              onMouseEnter={this.handlePlaceCardHoverOn(it)}
               onMouseLeave={this.handlePlaceCardHoverOff}
-              onPlaceCardNameClick={this.onPlaceCardNameClick(offers[i])}
+              onPlaceCardNameClick={this.onPlaceCardNameClick(it)}
             />
           ))}
         </div>

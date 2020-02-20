@@ -33,8 +33,8 @@ const DetailedOffer = ({offer}) => {
           <div className="property__gallery-container container">
             <div className="property__gallery">
               {offer.images.map((it, i) => (
-                <div className="property__image-wrapper" key={it.id}>
-                  <img className="property__image" src={offer.images[i]} alt="Photo studio"/>
+                <div className="property__image-wrapper" key={offer.id + it + i}>
+                  <img className="property__image" src={it} alt="Photo studio"/>
                 </div>
               ))}
             </div>
@@ -83,7 +83,7 @@ const DetailedOffer = ({offer}) => {
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
                   {offer.features.map((it, i) => (
-                    <li className="property__inside-item" key={it.id}>
+                    <li className="property__inside-item" key={offer.id + it + i}>
                       {offer.features[i]}
                     </li>
                   ))}

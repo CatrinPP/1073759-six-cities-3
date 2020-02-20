@@ -196,7 +196,7 @@ exports[`Should render Offers list correctly 1`] = `
             alt="Place image"
             className="place-card__image"
             height="200"
-            src="img/apartment-01.jpg"
+            src="img/room3.jpg"
             width="260"
           />
         </a>
@@ -300,7 +300,7 @@ exports[`Should render Offers list correctly 1`] = `
             alt="Place image"
             className="place-card__image"
             height="200"
-            src="img/apartment-02.jpg"
+            src="img/room6.jpg"
             width="260"
           />
         </a>
@@ -404,7 +404,7 @@ exports[`Should render Offers list correctly 1`] = `
             alt="Place image"
             className="place-card__image"
             height="200"
-            src="img/apartment-03.jpg"
+            src="img/room9.jpg"
             width="260"
           />
         </a>
@@ -508,7 +508,7 @@ exports[`Should render Offers list correctly 1`] = `
             alt="Place image"
             className="place-card__image"
             height="200"
-            src="img/apartment-03.jpg"
+            src="img/room12.jpg"
             width="260"
           />
         </a>
