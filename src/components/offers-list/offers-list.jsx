@@ -9,27 +9,38 @@ class OffersList extends PureComponent {
     this.handlePlaceCardHoverOff = this.handlePlaceCardHoverOff.bind(this);
     this.handlePlaceCardHoverOn = this.handlePlaceCardHoverOn.bind(this);
     this.state = {
-      activeOffer: null
+      offerOnHover: null,
+      currentOffer: null
     };
+  }
+
+  onPlaceCardNameClick(offer) {
+    const onTitleClick = () => {
+      this.setState({
+        currentOffer: offer}, () => {
+        return this.props.onPlaceCardNameClick(this.state.currentOffer);
+      });
+    };
+    return onTitleClick;
   }
 
   handlePlaceCardHoverOff() {
     this.setState({
-      activeOffer: null
+      offerOnHover: null
     });
   }
 
-  handlePlaceCardHoverOn(currentOffer) {
+  handlePlaceCardHoverOn(offer) {
     const handleMouseOver = () => {
       this.setState({
-        activeOffer: currentOffer
+        offerOnHover: offer
       });
     };
     return handleMouseOver;
   }
 
   render() {
-    const {offers, onPlaceCardNameClick, placesToStayCount} = this.props;
+    const {offers, placesToStayCount} = this.props;
 
     return (
       <section className="cities__places places">
@@ -57,7 +68,7 @@ class OffersList extends PureComponent {
               offer={offers[i]}
               onMouseEnter={this.handlePlaceCardHoverOn(offers[i])}
               onMouseLeave={this.handlePlaceCardHoverOff}
-              onPlaceCardNameClick={onPlaceCardNameClick}
+              onPlaceCardNameClick={this.onPlaceCardNameClick(offers[i])}
             />
           ))}
         </div>
