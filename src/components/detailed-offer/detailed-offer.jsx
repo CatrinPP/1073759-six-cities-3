@@ -41,11 +41,10 @@ const DetailedOffer = ({offer}) => {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {offer.isPremium ?
+              {offer.isPremium &&
                 <div className="property__mark">
                   <span>Premium</span>
-                </div>
-                : ``}
+                </div>}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
                   {offer.title}
@@ -92,7 +91,7 @@ const DetailedOffer = ({offer}) => {
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className={`property__avatar-wrapper user__avatar-wrapper ${offer.host.isStar ? `property__avatar-wrapper--pro` : ``}`}>
+                  <div className={`property__avatar-wrapper user__avatar-wrapper ${offer.host.isStar && `property__avatar-wrapper--pro`}`}>
                     <img className="property__avatar user__avatar" src={offer.host.avatar} width="74" height="74" alt="Host avatar"/>
                   </div>
                   <span className="property__user-name">
