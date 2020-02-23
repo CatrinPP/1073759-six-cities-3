@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {offerShape} from '../../const.js';
+import {getFiveStarRating} from '../../utils.js';
 
 const DetailedOffer = ({offer}) => {
+  const fiveStarRating = getFiveStarRating(offer.rating).toFixed(1);
+
   return (
     <div className="page">
       <header className="header">
@@ -61,7 +64,7 @@ const DetailedOffer = ({offer}) => {
                   <span style={{width: `${offer.rating}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{(offer.rating / 20).toFixed(1)}</span>
+                <span className="property__rating-value rating__value">{fiveStarRating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
