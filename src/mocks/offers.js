@@ -1,6 +1,7 @@
 export default [
   {
     bedrooms: 1,
+    coords: [52.3909553943508, 4.85309666406198],
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.`,
     features: [`Wifi`, `Heating`, `Cable TV`, `Fridge`, `Coffee machine`, `Towels`],
     guests: 2,
@@ -18,6 +19,7 @@ export default [
     type: `Apartment`,
   }, {
     bedrooms: 3,
+    coords: [52.369553943508, 4.85309666406198],
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.`,
     features: [`Wifi`, `Kitchen`, `Cable TV`, `Fridge`, `Washing machine`, `Coffee machine`, `Dishwasher`, `Towels`],
     guests: 3,
@@ -35,6 +37,7 @@ export default [
     type: `Room`,
   }, {
     bedrooms: 2,
+    coords: [52.3909553943508, 4.929309666406198],
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.`,
     features: [`Wifi`, `Heating`, `Kitchen`, `Cable TV`, `Fridge`, `Washing machine`, `Coffee machine`, `Dishwasher`, `Towels`],
     guests: 4,
@@ -52,6 +55,7 @@ export default [
     type: `House`,
   }, {
     bedrooms: 5,
+    coords: [52.3809553943508, 4.939309666406198],
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.`,
     features: [`Wifi`, `Kitchen`, `Cable TV`, `Fridge`, `Washing machine`, `Coffee machine`, `Dishwasher`, `Towels`, `Baby seat`],
     guests: 10,
