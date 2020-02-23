@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Offer from '../offer/offer.jsx';
+import {offerShape} from '../../const.js';
 
 class OffersList extends PureComponent {
   constructor(props) {
@@ -8,24 +9,34 @@ class OffersList extends PureComponent {
     this.handlePlaceCardHoverOff = this.handlePlaceCardHoverOff.bind(this);
     this.handlePlaceCardHoverOn = this.handlePlaceCardHoverOn.bind(this);
     this.state = {
-      activeOffer: null
+      offerOnHover: null,
     };
+  }
+
+  onPlaceCardNameClick(offer) {
+    const onTitleClick = () => {
+      return this.props.onPlaceCardNameClick(offer);
+    };
+    return onTitleClick;
   }
 
   handlePlaceCardHoverOff() {
     this.setState({
-      activeOffer: null
+      offerOnHover: null
     });
   }
 
-  handlePlaceCardHoverOn(currentOffer) {
-    this.setState({
-      activeOffer: currentOffer
-    });
+  handlePlaceCardHoverOn(offer) {
+    const handleMouseOver = () => {
+      this.setState({
+        offerOnHover: offer
+      });
+    };
+    return handleMouseOver;
   }
 
   render() {
-    const {offers, onPlaceCardNameClick, placesToStayCount} = this.props;
+    const {offers, placesToStayCount} = this.props;
 
     return (
       <section className="cities__places places">
@@ -47,13 +58,13 @@ class OffersList extends PureComponent {
           </ul>
         </form>
         <div className="cities__places-list places__list tabs__content">
-          {offers.map((it, i) => (
+          {offers.map((it) => (
             <Offer
-              key={it + i}
-              offer={offers[i]}
-              onMouseEnter={() => this.handlePlaceCardHoverOn(offers[i])}
+              key={it.id}
+              offer={it}
+              onMouseEnter={this.handlePlaceCardHoverOn(it)}
               onMouseLeave={this.handlePlaceCardHoverOff}
-              onPlaceCardNameClick={onPlaceCardNameClick}
+              onPlaceCardNameClick={this.onPlaceCardNameClick(it)}
             />
           ))}
         </div>
@@ -63,14 +74,7 @@ class OffersList extends PureComponent {
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([`Apartment`, `Bungalow`, `House`, `Room`, `Studio`, `Villa`]).isRequired,
-  })).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   onPlaceCardNameClick: PropTypes.func,
   placesToStayCount: PropTypes.number.isRequired,
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {offerShape} from '../../const.js';
 
 const Offer = (props) => {
   const {offer, onMouseEnter, onMouseLeave, onPlaceCardNameClick} = props;
@@ -14,7 +15,7 @@ const Offer = (props) => {
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={offer.image} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={offer.images[0]} width="260" height="200" alt="Place image"/>
         </a>
       </div>
       <div className="place-card__info">
@@ -50,14 +51,7 @@ const Offer = (props) => {
 };
 
 Offer.propTypes = {
-  offer: PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([`Apartment`, `Bungalow`, `House`, `Room`, `Studio`, `Villa`]).isRequired,
-  }).isRequired,
+  offer: PropTypes.shape(offerShape).isRequired,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
   onPlaceCardNameClick: PropTypes.func,

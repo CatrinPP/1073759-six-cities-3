@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OffersList from '../offers-list/offers-list.jsx';
+import {offerShape} from '../../const.js';
 
 const Main = (props) => {
   const {offers, onPlaceCardNameClick, placesToStayCount} = props;
@@ -86,14 +87,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([`Apartment`, `Bungalow`, `House`, `Room`, `Studio`, `Villa`]).isRequired,
-  })).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   onPlaceCardNameClick: PropTypes.func,
   placesToStayCount: PropTypes.number.isRequired
 };
