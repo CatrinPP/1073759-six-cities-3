@@ -10,16 +10,12 @@ class OffersList extends PureComponent {
     this.handlePlaceCardHoverOn = this.handlePlaceCardHoverOn.bind(this);
     this.state = {
       offerOnHover: null,
-      currentOffer: null
     };
   }
 
   onPlaceCardNameClick(offer) {
     const onTitleClick = () => {
-      this.setState({
-        currentOffer: offer}, () => {
-        return this.props.onPlaceCardNameClick(this.state.currentOffer);
-      });
+      return this.props.onPlaceCardNameClick(offer);
     };
     return onTitleClick;
   }
