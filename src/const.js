@@ -1,5 +1,13 @@
 import PropTypes from 'prop-types';
 
+const CityCoords = {
+  AMSTERDAM: [52.38333, 4.9],
+};
+
+const MAP_ICON_SIZE = [30, 30];
+
+const ZOOM_VALUE = 12;
+
 const PlaceType = {
   APARTMENT: `Apartment`,
   BUNGALOW: `Bungalow`,
@@ -40,4 +48,4 @@ const offerShape = {
   type: PropTypes.oneOf([PlaceType.APARTMENT, PlaceType.BUNGALOW, PlaceType.HOUSE, PlaceType.ROOM, PlaceType.STUDIO, PlaceType.VILLA]).isRequired,
 };
 
-export {offerShape};
+export {offerShape, CityCoords, MAP_ICON_SIZE, ZOOM_VALUE};
