@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OffersList from '../offers-list/offers-list.jsx';
+import Map from '../map/map.jsx';
 import {offerShape} from '../../const.js';
 
-const Main = (props) => {
-  const {offers, onPlaceCardNameClick, placesToStayCount} = props;
-
+const Main = ({offers, onPlaceCardNameClick, placesToStayCount}) => {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -77,7 +76,11 @@ const Main = (props) => {
               placesToStayCount={placesToStayCount}
             />
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map
+                  offers={offers}
+                />
+              </section>
             </div>
           </div>
         </div>
