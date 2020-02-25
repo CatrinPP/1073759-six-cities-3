@@ -4,7 +4,7 @@ const CityCoords = {
   AMSTERDAM: [52.38333, 4.9],
 };
 
-const MAP_ICON_SIZE = [30, 30];
+const MAP_ICON_SIZE = 30;
 
 const ZOOM_VALUE = 12;
 
