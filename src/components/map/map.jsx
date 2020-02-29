@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {offerShape, CityCoords, MAP_ICON_SIZE, ZOOM_VALUE} from '../../const.js';
+import {offerShape, MAP_ICON_SIZE, ZOOM_VALUE} from '../../const.js';
 import leaflet from 'leaflet';
 
 class Map extends PureComponent {
@@ -10,7 +10,7 @@ class Map extends PureComponent {
 
   componentDidMount() {
     const {offers} = this.props;
-    const city = CityCoords.AMSTERDAM;
+    const city = offers[0].coords;
     const placesCoords = offers.map((offer) => offer.coords);
 
     const showAllMarkers = () => {

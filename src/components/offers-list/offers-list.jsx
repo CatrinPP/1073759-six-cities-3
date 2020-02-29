@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Offer from '../offer/offer.jsx';
-import {offerShape} from '../../const.js';
+import {offersListShape} from '../../const.js';
 
 class OffersList extends PureComponent {
   constructor(props) {
@@ -36,12 +36,12 @@ class OffersList extends PureComponent {
   }
 
   render() {
-    const {offers, placesToStayCount} = this.props;
+    const {offers} = this.props;
 
     return (
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{placesToStayCount} places to stay in Amsterdam</b>
+        <b className="places__found">{offers[0].offers.length} places to stay in {offers[0].city}</b>
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by &nbsp;</span>
           <span className="places__sorting-type" tabIndex="0">
@@ -58,7 +58,7 @@ class OffersList extends PureComponent {
           </ul>
         </form>
         <div className="cities__places-list places__list tabs__content">
-          {offers.map((it) => (
+          {offers[0].offers.map((it) => (
             <Offer
               key={it.id}
               offer={it}
@@ -74,9 +74,8 @@ class OffersList extends PureComponent {
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offersListShape)).isRequired,
   onPlaceCardNameClick: PropTypes.func,
-  placesToStayCount: PropTypes.number.isRequired,
 };
 
 export default OffersList;

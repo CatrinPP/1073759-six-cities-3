@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
-import {offerShape} from '../../const.js';
+import {offersListShape} from '../../const.js';
 
 class App extends PureComponent {
   constructor(props) {
@@ -22,7 +22,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {offers, placesToStayCount} = this.props;
+    const {offers} = this.props;
     const {currentOffer} = this.state;
 
     if (currentOffer === null) {
@@ -30,7 +30,6 @@ class App extends PureComponent {
         <Main
           offers={offers}
           onPlaceCardNameClick={this.handlePlaceCardName}
-          placesToStayCount={placesToStayCount}
         />
       );
     } else {
@@ -53,7 +52,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-offer">
             <DetailedOffer
-              offer={offers[0]}
+              offer={offers[0].offers[0]}
             />
           </Route>
         </Switch>
@@ -63,8 +62,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
-  placesToStayCount: PropTypes.number.isRequired
+  offers: PropTypes.arrayOf(PropTypes.shape(offersListShape)).isRequired,
 };
 
 export default App;
