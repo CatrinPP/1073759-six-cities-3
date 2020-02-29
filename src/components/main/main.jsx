@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OffersList from '../offers-list/offers-list.jsx';
+import Cities from '../cities/cities.jsx';
 import Map from '../map/map.jsx';
-import {offerShape} from '../../const.js';
+import {offersListShape} from '../../const.js';
 
-const Main = ({offers, onPlaceCardNameClick, placesToStayCount}) => {
+const Main = ({offers, onPlaceCardNameClick}) => {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -34,38 +35,9 @@ const Main = ({offers, onPlaceCardNameClick, placesToStayCount}) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
+            <Cities
+              offers={offers}
+            />
           </section>
         </div>
         <div className="cities">
@@ -73,12 +45,11 @@ const Main = ({offers, onPlaceCardNameClick, placesToStayCount}) => {
             <OffersList
               offers={offers}
               onPlaceCardNameClick={onPlaceCardNameClick}
-              placesToStayCount={placesToStayCount}
             />
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                  offers={offers}
+                  offers={offers[0].offers}
                 />
               </section>
             </div>
@@ -90,9 +61,8 @@ const Main = ({offers, onPlaceCardNameClick, placesToStayCount}) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offersListShape)).isRequired,
   onPlaceCardNameClick: PropTypes.func,
-  placesToStayCount: PropTypes.number.isRequired
 };
 
 export default Main;
