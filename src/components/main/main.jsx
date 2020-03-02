@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import OffersList from '../offers-list/offers-list.jsx';
 import Cities from '../cities/cities.jsx';
 import Map from '../map/map.jsx';
-import {offersListShape} from '../../const.js';
+import {offerShape} from '../../const.js';
 
-const Main = ({offers, onPlaceCardNameClick}) => {
+const Main = (props) => {
+  const {offers} = props;
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -31,27 +34,22 @@ const Main = ({offers, onPlaceCardNameClick}) => {
         </div>
       </header>
 
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${!offers && `page__main--index-empty`}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <Cities
-              offers={offers}
-            />
+            <Cities />
           </section>
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <OffersList
-              offers={offers}
-              onPlaceCardNameClick={onPlaceCardNameClick}
-            />
+          <div className={`cities__places-container container ${!offers && `cities__places-container--empty`}`}>
+            <OffersList />
             <div className="cities__right-section">
-              <section className="cities__map map">
-                <Map
-                  offers={offers[0].offers}
-                />
-              </section>
+              {offers &&
+                <section className="cities__map map">
+                  <Map />
+                </section>
+              }
             </div>
           </div>
         </div>
@@ -61,8 +59,13 @@ const Main = ({offers, onPlaceCardNameClick}) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offersListShape)).isRequired,
-  onPlaceCardNameClick: PropTypes.func,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)),
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+});
+
+export {Main};
+export default connect(mapStateToProps)(Main);
+

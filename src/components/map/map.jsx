@@ -1,47 +1,58 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {offerShape, MAP_ICON_SIZE, ZOOM_VALUE} from '../../const.js';
 import leaflet from 'leaflet';
 
 class Map extends PureComponent {
-  constructor(props) {
-    super(props);
+  _renderMap() {
+    const {offers, city} = this.props;
+    const cityCenter = city.coords;
+
+    if (offers) {
+      const placesCoords = offers.map((offer) => offer.coords);
+
+      const showAllMarkers = () => {
+        placesCoords.map((coords) => {
+          leaflet
+            .marker(coords, {icon})
+            .addTo(this.map);
+        });
+      };
+
+      const icon = leaflet.icon({
+        iconUrl: `img/pin.svg`,
+        iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
+      });
+
+      this.map = leaflet.map(`map`, {
+        center: cityCenter,
+        zoom: ZOOM_VALUE,
+        zoomControl: false,
+        marker: true
+      });
+
+      this.map.setView(cityCenter, ZOOM_VALUE);
+
+      leaflet
+        .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+        })
+        .addTo(this.map);
+
+      showAllMarkers();
+    } else {
+      return;
+    }
   }
 
   componentDidMount() {
-    const {offers} = this.props;
-    const city = offers[0].coords;
-    const placesCoords = offers.map((offer) => offer.coords);
+    this._renderMap();
+  }
 
-    const showAllMarkers = () => {
-      placesCoords.map((coords) => {
-        leaflet
-          .marker(coords, {icon})
-          .addTo(map);
-      });
-    };
-
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
-    });
-
-    const map = leaflet.map(`map`, {
-      center: city,
-      zoom: ZOOM_VALUE,
-      zoomControl: false,
-      marker: true
-    });
-
-    map.setView(city, ZOOM_VALUE);
-
-    leaflet
-      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-      })
-      .addTo(map);
-
-    showAllMarkers();
+  componentDidUpdate() {
+    this.map.remove();
+    this._renderMap();
   }
 
   render() {
@@ -52,7 +63,14 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)),
+  city: PropTypes.object,
 };
 
-export default Map;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+  city: state.city
+});
+
+export {Map};
+export default connect(mapStateToProps)(Map);

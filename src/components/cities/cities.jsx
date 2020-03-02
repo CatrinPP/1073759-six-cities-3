@@ -1,39 +1,25 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {offersListShape} from '../../const.js';
+import {connect} from 'react-redux';
+import {offerShape} from '../../const.js';
+import {ActionCreator} from '../../reducer.js';
+import allOffers from '../../mocks/offers.js';
 
 class Cities extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentCity: props.offers[0].city,
-    };
-  }
-
-  handleCityClick(city) {
-    const onCityClick = () => {
-      this.setState({
-        currentCity: city
-      });
-    };
-    return onCityClick;
-  }
-
   render() {
-    const {offers} = this.props;
-    const {currentCity} = this.state;
-    const offersToShow = offers.slice(0, 6);
+    const {city, handleCityClick} = this.props;
+    const offersToShow = allOffers.slice(0, 6);
+
     return (
       <ul className="locations__list tabs__list">
         {offersToShow.map((it) => (
           <li className="locations__item"
-            key={it.city}
+            key={it.city.name}
           >
-            <a className={`locations__item-link tabs__item ${(it.city === currentCity) && `tabs__item--active`} href="#"`}
-              onClick={this.handleCityClick(it.city)}
+            <a className={`locations__item-link tabs__item ${(it.city.name === city.name) && `tabs__item--active`} href="#"`}
+              onClick={() => handleCityClick(it.city)}
             >
-              <span>{it.city}</span>
+              <span>{it.city.name}</span>
             </a>
           </li>
         ))}
@@ -43,7 +29,22 @@ class Cities extends PureComponent {
 }
 
 Cities.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offersListShape)).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)),
+  city: PropTypes.object,
+  handleCityClick: PropTypes.func,
 };
 
-export default Cities;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+  city: state.city,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleCityClick(city) {
+    dispatch(ActionCreator.changeCity(city));
+    dispatch(ActionCreator.getOffers(city));
+  }
+});
+
+export {Cities};
+export default connect(mapStateToProps, mapDispatchToProps)(Cities);
