@@ -1,7 +1,9 @@
 export default [
   {
-    city: `Paris`,
-    coords: [48.8534, 2.3488],
+    city: {
+      name: `Paris`,
+      coords: [48.8534, 2.3488],
+    },
     offers: [
       {
         bedrooms: 1,
@@ -19,7 +21,7 @@ export default [
         isPremium: false,
         price: 98,
         rating: 90,
-        title: `Amazing Studio Loft`,
+        title: `Amazing Studio Loft in Paris`,
         type: `Apartment`,
       }, {
         bedrooms: 3,
@@ -37,7 +39,7 @@ export default [
         isPremium: false,
         price: 34,
         rating: 80,
-        title: `Big Vintage Room`,
+        title: `Big Vintage Room in Paris`,
         type: `Room`,
       }, {
         bedrooms: 2,
@@ -55,7 +57,7 @@ export default [
         isPremium: false,
         price: 70,
         rating: 85,
-        title: `Small House in the city center`,
+        title: `Small House in the city center in Paris`,
         type: `House`,
       }, {
         bedrooms: 5,
@@ -73,14 +75,16 @@ export default [
         isPremium: true,
         price: 320,
         rating: 95,
-        title: `Villa with amazing view`,
+        title: `Villa with amazing view in Paris`,
         type: `Villa`,
       },
     ]
   },
   {
-    city: `Cologne`,
-    coords: [50.93333, 6.95],
+    city: {
+      name: `Cologne`,
+      coords: [50.93333, 6.95],
+    },
     offers: [
       {
         bedrooms: 1,
@@ -98,7 +102,7 @@ export default [
         isPremium: false,
         price: 98,
         rating: 90,
-        title: `Amazing Studio Loft`,
+        title: `Amazing Studio Loft in Cologne`,
         type: `Apartment`,
       }, {
         bedrooms: 3,
@@ -116,7 +120,7 @@ export default [
         isPremium: false,
         price: 34,
         rating: 80,
-        title: `Big Vintage Room`,
+        title: `Big Vintage Room in Cologne`,
         type: `Room`,
       }, {
         bedrooms: 2,
@@ -134,7 +138,7 @@ export default [
         isPremium: false,
         price: 70,
         rating: 85,
-        title: `Small House in the city center`,
+        title: `Small House in the city center in Cologne`,
         type: `House`,
       }, {
         bedrooms: 5,
@@ -152,14 +156,16 @@ export default [
         isPremium: true,
         price: 320,
         rating: 95,
-        title: `Villa with amazing view`,
+        title: `Villa with amazing view in Cologne`,
         type: `Villa`,
       },
     ]
   },
   {
-    city: `Brussels`,
-    coords: [50.85045, 4.34878],
+    city: {
+      name: `Brussels`,
+      coords: [50.85045, 4.34878],
+    },
     offers: [
       {
         bedrooms: 1,
@@ -177,7 +183,7 @@ export default [
         isPremium: false,
         price: 98,
         rating: 90,
-        title: `Amazing Studio Loft`,
+        title: `Amazing Studio Loft in Brussels`,
         type: `Apartment`,
       }, {
         bedrooms: 3,
@@ -195,7 +201,7 @@ export default [
         isPremium: false,
         price: 34,
         rating: 80,
-        title: `Big Vintage Room`,
+        title: `Big Vintage Room in Brussels`,
         type: `Room`,
       }, {
         bedrooms: 2,
@@ -213,7 +219,7 @@ export default [
         isPremium: false,
         price: 70,
         rating: 85,
-        title: `Small House in the city center`,
+        title: `Small House in the city center in Brussels`,
         type: `House`,
       }, {
         bedrooms: 5,
@@ -231,14 +237,16 @@ export default [
         isPremium: true,
         price: 320,
         rating: 95,
-        title: `Villa with amazing view`,
+        title: `Villa with amazing Brussels view`,
         type: `Villa`,
       },
     ]
   },
   {
-    city: `Amsterdam`,
-    coords: [52.38333, 4.9],
+    city: {
+      name: `Amsterdam`,
+      coords: [52.38333, 4.9],
+    },
     offers: [
       {
         bedrooms: 1,
@@ -256,7 +264,7 @@ export default [
         isPremium: false,
         price: 98,
         rating: 90,
-        title: `Amazing Studio Loft`,
+        title: `Amazing Studio Loft in Amsterdam`,
         type: `Apartment`,
       }, {
         bedrooms: 3,
@@ -274,7 +282,7 @@ export default [
         isPremium: false,
         price: 34,
         rating: 80,
-        title: `Big Vintage Room`,
+        title: `Big Vintage Room in Amsterdam`,
         type: `Room`,
       }, {
         bedrooms: 2,
@@ -292,7 +300,7 @@ export default [
         isPremium: false,
         price: 70,
         rating: 85,
-        title: `Small House in the city center`,
+        title: `Small House in the city center in Amsterdam`,
         type: `House`,
       }, {
         bedrooms: 5,
@@ -310,14 +318,16 @@ export default [
         isPremium: true,
         price: 320,
         rating: 95,
-        title: `Villa with amazing view`,
+        title: `Villa with amazing view in Amsterdam`,
         type: `Villa`,
       },
     ]
   },
   {
-    city: `Hamburg`,
-    coords: [53.5753, 10.01],
+    city: {
+      name: `Hamburg`,
+      coords: [53.5753, 10.01],
+    },
     offers: [
       {
         bedrooms: 1,
@@ -335,7 +345,7 @@ export default [
         isPremium: false,
         price: 98,
         rating: 90,
-        title: `Amazing Studio Loft`,
+        title: `Amazing Studio Loft in Hamburg`,
         type: `Apartment`,
       }, {
         bedrooms: 3,
@@ -353,7 +363,7 @@ export default [
         isPremium: false,
         price: 34,
         rating: 80,
-        title: `Big Vintage Room`,
+        title: `Big Vintage Room in Hamburg`,
         type: `Room`,
       }, {
         bedrooms: 2,
@@ -371,7 +381,7 @@ export default [
         isPremium: false,
         price: 70,
         rating: 85,
-        title: `Small House in the city center`,
+        title: `Small House in Hamburg city center`,
         type: `House`,
       }, {
         bedrooms: 5,
@@ -389,88 +399,15 @@ export default [
         isPremium: true,
         price: 320,
         rating: 95,
-        title: `Villa with amazing view`,
+        title: `Villa with amazing view in Hamburg`,
         type: `Villa`,
       },
     ]
   },
   {
-    city: `Dusseldorf`,
-    coords: [51.2217, 6.8],
-    offers: [
-      {
-        bedrooms: 1,
-        coords: [51.2217134, 6.7714],
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.`,
-        features: [`Wifi`, `Heating`, `Cable TV`, `Fridge`, `Coffee machine`, `Towels`],
-        guests: 2,
-        host: {
-          avatar: `img/avatar-angelina.jpg`,
-          name: `Angelina`,
-          isStar: true
-        },
-        id: `01`,
-        images: [`img/room.jpg`, `img/room.jpg`, `img/room.jpg`, `img/room.jpg`, `img/room.jpg`, `img/room.jpg`],
-        isPremium: false,
-        price: 98,
-        rating: 90,
-        title: `Amazing Studio Loft`,
-        type: `Apartment`,
-      }, {
-        bedrooms: 3,
-        coords: [51.2217124, 6.7814],
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.`,
-        features: [`Wifi`, `Kitchen`, `Cable TV`, `Fridge`, `Washing machine`, `Coffee machine`, `Dishwasher`, `Towels`],
-        guests: 3,
-        host: {
-          avatar: `img/avatar-max.jpg`,
-          name: `Max`,
-          isStar: false
-        },
-        id: `02`,
-        images: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
-        isPremium: false,
-        price: 34,
-        rating: 80,
-        title: `Big Vintage Room`,
-        type: `Room`,
-      }, {
-        bedrooms: 2,
-        coords: [51.22173134, 6.77314],
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.`,
-        features: [`Wifi`, `Heating`, `Kitchen`, `Cable TV`, `Fridge`, `Washing machine`, `Coffee machine`, `Dishwasher`, `Towels`],
-        guests: 4,
-        host: {
-          avatar: `img/avatar-angelina.jpg`,
-          name: `Angelina`,
-          isStar: true
-        },
-        id: `03`,
-        images: [`img/apartment-02.jpg`, `img/apartment-02.jpg`, `img/apartment-02.jpg`, `img/apartment-02.jpg`, `img/apartment-02.jpg`, `img/apartment-02.jpg`],
-        isPremium: false,
-        price: 70,
-        rating: 85,
-        title: `Small House in the city center`,
-        type: `House`,
-      }, {
-        bedrooms: 5,
-        coords: [51.2217134004, 6.7710044],
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.`,
-        features: [`Wifi`, `Kitchen`, `Cable TV`, `Fridge`, `Washing machine`, `Coffee machine`, `Dishwasher`, `Towels`, `Baby seat`],
-        guests: 10,
-        host: {
-          avatar: `img/avatar-max.jpg`,
-          name: `Max`,
-          isStar: false
-        },
-        id: `04`,
-        images: [`img/apartment-03.jpg`, `img/apartment-03.jpg`, `img/apartment-03.jpg`, `img/apartment-03.jpg`, `img/apartment-03.jpg`, `img/apartment-03.jpg`],
-        isPremium: true,
-        price: 320,
-        rating: 95,
-        title: `Villa with amazing view`,
-        type: `Villa`,
-      },
-    ]
+    city: {
+      name: `Dusseldorf`,
+      coords: [51.2217, 6.8],
+    },
   },
 ];
