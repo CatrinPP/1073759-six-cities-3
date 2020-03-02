@@ -2,4 +2,8 @@ const getFiveStarRating = (ratingInPercent) => {
   return (ratingInPercent * 0.05);
 };
 
-export {getFiveStarRating};
+const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+
+export {getFiveStarRating, extend};
