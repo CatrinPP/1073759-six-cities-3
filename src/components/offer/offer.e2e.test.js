@@ -8,12 +8,23 @@ Enzyme.configure({
 });
 
 const mock = {
+  bedrooms: 1,
+  coords: [11.11, 12.12],
+  description: ``,
+  features: [`Wifi`, `Washing machine`],
+  guests: 3,
+  host: {
+    avatar: ``,
+    name: `TestHost`,
+    isStar: false
+  },
+  id: `offer.e2e.test`,
   images: [`img/apartment-01.jpg`],
   isPremium: true,
   price: 200,
+  rating: 92,
   title: `Amazing Apartment`,
   type: `Apartment`,
-  rating: 92
 };
 
 describe(`Events`, () => {
@@ -29,6 +40,20 @@ describe(`Events`, () => {
 
     placeCard.simulate(`mouseEnter`);
     expect(onMouseEnterMock).toHaveBeenCalledTimes(1);
+  });
+
+  it(`Get function on card blur`, () => {
+    const onMouseLeaveMock = jest.fn();
+
+    const placeCard = shallow(
+        <Offer
+          offer={mock}
+          onMouseLeave={onMouseLeaveMock}
+        />
+    );
+
+    placeCard.simulate(`mouseLeave`);
+    expect(onMouseLeaveMock).toHaveBeenCalledTimes(1);
   });
 
   it(`Get function on title click`, () => {

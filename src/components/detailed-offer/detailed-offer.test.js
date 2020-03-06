@@ -6,7 +6,7 @@ import {offers} from '../../mocks/tests.js';
 it(`Should render DetailedOffer correctly`, () => {
   const tree = renderer
     .create(<DetailedOffer
-      offer={offers[0]}
+      offer={offers[0].offers[0]}
     />)
     .toJSON();
 
