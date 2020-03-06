@@ -49,9 +49,8 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)),
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   currentOffer: PropTypes.shape(offerShape),
-  handlePlaceCardName: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({

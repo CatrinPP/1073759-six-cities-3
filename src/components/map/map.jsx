@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {offerShape, MAP_ICON_SIZE, ZOOM_VALUE} from '../../const.js';
+import {offerShape, MAP_ICON_SIZE, ZOOM_VALUE, cityShape} from '../../const.js';
 import leaflet from 'leaflet';
 
 class Map extends PureComponent {
@@ -63,8 +63,8 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)),
-  city: PropTypes.object,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  city: PropTypes.shape(cityShape).isRequired,
 };
 
 const mapStateToProps = (state) => ({

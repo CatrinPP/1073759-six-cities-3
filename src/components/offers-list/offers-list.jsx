@@ -2,14 +2,21 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Offer from '../offer/offer.jsx';
-import {offerShape} from '../../const.js';
+import {offerShape, cityShape} from '../../const.js';
 import {ActionCreator} from '../../reducer.js';
 
 class OffersList extends PureComponent {
   render() {
     const {offers, city, handlePlaceCardHover, onPlaceCardNameClick} = this.props;
 
-    return !offers ?
+    const handleCardNameClick = (newOffer) => {
+      const onCardClick = () => {
+        return onPlaceCardNameClick(newOffer);
+      };
+      return onCardClick;
+    };
+
+    return !offers.length ?
       (
         <section className="cities__no-places">
           <div className="cities__status-wrapper tabs__content">
@@ -44,7 +51,7 @@ class OffersList extends PureComponent {
                 offer={it}
                 onMouseEnter={() => handlePlaceCardHover(it)}
                 onMouseLeave={() => handlePlaceCardHover(null)}
-                onPlaceCardNameClick={() => onPlaceCardNameClick(it)}
+                onPlaceCardNameClick={handleCardNameClick(it)}
               />
             ))}
           </div>
@@ -54,10 +61,10 @@ class OffersList extends PureComponent {
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)),
-  city: PropTypes.object,
-  onPlaceCardNameClick: PropTypes.func,
-  handlePlaceCardHover: PropTypes.func,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  city: PropTypes.shape(cityShape).isRequired,
+  onPlaceCardNameClick: PropTypes.func.isRequired,
+  handlePlaceCardHover: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
