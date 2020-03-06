@@ -26,6 +26,11 @@ const Feature = {
   BABY_SEAT: `Baby seat`
 };
 
+const cityShape = {
+  name: PropTypes.string.isRequired,
+  coords: PropTypes.arrayOf(PropTypes.number.isRequired),
+};
+
 const offerShape = {
   bedrooms: PropTypes.number,
   coords: PropTypes.arrayOf(PropTypes.number.isRequired),
@@ -47,9 +52,9 @@ const offerShape = {
 };
 
 const offersListShape = {
-  city: PropTypes.string.isRequired,
+  city: PropTypes.shape(cityShape).isRequired,
   coords: PropTypes.arrayOf(PropTypes.number.isRequired),
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)),
 };
 
-export {offerShape, offersListShape, MAP_ICON_SIZE, ZOOM_VALUE};
+export {offerShape, offersListShape, cityShape, MAP_ICON_SIZE, ZOOM_VALUE};
