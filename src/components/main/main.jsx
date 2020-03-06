@@ -34,7 +34,7 @@ const Main = (props) => {
         </div>
       </header>
 
-      <main className={`page__main page__main--index ${!offers && `page__main--index-empty`}`}>
+      <main className={`page__main page__main--index ${!offers.length ? `page__main--index-empty` : ``}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -42,13 +42,14 @@ const Main = (props) => {
           </section>
         </div>
         <div className="cities">
-          <div className={`cities__places-container container ${!offers && `cities__places-container--empty`}`}>
+          <div className={`cities__places-container container ${!offers.length ? `cities__places-container--empty` : ``}`}>
             <OffersList />
             <div className="cities__right-section">
-              {offers &&
+              {offers.length ?
                 <section className="cities__map map">
                   <Map />
                 </section>
+                : ``
               }
             </div>
           </div>
@@ -59,7 +60,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)),
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
 };
 
 const mapStateToProps = (state) => ({

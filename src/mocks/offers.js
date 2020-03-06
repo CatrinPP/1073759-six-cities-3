@@ -409,5 +409,6 @@ export default [
       name: `Dusseldorf`,
       coords: [51.2217, 6.8],
     },
+    offers: []
   },
 ];

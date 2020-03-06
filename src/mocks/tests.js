@@ -122,7 +122,7 @@ const offers = [
           name: `Vincena`,
           isStar: true
         },
-        id: `test4`,
+        id: `test6`,
         images: [`img/room15.jpg`, `img/room16.jpg`, `img/room17.jpg`],
         isPremium: true,
         price: 180,
@@ -140,7 +140,7 @@ const offers = [
           name: `Mi`,
           isStar: false
         },
-        id: `test5`,
+        id: `test7`,
         images: [`img/room18.jpg`, `img/room19.jpg`, `img/room20.jpg`],
         isPremium: true,
         price: 32,
