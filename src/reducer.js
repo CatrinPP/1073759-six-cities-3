@@ -2,6 +2,7 @@ import {extend} from './utils.js';
 import allOffers from './mocks/offers.js';
 
 const initialState = {
+  allOffers,
   city: allOffers[0].city,
   offers: allOffers[0].offers,
   currentOffer: null,
