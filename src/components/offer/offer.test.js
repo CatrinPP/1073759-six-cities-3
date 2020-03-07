@@ -6,7 +6,7 @@ import {offers} from '../../mocks/tests.js';
 it(`Should render Offer correctly`, () => {
   const tree = renderer
     .create(<Offer
-      offer={offers[0]}
+      offer={offers[0].offers[0]}
       onMouseEnter={() => {}}
       onMouseLeave={() => {}}
       onPlaceCardNameClick={() => {}}

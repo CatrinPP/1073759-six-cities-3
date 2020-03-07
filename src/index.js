@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 import App from './components/app/app.jsx';
-import offers from './mocks/offers.js';
+import {reducer} from './reducer.js';
 
-const Settings = {
-  PLACES_TO_STAY_COUNT: 312
-};
+const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+);
 
 ReactDOM.render(
-    <App
-      offers={offers}
-      placesToStayCount={Settings.PLACES_TO_STAY_COUNT}
-    />,
+    <Provider store={store}>
+      <App />
+    </Provider>,
     document.querySelector(`#root`)
 );

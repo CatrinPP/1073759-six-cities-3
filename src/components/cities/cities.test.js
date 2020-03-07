@@ -2,21 +2,21 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
-import App from './app.jsx';
+import Cities from './cities.jsx';
 import {offers} from '../../mocks/tests.js';
 
 const mockStore = configureStore([]);
 
-it(`Render App`, () => {
+it(`Should render Cities correctly`, () => {
   const store = mockStore({
-    offers: offers[0].offers,
-    currentOffer: offers[0].offers[0]
+    allOffers: offers,
+    city: offers[0].city
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App />
+          <Cities />
         </Provider>
     )
     .toJSON();

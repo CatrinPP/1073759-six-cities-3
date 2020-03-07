@@ -1,10 +1,6 @@
 import PropTypes from 'prop-types';
 
-const CityCoords = {
-  AMSTERDAM: [52.38333, 4.9],
-};
-
-const MAP_ICON_SIZE = [30, 30];
+const MAP_ICON_SIZE = 30;
 
 const ZOOM_VALUE = 12;
 
@@ -30,8 +26,14 @@ const Feature = {
   BABY_SEAT: `Baby seat`
 };
 
+const cityShape = {
+  name: PropTypes.string.isRequired,
+  coords: PropTypes.arrayOf(PropTypes.number.isRequired),
+};
+
 const offerShape = {
   bedrooms: PropTypes.number,
+  coords: PropTypes.arrayOf(PropTypes.number.isRequired),
   description: PropTypes.string,
   features: PropTypes.arrayOf(PropTypes.oneOf([Feature.WI_FI, Feature.HEATING, Feature.KITCHEN, Feature.CABLE_TV, Feature.FRIDGE, Feature.WASHING_MACHINE, Feature.COFFEE_MACHINE, Feature.DISHWASHER, Feature.TOWELS, Feature.BABY_SEAT])),
   guests: PropTypes.number,
@@ -40,6 +42,7 @@ const offerShape = {
     name: PropTypes.string,
     isStar: PropTypes.bool,
   }),
+  id: PropTypes.string.isRequired,
   images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   isPremium: PropTypes.bool.isRequired,
   price: PropTypes.number.isRequired,
@@ -48,4 +51,10 @@ const offerShape = {
   type: PropTypes.oneOf([PlaceType.APARTMENT, PlaceType.BUNGALOW, PlaceType.HOUSE, PlaceType.ROOM, PlaceType.STUDIO, PlaceType.VILLA]).isRequired,
 };
 
-export {offerShape, CityCoords, MAP_ICON_SIZE, ZOOM_VALUE};
+const offersListShape = {
+  city: PropTypes.shape(cityShape).isRequired,
+  coords: PropTypes.arrayOf(PropTypes.number.isRequired),
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)),
+};
+
+export {offerShape, offersListShape, cityShape, MAP_ICON_SIZE, ZOOM_VALUE};

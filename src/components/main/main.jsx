@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import OffersList from '../offers-list/offers-list.jsx';
+import Cities from '../cities/cities.jsx';
 import Map from '../map/map.jsx';
 import {offerShape} from '../../const.js';
 
-const Main = ({offers, onPlaceCardNameClick, placesToStayCount}) => {
+const Main = (props) => {
+  const {offers} = props;
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -30,57 +34,23 @@ const Main = ({offers, onPlaceCardNameClick, placesToStayCount}) => {
         </div>
       </header>
 
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${!offers.length ? `page__main--index-empty` : ``}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
+            <Cities />
           </section>
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <OffersList
-              offers={offers}
-              onPlaceCardNameClick={onPlaceCardNameClick}
-              placesToStayCount={placesToStayCount}
-            />
+          <div className={`cities__places-container container ${!offers.length ? `cities__places-container--empty` : ``}`}>
+            <OffersList />
             <div className="cities__right-section">
-              <section className="cities__map map">
-                <Map
-                  offers={offers}
-                />
-              </section>
+              {offers.length ?
+                <section className="cities__map map">
+                  <Map />
+                </section>
+                : ``
+              }
             </div>
           </div>
         </div>
@@ -91,8 +61,12 @@ const Main = ({offers, onPlaceCardNameClick, placesToStayCount}) => {
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
-  onPlaceCardNameClick: PropTypes.func,
-  placesToStayCount: PropTypes.number.isRequired
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+});
+
+export {Main};
+export default connect(mapStateToProps)(Main);
+
