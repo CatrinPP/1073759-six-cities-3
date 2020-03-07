@@ -9,12 +9,7 @@ class OffersList extends PureComponent {
   render() {
     const {offers, city, handlePlaceCardHover, onPlaceCardNameClick} = this.props;
 
-    const handleCardNameClick = (newOffer) => {
-      const onCardClick = () => {
-        return onPlaceCardNameClick(newOffer);
-      };
-      return onCardClick;
-    };
+    const handleCardNameClick = (newOffer) => () => onPlaceCardNameClick(newOffer);
 
     return !offers.length ?
       (

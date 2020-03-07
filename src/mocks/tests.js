@@ -1,4 +1,4 @@
-const offers = [
+const testOffers = [
   {
     city: {
       name: `Moscow`,
@@ -157,4 +157,4 @@ const offers = [
   }
 ];
 
-export {offers};
+export {testOffers};
