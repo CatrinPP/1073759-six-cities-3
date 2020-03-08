@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import {offerShape} from '../../const.js';
 import {getFiveStarRating} from '../../utils.js';
+import commentsList from '../../mocks/comments.js';
 
 const DetailedOffer = ({offer}) => {
   const fiveStarRating = getFiveStarRating(offer.rating).toFixed(1);
@@ -109,7 +110,9 @@ const DetailedOffer = ({offer}) => {
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <ReviewsList />
+                <ReviewsList
+                  commentsList={commentsList}
+                />
                 <form className="reviews__form form" action="#" method="post">
                   <label className="reviews__label form__label" htmlFor="review">Your review</label>
                   <div className="reviews__rating-form form__rating">

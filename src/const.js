@@ -57,4 +57,17 @@ const offersListShape = {
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)),
 };
 
-export {offerShape, offersListShape, cityShape, MAP_ICON_SIZE, ZOOM_VALUE};
+const userShape = {
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
+const commentShape = {
+  date: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+  user: PropTypes.shape(userShape).isRequired
+};
+
+export {offerShape, offersListShape, cityShape, commentShape, MAP_ICON_SIZE, ZOOM_VALUE};
