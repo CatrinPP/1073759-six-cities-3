@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
-import {offerShape} from '../../const.js';
+import Map from '../map/map.jsx';
+import {offerShape, MAP_SIZE_DETAILED_OFFER} from '../../const.js';
 import {getFiveStarRating} from '../../utils.js';
 import commentsList from '../../mocks/comments.js';
 
@@ -162,7 +163,11 @@ const DetailedOffer = ({offer}) => {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <Map
+              mapWidth={MAP_SIZE_DETAILED_OFFER}
+            />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">

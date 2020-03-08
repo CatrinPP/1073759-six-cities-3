@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const MAP_ICON_SIZE = 30;
-
+const MAP_SIZE_DETAILED_OFFER = `1144px`;
 const ZOOM_VALUE = 12;
 
 const PlaceType = {
@@ -70,4 +70,4 @@ const commentShape = {
   user: PropTypes.shape(userShape).isRequired
 };
 
-export {offerShape, offersListShape, cityShape, commentShape, MAP_ICON_SIZE, ZOOM_VALUE};
+export {offerShape, offersListShape, cityShape, commentShape, MAP_ICON_SIZE, ZOOM_VALUE, MAP_SIZE_DETAILED_OFFER};

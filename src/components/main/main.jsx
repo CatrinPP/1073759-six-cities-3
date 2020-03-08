@@ -47,7 +47,9 @@ const Main = (props) => {
             <div className="cities__right-section">
               {offers.length ?
                 <section className="cities__map map">
-                  <Map />
+                  <Map
+                    mapWidth={`100%`}
+                  />
                 </section>
                 : ``
               }

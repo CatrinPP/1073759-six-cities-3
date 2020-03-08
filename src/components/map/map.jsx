@@ -9,7 +9,7 @@ class Map extends PureComponent {
     const {offers, city} = this.props;
     const cityCenter = city.coords;
 
-    if (offers) {
+    if (offers.length) {
       const placesCoords = offers.map((offer) => offer.coords);
 
       const showAllMarkers = () => {
@@ -56,8 +56,10 @@ class Map extends PureComponent {
   }
 
   render() {
+    const {mapWidth} = this.props;
+
     return (
-      <div id="map" style={{width: `100%`, height: `100%`}}></div>
+      <div id="map" style={{width: mapWidth, height: `100%`, margin: `0 auto`}}></div>
     );
   }
 }
@@ -65,6 +67,8 @@ class Map extends PureComponent {
 Map.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   city: PropTypes.shape(cityShape).isRequired,
+  mapWidth: PropTypes.string.isRequired,
+  offersCount: PropTypes.number
 };
 
 const mapStateToProps = (state) => ({
