@@ -43,7 +43,9 @@ const Main = (props) => {
         </div>
         <div className="cities">
           <div className={`cities__places-container container ${!offers.length ? `cities__places-container--empty` : ``}`}>
-            <OffersList />
+            <OffersList
+              isCitiesClass={true}
+            />
             <div className="cities__right-section">
               {offers.length ?
                 <section className="cities__map map">

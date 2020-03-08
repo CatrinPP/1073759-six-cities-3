@@ -2,16 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {offerShape} from '../../const.js';
 
-const Offer = ({offer, onMouseEnter, onMouseLeave, onPlaceCardNameClick}) => {
+const Offer = ({isCitiesClass, offer, onMouseEnter, onMouseLeave, onPlaceCardNameClick}) => {
   return (
-    <article className="cities__place-card place-card"
+    <article className={`place-card ${isCitiesClass ? `cities__place-card` : `near-places__card`}`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <div className="place-card__mark">
-        <span>{offer.isPremium}</span>
-      </div>
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      {offer.isPremium ?
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div> : ``}
+
+      <div className={`place-card__image-wrapper ${isCitiesClass ? `cities__image-wrapper` : `near-places__image-wrapper`}`}>
         <a href="#">
           <img className="place-card__image" src={offer.images[0]} width="260" height="200" alt="Place image"/>
         </a>
@@ -49,6 +51,7 @@ const Offer = ({offer, onMouseEnter, onMouseLeave, onPlaceCardNameClick}) => {
 };
 
 Offer.propTypes = {
+  isCitiesClass: PropTypes.bool,
   offer: PropTypes.shape(offerShape).isRequired,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,

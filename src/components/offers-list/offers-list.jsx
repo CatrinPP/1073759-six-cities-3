@@ -8,7 +8,7 @@ import {ActionCreator} from '../../reducer.js';
 
 class OffersList extends PureComponent {
   render() {
-    const {offers, city, handlePlaceCardHover, onPlaceCardNameClick} = this.props;
+    const {isCitiesClass, offers, city, handlePlaceCardHover, onPlaceCardNameClick} = this.props;
 
     const handleCardNameClick = (newOffer) => () => onPlaceCardNameClick(newOffer);
 
@@ -22,13 +22,20 @@ class OffersList extends PureComponent {
         </section>
       ) :
       (
-        <section className="cities__places places">
-          <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{offers.length} places to stay in {city.name}</b>
-          <Sorting />
-          <div className="cities__places-list places__list tabs__content">
+        <section className={`places ${isCitiesClass ? `cities__places` : `near-places`}`}>
+          {isCitiesClass ?
+            <React.Fragment>
+              <h2 className="visually-hidden">Places</h2>
+              <b className="places__found">{offers.length} places to stay in {city.name}</b>
+              <Sorting />
+            </React.Fragment>
+            :
+            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+          }
+          <div className={`places__list ${isCitiesClass ? `cities__places-list tabs__content` : `near-places__list`}`}>
             {offers.map((it) => (
               <Offer
+                isCitiesClass={isCitiesClass}
                 key={it.id}
                 offer={it}
                 onMouseEnter={() => handlePlaceCardHover(it)}
@@ -43,8 +50,9 @@ class OffersList extends PureComponent {
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   city: PropTypes.shape(cityShape).isRequired,
+  isCitiesClass: PropTypes.bool,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   onPlaceCardNameClick: PropTypes.func.isRequired,
   handlePlaceCardHover: PropTypes.func.isRequired,
 };
