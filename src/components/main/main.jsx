@@ -4,10 +4,10 @@ import {connect} from 'react-redux';
 import OffersList from '../offers-list/offers-list.jsx';
 import Cities from '../cities/cities.jsx';
 import Map from '../map/map.jsx';
-import {offerShape} from '../../const.js';
+import {offerShape, cityShape} from '../../const.js';
 
 const Main = (props) => {
-  const {offers} = props;
+  const {city, offers} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -44,13 +44,17 @@ const Main = (props) => {
         <div className="cities">
           <div className={`cities__places-container container ${!offers.length ? `cities__places-container--empty` : ``}`}>
             <OffersList
+              city={city}
               isCitiesClass={true}
+              offers={offers}
             />
             <div className="cities__right-section">
               {offers.length ?
                 <section className="cities__map map">
                   <Map
+                    city={city}
                     mapWidth={`100%`}
+                    offers={offers}
                   />
                 </section>
                 : ``
@@ -64,10 +68,12 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  city: PropTypes.shape(cityShape).isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  city: state.city,
   offers: state.offers,
 });
 

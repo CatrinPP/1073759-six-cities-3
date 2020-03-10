@@ -1,12 +1,11 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import {offerShape, MAP_ICON_SIZE, ZOOM_VALUE, cityShape} from '../../const.js';
 import leaflet from 'leaflet';
 
 class Map extends PureComponent {
   _renderMap() {
-    const {offers, city} = this.props;
+    const {city, offers} = this.props;
     const cityCenter = city.coords;
 
     if (offers.length) {
@@ -27,9 +26,9 @@ class Map extends PureComponent {
 
       this.map = leaflet.map(`map`, {
         center: cityCenter,
+        marker: true,
         zoom: ZOOM_VALUE,
         zoomControl: false,
-        marker: true
       });
 
       this.map.setView(cityCenter, ZOOM_VALUE);
@@ -65,16 +64,10 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   city: PropTypes.shape(cityShape).isRequired,
   mapWidth: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   offersCount: PropTypes.number
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-  city: state.city
-});
-
-export {Map};
-export default connect(mapStateToProps)(Map);
+export default Map;

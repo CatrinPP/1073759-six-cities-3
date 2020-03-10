@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
-import {offerShape, MAP_SIZE_DETAILED_OFFER} from '../../const.js';
+import {offerShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY} from '../../const.js';
 import {getFiveStarRating} from '../../utils.js';
 import commentsList from '../../mocks/comments.js';
+import placesNearby from '../../mocks/places-nearby.js';
 
 const DetailedOffer = ({offer}) => {
   const fiveStarRating = getFiveStarRating(offer.rating).toFixed(1);
+  const offersNearbyToShow = placesNearby[0].offers.slice(0, MAX_OFFERS_NEARBY);
 
   return (
     <div className="page">
@@ -166,12 +168,17 @@ const DetailedOffer = ({offer}) => {
           </div>
           <section className="property__map map">
             <Map
+              city={placesNearby[0].city}
               mapWidth={MAP_SIZE_DETAILED_OFFER}
+              offers={offersNearbyToShow}
             />
           </section>
         </section>
         <div className="container">
-          <OffersList />
+          <OffersList
+            city={placesNearby[0].city}
+            offers={offersNearbyToShow}
+          />
         </div>
       </main>
     </div>
