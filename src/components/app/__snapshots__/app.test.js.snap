@@ -269,12 +269,71 @@ exports[`Render App 1`] = `
               <span
                 className="reviews__amount"
               >
-                1
+                12
               </span>
             </h2>
             <ul
               className="reviews__list"
             >
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-angelina.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Angelina
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "60%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Comment #12
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-07-08"
+                  >
+                    July 2019
+                  </time>
+                </div>
+              </li>
               <li
                 className="reviews__item"
               >
@@ -324,13 +383,485 @@ exports[`Render App 1`] = `
                   <p
                     className="reviews__text"
                   >
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+                    Comment #11
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2019-04-24"
+                    dateTime="2019-06-18"
                   >
-                    April 2019
+                    June 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-angelina.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Angelina
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "60%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Comment #10
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-06-09"
+                  >
+                    June 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Max
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "80%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Comment #9
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-06-08"
+                  >
+                    June 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-angelina.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Angelina
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "60%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Comment #8
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-05-28"
+                  >
+                    May 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Max
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "80%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Comment #7
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-05-18"
+                  >
+                    May 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-angelina.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Angelina
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "60%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Comment #6
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-05-13"
+                  >
+                    May 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Max
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "80%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Comment #5
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-05-12"
+                  >
+                    May 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-angelina.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Angelina
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "60%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Comment #4
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-05-11"
+                  >
+                    May 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Max
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "80%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Comment #3
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-05-10"
+                  >
+                    May 2019
                   </time>
                 </div>
               </li>
@@ -500,13 +1031,24 @@ exports[`Render App 1`] = `
       </div>
       <section
         className="property__map map"
-      />
+      >
+        <div
+          id="map"
+          style={
+            Object {
+              "height": "100%",
+              "margin": "0 auto",
+              "width": "1144px",
+            }
+          }
+        />
+      </section>
     </section>
     <div
       className="container"
     >
       <section
-        className="near-places places"
+        className="places near-places"
       >
         <h2
           className="near-places__title"
@@ -514,13 +1056,16 @@ exports[`Render App 1`] = `
           Other places in the neighbourhood
         </h2>
         <div
-          className="near-places__list places__list"
+          className="places__list near-places__list"
         >
           <article
-            className="near-places__card place-card"
+            className="place-card near-places__card"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
+            
             <div
-              className="near-places__image-wrapper place-card__image-wrapper"
+              className="place-card__image-wrapper near-places__image-wrapper"
             >
               <a
                 href="#"
@@ -529,7 +1074,7 @@ exports[`Render App 1`] = `
                   alt="Place image"
                   className="place-card__image"
                   height="200"
-                  src="img/room.jpg"
+                  src="img/apartment-01.jpg"
                   width="260"
                 />
               </a>
@@ -546,7 +1091,9 @@ exports[`Render App 1`] = `
                   <b
                     className="place-card__price-value"
                   >
-                    €80
+                    €
+                    120
+                     
                   </b>
                   <span
                     className="place-card__price-text"
@@ -555,7 +1102,7 @@ exports[`Render App 1`] = `
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button place-card__bookmark-button--active button"
+                  className="place-card__bookmark-button button"
                   type="button"
                 >
                   <svg
@@ -570,7 +1117,7 @@ exports[`Render App 1`] = `
                   <span
                     className="visually-hidden"
                   >
-                    In bookmarks
+                    To bookmarks
                   </span>
                 </button>
               </div>
@@ -583,7 +1130,7 @@ exports[`Render App 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "80%",
+                        "width": "4.8%",
                       }
                     }
                   />
@@ -599,22 +1146,26 @@ exports[`Render App 1`] = `
               >
                 <a
                   href="#"
+                  onClick={[Function]}
                 >
-                  Wood and stone place
+                  Beautiful & luxurious studio at great location
                 </a>
               </h2>
               <p
                 className="place-card__type"
               >
-                Private room
+                Apartment
               </p>
             </div>
           </article>
           <article
-            className="near-places__card place-card"
+            className="place-card near-places__card"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
+            
             <div
-              className="near-places__image-wrapper place-card__image-wrapper"
+              className="place-card__image-wrapper near-places__image-wrapper"
             >
               <a
                 href="#"
@@ -640,7 +1191,9 @@ exports[`Render App 1`] = `
                   <b
                     className="place-card__price-value"
                   >
-                    €132
+                    €
+                    100
+                     
                   </b>
                   <span
                     className="place-card__price-text"
@@ -677,7 +1230,7 @@ exports[`Render App 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "80%",
+                        "width": "3.8%",
                       }
                     }
                   />
@@ -693,8 +1246,9 @@ exports[`Render App 1`] = `
               >
                 <a
                   href="#"
+                  onClick={[Function]}
                 >
-                  Canal View Prinsengracht
+                  Beautiful apartment, great location
                 </a>
               </h2>
               <p
@@ -705,10 +1259,19 @@ exports[`Render App 1`] = `
             </div>
           </article>
           <article
-            className="near-places__card place-card"
+            className="place-card near-places__card"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
             <div
-              className="near-places__image-wrapper place-card__image-wrapper"
+              className="place-card__mark"
+            >
+              <span>
+                Premium
+              </span>
+            </div>
+            <div
+              className="place-card__image-wrapper near-places__image-wrapper"
             >
               <a
                 href="#"
@@ -734,7 +1297,9 @@ exports[`Render App 1`] = `
                   <b
                     className="place-card__price-value"
                   >
-                    €180
+                    €
+                    40
+                     
                   </b>
                   <span
                     className="place-card__price-text"
@@ -771,7 +1336,7 @@ exports[`Render App 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "100%",
+                        "width": "2.9%",
                       }
                     }
                   />
@@ -787,14 +1352,15 @@ exports[`Render App 1`] = `
               >
                 <a
                   href="#"
+                  onClick={[Function]}
                 >
-                  Nice, cozy, warm big bed apartment
+                  Small room
                 </a>
               </h2>
               <p
                 className="place-card__type"
               >
-                Apartment
+                Room
               </p>
             </div>
           </article>

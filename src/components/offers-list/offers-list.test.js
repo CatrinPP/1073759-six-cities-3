@@ -8,17 +8,14 @@ import {testOffers} from '../../mocks/tests.js';
 const mockStore = configureStore([]);
 
 it(`Should render Offers list correctly`, () => {
-  const store = mockStore({
-    offers: testOffers[0].offers,
-    city: testOffers[0].city
-  });
-
+  const store = mockStore();
   const tree = renderer
     .create(
         <Provider store={store}>
           <OffersList
-            onPlaceCardNameClick={() => {}}
-            handlePlaceCardHover={() => {}}
+            city={testOffers[0].city}
+            isCitiesClass={true}
+            offers={testOffers[0].offers}
           />
         </Provider>
     )

@@ -1,6 +1,8 @@
 import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import {Provider} from 'react-redux';
+import configureStore from "redux-mock-store";
 import Offer from './offer';
 
 Enzyme.configure({
@@ -27,46 +29,57 @@ const mock = {
   type: `Apartment`,
 };
 
+const mockStore = configureStore([]);
+
 describe(`Events`, () => {
   it(`Get function on card hover`, () => {
-    const onMouseEnterMock = jest.fn();
+    const store = mockStore();
+    store.dispatch = jest.fn();
 
-    const placeCard = shallow(
-        <Offer
-          offer={mock}
-          onMouseEnter={onMouseEnterMock}
-        />
+    const placeCard = mount(
+        <Provider store={store}>
+          <Offer
+            handlePlaceCardHover={store.dispatch}
+            offer={mock}
+          />
+        </Provider>
     );
 
-    placeCard.simulate(`mouseEnter`);
-    expect(onMouseEnterMock).toHaveBeenCalledTimes(1);
+    placeCard.find(`.place-card`).simulate(`mouseEnter`);
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
   it(`Get function on card blur`, () => {
-    const onMouseLeaveMock = jest.fn();
+    const store = mockStore();
+    store.dispatch = jest.fn();
 
-    const placeCard = shallow(
-        <Offer
-          offer={mock}
-          onMouseLeave={onMouseLeaveMock}
-        />
+    const placeCard = mount(
+        <Provider store={store}>
+          <Offer
+            handlePlaceCardHover={store.dispatch}
+            offer={mock}
+          />
+        </Provider>
     );
 
-    placeCard.simulate(`mouseLeave`);
-    expect(onMouseLeaveMock).toHaveBeenCalledTimes(1);
+    placeCard.find(`.place-card`).simulate(`mouseLeave`);
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
   it(`Get function on title click`, () => {
-    const onPlaceCardNameClickMock = jest.fn();
+    const store = mockStore();
+    store.dispatch = jest.fn();
 
-    const placeCard = shallow(
-        <Offer
-          offer={mock}
-          onPlaceCardNameClick={onPlaceCardNameClickMock}
-        />
+    const placeCard = mount(
+        <Provider store={store}>
+          <Offer
+            handlePlaceCardNameClick={store.dispatch}
+            offer={mock}
+          />
+        </Provider>
     );
 
     placeCard.find(`.place-card__name a`).simulate(`click`);
-    expect(onPlaceCardNameClickMock).toHaveBeenCalledTimes(1);
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 });

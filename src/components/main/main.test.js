@@ -10,8 +10,8 @@ const mockStore = configureStore([]);
 it(`Should render Main correctly`, () => {
   const store = mockStore({
     allOffers: testOffers,
+    city: testOffers[0].city,
     offers: testOffers[0].offers,
-    city: testOffers[0].city
   });
 
   const tree = renderer

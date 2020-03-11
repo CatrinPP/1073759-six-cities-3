@@ -2,17 +2,19 @@
 
 exports[`Should render Offer correctly 1`] = `
 <article
-  className="cities__place-card place-card"
+  className="place-card cities__place-card"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
   <div
     className="place-card__mark"
   >
-    <span />
+    <span>
+      Premium
+    </span>
   </div>
   <div
-    className="cities__image-wrapper place-card__image-wrapper"
+    className="place-card__image-wrapper cities__image-wrapper"
   >
     <a
       href="#"
