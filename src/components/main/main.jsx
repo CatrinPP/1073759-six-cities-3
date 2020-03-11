@@ -6,8 +6,7 @@ import Cities from '../cities/cities.jsx';
 import Map from '../map/map.jsx';
 import {offerShape, cityShape} from '../../const.js';
 
-const Main = (props) => {
-  const {city, offers} = props;
+const Main = ({city, offers}) => {
 
   return (
     <div className="page page--gray page--main">
