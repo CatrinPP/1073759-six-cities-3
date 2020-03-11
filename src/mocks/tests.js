@@ -157,4 +157,80 @@ const testOffers = [
   }
 ];
 
-export {testOffers};
+const testComments = [
+  {
+    date: `2018-05-08T14:13:56.569Z`,
+    id: 1,
+    rating: 4,
+    text: `Test Comment #1`,
+    user: {
+      avatar: `img/avatar-max.jpg`,
+      name: `Max`,
+    }
+  }, {
+    date: `2018-05-09T14:13:56.569Z`,
+    id: 2,
+    rating: 3,
+    text: `Test Comment #2`,
+    user: {
+      avatar: `img/avatar-angelina.jpg`,
+      name: `Angelina`,
+    }
+  }, {
+    date: `2018-09-10T14:13:56.569Z`,
+    id: 3,
+    rating: 4,
+    text: `Test Comment #3`,
+    user: {
+      avatar: `img/avatar-max.jpg`,
+      name: `Max`,
+    }
+  }, {
+    date: `2018-01-11T14:13:56.569Z`,
+    id: 4,
+    rating: 3,
+    text: `Test Comment #4`,
+    user: {
+      avatar: `img/avatar-angelina.jpg`,
+      name: `Angelina`,
+    }
+  }, {
+    date: `2018-10-12T14:13:56.569Z`,
+    id: 5,
+    rating: 4,
+    text: `Test Comment #5`,
+    user: {
+      avatar: `img/avatar-max.jpg`,
+      name: `Max`,
+    }
+  }, {
+    date: `2018-05-13T14:13:56.569Z`,
+    id: 6,
+    rating: 3,
+    text: `Test Comment #6`,
+    user: {
+      avatar: `img/avatar-angelina.jpg`,
+      name: `Angelina`,
+    }
+  }, {
+    date: `2018-11-18T14:13:56.569Z`,
+    id: 7,
+    rating: 4,
+    text: `Test Comment #7`,
+    user: {
+      avatar: `img/avatar-max.jpg`,
+      name: `Max`,
+    }
+  }, {
+    date: `2019-01-01T14:13:56.569Z`,
+    id: 8,
+    rating: 3,
+    text: `Test Comment #8`,
+    user: {
+      avatar: `img/avatar-angelina.jpg`,
+      name: `Angelina`,
+    }
+  },
+];
+
+export {testOffers, testComments};
