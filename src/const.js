@@ -4,6 +4,7 @@ const MAP_ICON_SIZE = 30;
 const MAP_SIZE_DETAILED_OFFER = `1144px`;
 const ZOOM_VALUE = 12;
 const MAX_OFFERS_NEARBY = 3;
+const MAX_COMMENTS_VALUE = 10;
 
 const PlaceType = {
   APARTMENT: `Apartment`,
@@ -71,4 +72,4 @@ const commentShape = {
   user: PropTypes.shape(userShape).isRequired
 };
 
-export {offerShape, offersListShape, cityShape, commentShape, MAP_ICON_SIZE, ZOOM_VALUE, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY};
+export {offerShape, offersListShape, cityShape, commentShape, MAP_ICON_SIZE, ZOOM_VALUE, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, MAX_COMMENTS_VALUE};

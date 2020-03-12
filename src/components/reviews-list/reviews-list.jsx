@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import ReviewsItem from '../reviews-item/reviews-item.jsx';
-import {commentShape} from '../../const.js';
+import {commentShape, MAX_COMMENTS_VALUE} from '../../const.js';
 
 const ReviewsList = ({commentsList}) => {
   commentsList.sort((a, b) => moment(b.date) - moment(a.date));
-  const commentsToShow = commentsList.slice(0, 10);
+  const commentsToShow = commentsList.slice(0, MAX_COMMENTS_VALUE);
 
   return (
     <React.Fragment>
