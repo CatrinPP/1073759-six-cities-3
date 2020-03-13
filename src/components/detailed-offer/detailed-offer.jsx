@@ -169,6 +169,7 @@ const DetailedOffer = ({offer}) => {
           <section className="property__map map">
             <Map
               city={placesNearby[0].city}
+              isBlockedZoom={true}
               mapWidth={MAP_SIZE_DETAILED_OFFER}
               offers={offersNearbyToShow}
             />

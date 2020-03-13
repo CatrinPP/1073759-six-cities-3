@@ -52,6 +52,7 @@ const Main = ({city, offers}) => {
                 <section className="cities__map map">
                   <Map
                     city={city}
+                    isBlockedZoom={false}
                     mapWidth={`100%`}
                     offers={offers}
                   />

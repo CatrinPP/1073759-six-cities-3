@@ -5,7 +5,7 @@ import leaflet from 'leaflet';
 
 class Map extends PureComponent {
   _renderMap() {
-    const {city, offers} = this.props;
+    const {city, offers, isBlockedZoom} = this.props;
     const cityCenter = city.coords;
 
     if (offers.length) {
@@ -32,6 +32,11 @@ class Map extends PureComponent {
       });
 
       this.map.setView(cityCenter, ZOOM_VALUE);
+
+      if (isBlockedZoom) {
+        this.map.dragging.disable();
+        this.map.scrollWheelZoom.disable();
+      }
 
       leaflet
         .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -65,6 +70,7 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   city: PropTypes.shape(cityShape).isRequired,
+  isBlockedZoom: PropTypes.bool.isRequired,
   mapWidth: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   offersCount: PropTypes.number
