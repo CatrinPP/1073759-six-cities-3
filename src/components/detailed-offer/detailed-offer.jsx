@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
-import {offerShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY} from '../../const.js';
+import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY} from '../../const.js';
 import {getFiveStarRating} from '../../utils.js';
 import commentsList from '../../mocks/comments.js';
 import placesNearby from '../../mocks/places-nearby.js';
 
-const DetailedOffer = ({offer}) => {
+const DetailedOffer = ({city, currentOffer, offer}) => {
   const fiveStarRating = getFiveStarRating(offer.rating).toFixed(1);
-  const offersNearbyToShow = placesNearby[0].offers.slice(0, MAX_OFFERS_NEARBY);
+  const offersNearbyToShow = placesNearby.filter((it) => {
+    return (it.city.name === city.name);
+  })[0].offers.slice(0, MAX_OFFERS_NEARBY);
 
   return (
     <div className="page">
@@ -168,7 +171,8 @@ const DetailedOffer = ({offer}) => {
           </div>
           <section className="property__map map">
             <Map
-              city={placesNearby[0].city}
+              city={city}
+              currentOffer={currentOffer}
               isBlockedZoom={true}
               mapWidth={MAP_SIZE_DETAILED_OFFER}
               offers={offersNearbyToShow}
@@ -177,7 +181,7 @@ const DetailedOffer = ({offer}) => {
         </section>
         <div className="container">
           <OffersList
-            city={placesNearby[0].city}
+            city={city}
             offers={offersNearbyToShow}
           />
         </div>
@@ -187,7 +191,15 @@ const DetailedOffer = ({offer}) => {
 };
 
 DetailedOffer.propTypes = {
+  city: PropTypes.shape(cityShape).isRequired,
+  currentOffer: PropTypes.shape(offerShape),
   offer: PropTypes.shape(offerShape),
 };
 
-export default DetailedOffer;
+const mapStateToProps = (state) => ({
+  city: state.city,
+  currentOffer: state.currentOffer,
+});
+
+export {DetailedOffer};
+export default connect(mapStateToProps)(DetailedOffer);
