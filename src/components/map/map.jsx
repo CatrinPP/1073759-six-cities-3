@@ -23,14 +23,15 @@ class Map extends PureComponent {
         }
       };
 
-      const LeafIcon = leaflet.Icon.extend({
-        options: {
-          iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
-        }
+      const regularIcon = leaflet.icon({
+        iconUrl: `img/pin.svg`,
+        iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
       });
 
-      const regularIcon = new LeafIcon({iconUrl: `img/pin.svg`});
-      const activeIcon = new LeafIcon({iconUrl: `img/pin-active.svg`});
+      const activeIcon = leaflet.icon({
+        iconUrl: `img/pin-active.svg`,
+        iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
+      });
 
       this.map = leaflet.map(`map`, {
         center: cityCenter,
