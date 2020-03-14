@@ -8,6 +8,7 @@ it(`Should render Map correctly`, () => {
     .create(
         <Map
           city={testOffers[0].city}
+          isBlockedZoom={false}
           mapWidth={`100%`}
           offers={testOffers[0].offers}
         />

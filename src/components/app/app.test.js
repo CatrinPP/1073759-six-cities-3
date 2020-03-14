@@ -7,10 +7,15 @@ import {testOffers} from '../../mocks/tests.js';
 
 const mockStore = configureStore([]);
 
+const mockCity = {
+  name: `Paris`,
+};
+
 it(`Render App`, () => {
   const store = mockStore({
+    city: mockCity,
+    currentOffer: testOffers[0].offers[0],
     offers: testOffers[0].offers,
-    currentOffer: testOffers[0].offers[0]
   });
 
   const tree = renderer

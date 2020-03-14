@@ -7,8 +7,14 @@ import {testOffers} from '../../mocks/tests.js';
 
 const mockStore = configureStore([]);
 
+const mockCity = {
+  name: `Paris`,
+};
+
 it(`Should render DetailedOffer correctly`, () => {
-  const store = mockStore();
+  const store = mockStore({
+    city: mockCity
+  });
   const tree = renderer
     .create(
         <Provider store={store}>
