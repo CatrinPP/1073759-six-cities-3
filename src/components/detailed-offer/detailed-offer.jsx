@@ -9,7 +9,7 @@ import {getFiveStarRating} from '../../utils.js';
 import commentsList from '../../mocks/comments.js';
 import placesNearby from '../../mocks/places-nearby.js';
 
-const DetailedOffer = ({city, currentOffer, offer}) => {
+const DetailedOffer = ({city, offer}) => {
   const fiveStarRating = getFiveStarRating(offer.rating).toFixed(1);
   const offersNearbyToShow = placesNearby.filter((it) => {
     return (it.city.name === city.name);
@@ -172,7 +172,7 @@ const DetailedOffer = ({city, currentOffer, offer}) => {
           <section className="property__map map">
             <Map
               city={city}
-              currentOffer={currentOffer}
+              currentOffer={offer}
               isBlockedZoom={true}
               mapWidth={MAP_SIZE_DETAILED_OFFER}
               offers={offersNearbyToShow}
