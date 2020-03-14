@@ -5,7 +5,7 @@ import leaflet from 'leaflet';
 
 class Map extends PureComponent {
   _renderMap() {
-    const {city, offers, isBlockedZoom} = this.props;
+    const {city, currentOffer, isBlockedZoom, offers} = this.props;
     const cityCenter = city.coords;
 
     if (offers.length) {
@@ -14,15 +14,23 @@ class Map extends PureComponent {
       const showAllMarkers = () => {
         placesCoords.map((coords) => {
           leaflet
-            .marker(coords, {icon})
+            .marker(coords, {icon: regularIcon})
             .addTo(this.map);
         });
+
+        if (currentOffer) {
+          leaflet.marker(currentOffer.coords, {icon: activeIcon}).addTo(this.map);
+        }
       };
 
-      const icon = leaflet.icon({
-        iconUrl: `img/pin.svg`,
-        iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
+      const LeafIcon = leaflet.Icon.extend({
+        options: {
+          iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
+        }
       });
+
+      const regularIcon = new LeafIcon({iconUrl: `img/pin.svg`});
+      const activeIcon = new LeafIcon({iconUrl: `img/pin-active.svg`});
 
       this.map = leaflet.map(`map`, {
         center: cityCenter,
@@ -70,6 +78,7 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   city: PropTypes.shape(cityShape).isRequired,
+  currentOffer: PropTypes.shape(offerShape),
   isBlockedZoom: PropTypes.bool.isRequired,
   mapWidth: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
