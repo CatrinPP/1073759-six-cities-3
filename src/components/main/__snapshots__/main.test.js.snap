@@ -317,7 +317,6 @@ exports[`Should render Main correctly 1`] = `
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
-              
               <div
                 className="place-card__image-wrapper cities__image-wrapper"
               >
