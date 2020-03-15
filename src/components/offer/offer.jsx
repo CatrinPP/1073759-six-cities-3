@@ -1,17 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {offerShape} from '../../const.js';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer.js';
 
-const Offer = ({offer, onMouseEnter, onMouseLeave, onPlaceCardNameClick}) => {
+const Offer = ({handlePlaceCardHover, handlePlaceCardNameClick, isCitiesClass, offer}) => {
+  const handleCardNameClick = (newOffer) => () => handlePlaceCardNameClick(newOffer);
+  const handleCardHover = (newOffer) => () => handlePlaceCardHover(newOffer);
+
   return (
-    <article className="cities__place-card place-card"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+    <article className={`place-card ${isCitiesClass ? `cities__place-card` : `near-places__card`}`}
+      onMouseEnter={handleCardHover(offer)}
+      onMouseLeave={handleCardHover(null)}
     >
-      <div className="place-card__mark">
-        <span>{offer.isPremium}</span>
-      </div>
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      {offer.isPremium ?
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div> : ``}
+
+      <div className={`place-card__image-wrapper ${isCitiesClass ? `cities__image-wrapper` : `near-places__image-wrapper`}`}>
         <a href="#">
           <img className="place-card__image" src={offer.images[0]} width="260" height="200" alt="Place image"/>
         </a>
@@ -37,7 +44,7 @@ const Offer = ({offer, onMouseEnter, onMouseLeave, onPlaceCardNameClick}) => {
         </div>
         <h2 className="place-card__name">
           <a href="#"
-            onClick={onPlaceCardNameClick}
+            onClick={handleCardNameClick(offer)}
           >
             {offer.title}
           </a>
@@ -49,10 +56,21 @@ const Offer = ({offer, onMouseEnter, onMouseLeave, onPlaceCardNameClick}) => {
 };
 
 Offer.propTypes = {
+  handlePlaceCardHover: PropTypes.func,
+  handlePlaceCardNameClick: PropTypes.func,
+  isCitiesClass: PropTypes.bool,
   offer: PropTypes.shape(offerShape).isRequired,
-  onMouseEnter: PropTypes.func,
-  onMouseLeave: PropTypes.func,
-  onPlaceCardNameClick: PropTypes.func,
 };
 
-export default Offer;
+const mapDispatchToProps = (dispatch) => ({
+  handlePlaceCardHover(offer) {
+    dispatch(ActionCreator.changeCardOnHover(offer));
+  },
+
+  handlePlaceCardNameClick(offer) {
+    dispatch(ActionCreator.openDetailedOffer(offer));
+  }
+});
+
+export {Offer};
+export default connect(null, mapDispatchToProps)(Offer);

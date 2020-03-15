@@ -9,12 +9,7 @@ class Cities extends PureComponent {
     const {allOffers, city, handleCityClick} = this.props;
     const offersToShow = allOffers.slice(0, 6);
 
-    const onCityNameClick = (newCity) => {
-      const onCityClick = () => {
-        return handleCityClick(newCity);
-      };
-      return onCityClick;
-    };
+    const onCityNameClick = (newCity) => () => handleCityClick(newCity);
 
     return (
       <ul className="locations__list tabs__list">

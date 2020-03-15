@@ -135,7 +135,7 @@ exports[`Should render Main correctly 1`] = `
         className="cities__places-container container "
       >
         <section
-          className="cities__places places"
+          className="places cities__places"
         >
           <h2
             className="visually-hidden"
@@ -204,20 +204,22 @@ exports[`Should render Main correctly 1`] = `
             </ul>
           </form>
           <div
-            className="cities__places-list places__list tabs__content"
+            className="places__list cities__places-list tabs__content"
           >
             <article
-              className="cities__place-card place-card"
+              className="place-card cities__place-card"
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"
               >
-                <span />
+                <span>
+                  Premium
+                </span>
               </div>
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="place-card__image-wrapper cities__image-wrapper"
               >
                 <a
                   href="#"
@@ -311,17 +313,13 @@ exports[`Should render Main correctly 1`] = `
               </div>
             </article>
             <article
-              className="cities__place-card place-card"
+              className="place-card cities__place-card"
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
+              
               <div
-                className="place-card__mark"
-              >
-                <span />
-              </div>
-              <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="place-card__image-wrapper cities__image-wrapper"
               >
                 <a
                   href="#"
@@ -427,6 +425,7 @@ exports[`Should render Main correctly 1`] = `
               style={
                 Object {
                   "height": "100%",
+                  "margin": "0 auto",
                   "width": "100%",
                 }
               }

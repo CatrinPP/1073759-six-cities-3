@@ -6,6 +6,12 @@ leaflet.map = () => {
   return {
     setView: () => {},
     remove: () => {},
+    dragging: {
+      disable: () => {}
+    },
+    scrollWheelZoom: {
+      disable: () => {}
+    },
   };
 };
 

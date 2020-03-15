@@ -1,38 +1,51 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import {offerShape, MAP_ICON_SIZE, ZOOM_VALUE, cityShape} from '../../const.js';
 import leaflet from 'leaflet';
 
 class Map extends PureComponent {
   _renderMap() {
-    const {offers, city} = this.props;
+    const {city, currentOffer, isBlockedZoom, offers} = this.props;
     const cityCenter = city.coords;
 
-    if (offers) {
+    if (offers.length) {
       const placesCoords = offers.map((offer) => offer.coords);
 
       const showAllMarkers = () => {
         placesCoords.map((coords) => {
           leaflet
-            .marker(coords, {icon})
+            .marker(coords, {icon: regularIcon})
             .addTo(this.map);
         });
+
+        if (currentOffer) {
+          leaflet.marker(currentOffer.coords, {icon: activeIcon}).addTo(this.map);
+        }
       };
 
-      const icon = leaflet.icon({
+      const regularIcon = leaflet.icon({
         iconUrl: `img/pin.svg`,
+        iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
+      });
+
+      const activeIcon = leaflet.icon({
+        iconUrl: `img/pin-active.svg`,
         iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
       });
 
       this.map = leaflet.map(`map`, {
         center: cityCenter,
+        marker: true,
         zoom: ZOOM_VALUE,
         zoomControl: false,
-        marker: true
       });
 
       this.map.setView(cityCenter, ZOOM_VALUE);
+
+      if (isBlockedZoom) {
+        this.map.dragging.disable();
+        this.map.scrollWheelZoom.disable();
+      }
 
       leaflet
         .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -56,21 +69,21 @@ class Map extends PureComponent {
   }
 
   render() {
+    const {mapWidth} = this.props;
+
     return (
-      <div id="map" style={{width: `100%`, height: `100%`}}></div>
+      <div id="map" style={{width: mapWidth, height: `100%`, margin: `0 auto`}}></div>
     );
   }
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   city: PropTypes.shape(cityShape).isRequired,
+  currentOffer: PropTypes.shape(offerShape),
+  isBlockedZoom: PropTypes.bool.isRequired,
+  mapWidth: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  offersCount: PropTypes.number
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-  city: state.city
-});
-
-export {Map};
-export default connect(mapStateToProps)(Map);
+export default Map;

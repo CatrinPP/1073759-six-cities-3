@@ -3,15 +3,15 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
 import Main from './main.jsx';
-import {offers} from '../../mocks/tests.js';
+import {testOffers} from '../../mocks/tests.js';
 
 const mockStore = configureStore([]);
 
 it(`Should render Main correctly`, () => {
   const store = mockStore({
-    allOffers: offers,
-    offers: offers[0].offers,
-    city: offers[0].city
+    allOffers: testOffers,
+    city: testOffers[0].city,
+    offers: testOffers[0].offers,
   });
 
   const tree = renderer
