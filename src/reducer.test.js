@@ -1,6 +1,7 @@
 import {reducer, ActionType, ActionCreator} from './reducer.js';
 import allOffers from './mocks/offers.js';
 import {testOffers} from './mocks/tests.js';
+import {SortingType} from './const.js';
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
@@ -9,6 +10,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     offers: allOffers[0].offers,
     currentOffer: null,
     offerOnHover: null,
+    sortType: SortingType.DEFAULT,
   });
 });
 
@@ -19,6 +21,7 @@ it(`Reducer should change city name with given value`, () => {
     offers: allOffers[0].offers,
     currentOffer: null,
     offerOnHover: null,
+    sortType: SortingType.DEFAULT,
   }, {
     type: ActionType.CHANGE_CITY,
     payload: `Berlin`,
@@ -28,6 +31,7 @@ it(`Reducer should change city name with given value`, () => {
     offers: allOffers[0].offers,
     currentOffer: null,
     offerOnHover: null,
+    sortType: SortingType.DEFAULT,
   });
 });
 
@@ -38,6 +42,7 @@ it(`Reducer should return offers array by given value`, () => {
     city: testOffers[0].city,
     currentOffer: null,
     offerOnHover: null,
+    sortType: SortingType.DEFAULT,
   }, {
     type: ActionType.GET_OFFERS,
     payload: testOffers[1].offers,
@@ -47,6 +52,7 @@ it(`Reducer should return offers array by given value`, () => {
     city: testOffers[0].city,
     currentOffer: null,
     offerOnHover: null,
+    sortType: SortingType.DEFAULT,
   });
 });
 
@@ -57,6 +63,7 @@ it(`Reducer should return new offer by given value`, () => {
     offers: testOffers[0].offers,
     city: testOffers[0].city,
     currentOffer: null,
+    sortType: SortingType.DEFAULT,
   }, {
     type: ActionType.CHANGE_CARD_ON_HOVER,
     payload: testOffers[1],
@@ -66,6 +73,7 @@ it(`Reducer should return new offer by given value`, () => {
     offers: testOffers[0].offers,
     city: testOffers[0].city,
     currentOffer: null,
+    sortType: SortingType.DEFAULT,
   });
 });
 
@@ -76,6 +84,7 @@ it(`Reducer should return new offer object by given value`, () => {
     offerOnHover: null,
     offers: testOffers[0].offers,
     city: testOffers[0].city,
+    sortType: SortingType.DEFAULT,
   }, {
     type: ActionType.OPEN_DETAILED_OFFER,
     payload: testOffers[1],
@@ -85,6 +94,28 @@ it(`Reducer should return new offer object by given value`, () => {
     offerOnHover: null,
     offers: testOffers[0].offers,
     city: testOffers[0].city,
+    sortType: SortingType.DEFAULT,
+  });
+});
+
+it(`Reducer should change sorting type with given value`, () => {
+  expect(reducer({
+    allOffers,
+    city: testOffers[0].city,
+    offers: allOffers[0].offers,
+    currentOffer: null,
+    offerOnHover: null,
+    sortType: SortingType.DEFAULT,
+  }, {
+    type: ActionType.SORT_OFFERS,
+    payload: SortingType.PRICE_HIGH_TO_LOW,
+  })).toEqual({
+    allOffers,
+    city: testOffers[0].city,
+    offers: allOffers[0].offers,
+    currentOffer: null,
+    offerOnHover: null,
+    sortType: SortingType.PRICE_HIGH_TO_LOW,
   });
 });
 
@@ -114,6 +145,13 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.openDetailedOffer(testOffers[1].offers[1])).toEqual({
       type: ActionType.OPEN_DETAILED_OFFER,
       payload: testOffers[1].offers[1]
+    });
+  });
+
+  it(`Action creator for sorting offers on click returns correct action`, () => {
+    expect(ActionCreator.sortOffers(SortingType.TOP_RATED)).toEqual({
+      type: ActionType.SORT_OFFERS,
+      payload: SortingType.TOP_RATED
     });
   });
 });
