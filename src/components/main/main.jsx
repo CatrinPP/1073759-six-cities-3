@@ -6,7 +6,7 @@ import Cities from '../cities/cities.jsx';
 import Map from '../map/map.jsx';
 import {offerShape, cityShape} from '../../const.js';
 
-const Main = ({city, offers}) => {
+const Main = ({city, offerOnHover, offers}) => {
 
   return (
     <div className="page page--gray page--main">
@@ -52,6 +52,7 @@ const Main = ({city, offers}) => {
                 <section className="cities__map map">
                   <Map
                     city={city}
+                    currentOffer={offerOnHover}
                     isBlockedZoom={false}
                     mapWidth={`100%`}
                     offers={offers}
@@ -69,14 +70,15 @@ const Main = ({city, offers}) => {
 
 Main.propTypes = {
   city: PropTypes.shape(cityShape).isRequired,
+  offerOnHover: PropTypes.shape(offerShape),
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   city: state.city,
+  offerOnHover: state.offerOnHover,
   offers: state.offers,
 });
 
 export {Main};
 export default connect(mapStateToProps)(Main);
-

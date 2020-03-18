@@ -13,10 +13,10 @@ const Offer = ({handlePlaceCardHover, handlePlaceCardNameClick, isCitiesClass, o
       onMouseEnter={handleCardHover(offer)}
       onMouseLeave={handleCardHover(null)}
     >
-      {offer.isPremium ?
+      {offer.isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
-        </div> : ``}
+        </div>}
 
       <div className={`place-card__image-wrapper ${isCitiesClass ? `cities__image-wrapper` : `near-places__image-wrapper`}`}>
         <a href="#">
