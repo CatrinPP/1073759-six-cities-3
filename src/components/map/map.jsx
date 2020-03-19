@@ -4,68 +4,74 @@ import {offerShape, MAP_ICON_SIZE, ZOOM_VALUE, cityShape} from '../../const.js';
 import leaflet from 'leaflet';
 
 class Map extends PureComponent {
-  _renderMap() {
-    const {city, currentOffer, isBlockedZoom, offers} = this.props;
-    const cityCenter = city.coords;
+  _renderMarkers() {
+    const {currentOffer, offers} = this.props;
 
     if (offers.length) {
       const placesCoords = offers.map((offer) => offer.coords);
 
-      const showAllMarkers = () => {
-        placesCoords.map((coords) => {
-          leaflet
-            .marker(coords, {icon: regularIcon})
-            .addTo(this.map);
-        });
-
-        if (currentOffer) {
-          leaflet.marker(currentOffer.coords, {icon: activeIcon}).addTo(this.map);
-        }
-      };
-
-      const regularIcon = leaflet.icon({
+      this.regularIcon = leaflet.icon({
         iconUrl: `img/pin.svg`,
         iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
       });
 
-      const activeIcon = leaflet.icon({
+      this.activeIcon = leaflet.icon({
         iconUrl: `img/pin-active.svg`,
         iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
       });
 
-      this.map = leaflet.map(`map`, {
-        center: cityCenter,
-        marker: true,
-        zoom: ZOOM_VALUE,
-        zoomControl: false,
+      placesCoords.map((coords) => {
+        leaflet
+          .marker(coords, {icon: this.regularIcon})
+          .addTo(this.map);
       });
 
-      this.map.setView(cityCenter, ZOOM_VALUE);
-
-      if (isBlockedZoom) {
-        this.map.dragging.disable();
-        this.map.scrollWheelZoom.disable();
+      if (currentOffer) {
+        leaflet.marker(currentOffer.coords, {icon: this.activeIcon}).addTo(this.map);
       }
-
-      leaflet
-        .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-        })
-        .addTo(this.map);
-
-      showAllMarkers();
-    } else {
-      return;
     }
+  }
+
+  _renderMap() {
+    const {city, isBlockedZoom} = this.props;
+    const cityCenter = city.coords;
+
+    this.map = leaflet.map(`map`, {
+      center: cityCenter,
+      marker: true,
+      zoom: ZOOM_VALUE,
+      zoomControl: false,
+    });
+
+    this.map.setView(cityCenter, ZOOM_VALUE);
+
+    if (isBlockedZoom) {
+      this.map.dragging.disable();
+      this.map.scrollWheelZoom.disable();
+    }
+
+    leaflet
+      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+      })
+      .addTo(this.map);
+
+    this._renderMarkers();
   }
 
   componentDidMount() {
     this._renderMap();
   }
 
-  componentDidUpdate() {
-    this.map.remove();
-    this._renderMap();
+  componentDidUpdate(prevProps) {
+    const {city, currentOffer} = this.props;
+
+    if (prevProps.currentOffer !== currentOffer) {
+      this._renderMarkers();
+    } else if (prevProps.city !== city) {
+      this.map.remove();
+      this._renderMap();
+    }
   }
 
   render() {
