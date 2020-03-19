@@ -7,7 +7,7 @@ import {offerShape, cityShape} from '../../const.js';
 import {sortOffers} from '../../utils.js';
 
 const OffersList = ({city, isCitiesClass, offers, sortType}) => {
-  const sortedOffers = offers.slice();
+  const sortedOffers = [...offers];
   sortOffers(sortType, sortedOffers, offers);
 
   return !sortedOffers.length ?
