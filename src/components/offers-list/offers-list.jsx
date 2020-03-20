@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer.js';
 import Offer from '../offer/offer.jsx';
 import Sorting from '../sorting/sorting.jsx';
 import {offerShape, cityShape} from '../../const.js';
 import {sortOffers} from '../../utils.js';
 
-const OffersList = ({city, isCitiesClass, offers, sortType}) => {
+const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, isCitiesClass, offers, sortType}) => {
   const sortedOffers = [...offers];
+
+  const handleCardNameClick = (newOffer) => () => handlePlaceCardNameClick(newOffer);
+  const handleCardHover = (newOffer) => () => handlePlaceCardHover(newOffer);
+
   sortOffers(sortType, sortedOffers, offers);
 
   return !sortedOffers.length ?
@@ -36,6 +41,9 @@ const OffersList = ({city, isCitiesClass, offers, sortType}) => {
               isCitiesClass={isCitiesClass}
               key={it.id}
               offer={it}
+              handlePlaceCardNameClick={handleCardNameClick(it)}
+              onMouseEnter={handleCardHover(it)}
+              onMouseLeave={handleCardHover(null)}
             />
           ))}
         </div>
@@ -45,15 +53,26 @@ const OffersList = ({city, isCitiesClass, offers, sortType}) => {
 
 OffersList.propTypes = {
   city: PropTypes.shape(cityShape).isRequired,
+  handlePlaceCardHover: PropTypes.func,
+  handlePlaceCardNameClick: PropTypes.func,
   isCitiesClass: PropTypes.bool,
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   sortType: PropTypes.string.isRequired,
 };
 
-
 const mapStateToProps = (state) => ({
   sortType: state.sortType,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  handlePlaceCardHover(offer) {
+    dispatch(ActionCreator.changeCardOnHover(offer));
+  },
+
+  handlePlaceCardNameClick(offer) {
+    dispatch(ActionCreator.openDetailedOffer(offer));
+  }
+});
+
 export {OffersList};
-export default connect(mapStateToProps)(OffersList);
+export default connect(mapStateToProps, mapDispatchToProps)(OffersList);
