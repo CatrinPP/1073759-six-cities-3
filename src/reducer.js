@@ -3,7 +3,6 @@ import allOffers from './mocks/offers.js';
 import {SortingType} from './const.js';
 
 const initialState = {
-  allOffers,
   city: allOffers[0].city,
   currentOffer: null,
   offerOnHover: null,

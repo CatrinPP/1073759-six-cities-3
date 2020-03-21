@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {offerShape} from '../../const.js';
-import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer.js';
 
-const Offer = ({handlePlaceCardHover, handlePlaceCardNameClick, isCitiesClass, offer}) => {
-  const handleCardNameClick = (newOffer) => () => handlePlaceCardNameClick(newOffer);
-  const handleCardHover = (newOffer) => () => handlePlaceCardHover(newOffer);
-
+const Offer = ({handlePlaceCardNameClick, isCitiesClass, offer, onMouseEnter, onMouseLeave}) => {
   return (
     <article className={`place-card ${isCitiesClass ? `cities__place-card` : `near-places__card`}`}
-      onMouseEnter={handleCardHover(offer)}
-      onMouseLeave={handleCardHover(null)}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       {offer.isPremium &&
         <div className="place-card__mark">
@@ -44,7 +39,7 @@ const Offer = ({handlePlaceCardHover, handlePlaceCardNameClick, isCitiesClass, o
         </div>
         <h2 className="place-card__name">
           <a href="#"
-            onClick={handleCardNameClick(offer)}
+            onClick={handlePlaceCardNameClick}
           >
             {offer.title}
           </a>
@@ -56,21 +51,11 @@ const Offer = ({handlePlaceCardHover, handlePlaceCardNameClick, isCitiesClass, o
 };
 
 Offer.propTypes = {
-  handlePlaceCardHover: PropTypes.func,
   handlePlaceCardNameClick: PropTypes.func,
   isCitiesClass: PropTypes.bool,
   offer: PropTypes.shape(offerShape).isRequired,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  handlePlaceCardHover(offer) {
-    dispatch(ActionCreator.changeCardOnHover(offer));
-  },
-
-  handlePlaceCardNameClick(offer) {
-    dispatch(ActionCreator.openDetailedOffer(offer));
-  }
-});
-
-export {Offer};
-export default connect(null, mapDispatchToProps)(Offer);
+export default Offer;
