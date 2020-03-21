@@ -5,7 +5,6 @@ import {SortingType} from './const.js';
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
-    allOffers,
     city: allOffers[0].city,
     offers: allOffers[0].offers,
     currentOffer: null,
@@ -16,7 +15,6 @@ it(`Reducer without additional parameters should return initial state`, () => {
 
 it(`Reducer should change city name with given value`, () => {
   expect(reducer({
-    allOffers,
     city: testOffers[0].city,
     offers: allOffers[0].offers,
     currentOffer: null,
@@ -26,7 +24,6 @@ it(`Reducer should change city name with given value`, () => {
     type: ActionType.CHANGE_CITY,
     payload: `Berlin`,
   })).toEqual({
-    allOffers,
     city: `Berlin`,
     offers: allOffers[0].offers,
     currentOffer: null,
@@ -37,7 +34,6 @@ it(`Reducer should change city name with given value`, () => {
 
 it(`Reducer should return offers array by given value`, () => {
   expect(reducer({
-    allOffers,
     offers: testOffers[0].offers,
     city: testOffers[0].city,
     currentOffer: null,
@@ -47,7 +43,6 @@ it(`Reducer should return offers array by given value`, () => {
     type: ActionType.GET_OFFERS,
     payload: testOffers[1].offers,
   })).toEqual({
-    allOffers,
     offers: testOffers[1].offers,
     city: testOffers[0].city,
     currentOffer: null,
@@ -58,7 +53,6 @@ it(`Reducer should return offers array by given value`, () => {
 
 it(`Reducer should return new offer by given value`, () => {
   expect(reducer({
-    allOffers,
     offerOnHover: null,
     offers: testOffers[0].offers,
     city: testOffers[0].city,
@@ -68,7 +62,6 @@ it(`Reducer should return new offer by given value`, () => {
     type: ActionType.CHANGE_CARD_ON_HOVER,
     payload: testOffers[1],
   })).toEqual({
-    allOffers,
     offerOnHover: testOffers[1],
     offers: testOffers[0].offers,
     city: testOffers[0].city,
@@ -79,7 +72,6 @@ it(`Reducer should return new offer by given value`, () => {
 
 it(`Reducer should return new offer object by given value`, () => {
   expect(reducer({
-    allOffers,
     currentOffer: null,
     offerOnHover: null,
     offers: testOffers[0].offers,
@@ -89,7 +81,6 @@ it(`Reducer should return new offer object by given value`, () => {
     type: ActionType.OPEN_DETAILED_OFFER,
     payload: testOffers[1],
   })).toEqual({
-    allOffers,
     currentOffer: testOffers[1],
     offerOnHover: null,
     offers: testOffers[0].offers,
@@ -100,7 +91,6 @@ it(`Reducer should return new offer object by given value`, () => {
 
 it(`Reducer should change sorting type with given value`, () => {
   expect(reducer({
-    allOffers,
     city: testOffers[0].city,
     offers: allOffers[0].offers,
     currentOffer: null,
@@ -110,7 +100,6 @@ it(`Reducer should change sorting type with given value`, () => {
     type: ActionType.SORT_OFFERS,
     payload: SortingType.PRICE_HIGH_TO_LOW,
   })).toEqual({
-    allOffers,
     city: testOffers[0].city,
     offers: allOffers[0].offers,
     currentOffer: null,

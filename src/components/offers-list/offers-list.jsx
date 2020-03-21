@@ -6,7 +6,7 @@ import Offer from '../offer/offer.jsx';
 import Sorting from '../sorting/sorting.jsx';
 import {offerShape, cityShape} from '../../const.js';
 import {sortOffers} from '../../utils.js';
-import withShowControl from '../../hocs/with-show-control.js';
+import withShowControl from '../../hocs/with-show-control/with-show-control.js';
 
 const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handleSortTypeClick, isCitiesClass, offers, sortType}) => {
   const sortedOffers = [...offers];

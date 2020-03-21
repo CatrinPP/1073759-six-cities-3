@@ -8,12 +8,12 @@ exports[`Should render Cities correctly 1`] = `
     className="locations__item"
   >
     <a
-      className="locations__item-link tabs__item tabs__item--active"
+      className="locations__item-link tabs__item "
       href="#"
       onClick={[Function]}
     >
       <span>
-        Moscow
+        Paris
       </span>
     </a>
   </li>
@@ -26,7 +26,7 @@ exports[`Should render Cities correctly 1`] = `
       onClick={[Function]}
     >
       <span>
-        Tokyo
+        Cologne
       </span>
     </a>
   </li>
@@ -39,7 +39,7 @@ exports[`Should render Cities correctly 1`] = `
       onClick={[Function]}
     >
       <span>
-        Oslo
+        Brussels
       </span>
     </a>
   </li>
@@ -52,7 +52,33 @@ exports[`Should render Cities correctly 1`] = `
       onClick={[Function]}
     >
       <span>
-        Vatican
+        Amsterdam
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item "
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Hamburg
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item "
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Dusseldorf
       </span>
     </a>
   </li>
