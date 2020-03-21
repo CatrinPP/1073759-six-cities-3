@@ -1,8 +1,19 @@
 import {SortingType} from './const.js';
+import allOffers from './mocks/offers.js';
 
 const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
+
+const getCitiesList = (offers) => {
+  let array = [];
+  offers.map((it) => {
+    array.push(it.city);
+  });
+  return array;
+};
+
+const citiesList = getCitiesList(allOffers).slice(0, 6);
 
 const getFiveStarRating = (ratingInPercent) => {
   return (ratingInPercent * 0.05);
@@ -34,4 +45,4 @@ const sortOffers = (sortType, sortedOffers, offers) => {
   }
 };
 
-export {extend, getFiveStarRating, getRatingInPercent, sortOffers};
+export {extend, citiesList, getFiveStarRating, getRatingInPercent, sortOffers};

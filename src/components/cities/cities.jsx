@@ -1,24 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {offersListShape, cityShape} from '../../const.js';
+import {citiesList, cityShape} from '../../utils.js';
 import {ActionCreator} from '../../reducer.js';
 
-const Cities = ({allOffers, city, handleCityClick}) => {
-  const offersToShow = allOffers.slice(0, 6);
-
+const Cities = ({city, handleCityClick}) => {
   const handleCityNameClick = (newCity) => () => handleCityClick(newCity);
 
   return (
     <ul className="locations__list tabs__list">
-      {offersToShow.map((it) => (
+      {citiesList.map((it) => (
         <li className="locations__item"
-          key={it.city.name}
+          key={it.name}
         >
-          <a className={`locations__item-link tabs__item ${it.city.name === city.name ? `tabs__item--active` : ``}`} href="#"
-            onClick={handleCityNameClick(it.city)}
+          <a className={`locations__item-link tabs__item ${it.name === city.name ? `tabs__item--active` : ``}`} href="#"
+            onClick={handleCityNameClick(it)}
           >
-            <span>{it.city.name}</span>
+            <span>{it.name}</span>
           </a>
         </li>
       ))}
@@ -27,13 +25,11 @@ const Cities = ({allOffers, city, handleCityClick}) => {
 };
 
 Cities.propTypes = {
-  allOffers: PropTypes.arrayOf(PropTypes.shape(offersListShape)).isRequired,
   city: PropTypes.shape(cityShape).isRequired,
   handleCityClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  allOffers: state.allOffers,
   city: state.city,
 });
 
