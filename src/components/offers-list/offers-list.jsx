@@ -7,7 +7,7 @@ import Sorting from '../sorting/sorting.jsx';
 import {offerShape, cityShape} from '../../const.js';
 import {sortOffers} from '../../utils.js';
 
-const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, isCitiesClass, offers, sortType}) => {
+const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handleSortTypeClick, isCitiesClass, offers, sortType}) => {
   const sortedOffers = [...offers];
 
   const handleCardNameClick = (newOffer) => () => handlePlaceCardNameClick(newOffer);
@@ -30,7 +30,10 @@ const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, isCit
           <React.Fragment>
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{sortedOffers.length} places to stay in {city.name}</b>
-            <Sorting />
+            <Sorting
+              sortType={sortType}
+              handleSortTypeClick={handleSortTypeClick}
+            />
           </React.Fragment>
           :
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
@@ -55,6 +58,7 @@ OffersList.propTypes = {
   city: PropTypes.shape(cityShape).isRequired,
   handlePlaceCardHover: PropTypes.func,
   handlePlaceCardNameClick: PropTypes.func,
+  handleSortTypeClick: PropTypes.func,
   isCitiesClass: PropTypes.bool,
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   sortType: PropTypes.string.isRequired,
@@ -71,7 +75,11 @@ const mapDispatchToProps = (dispatch) => ({
 
   handlePlaceCardNameClick(offer) {
     dispatch(ActionCreator.openDetailedOffer(offer));
-  }
+  },
+
+  handleSortTypeClick(selectedSortType) {
+    dispatch(ActionCreator.sortOffers(selectedSortType));
+  },
 });
 
 export {OffersList};
