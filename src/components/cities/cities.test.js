@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
 import Cities from './cities.jsx';
-import {testOffers} from '../../mocks/tests.js';
+import {testOffers} from '../../test-mocks.js';
 
 const mockStore = configureStore([]);
 

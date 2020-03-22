@@ -1,6 +1,6 @@
 import {reducer, ActionType, ActionCreator} from './reducer.js';
 import allOffers from './mocks/offers.js';
-import {testOffers} from './mocks/tests.js';
+import {testOffers} from '../../test-mocks.js';
 import {SortingType} from './const.js';
 
 it(`Reducer without additional parameters should return initial state`, () => {

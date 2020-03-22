@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Map from './map.jsx';
-import {testOffers} from '../../mocks/tests.js';
+import {testOffers} from '../../test-mocks.js';
 
 it(`Should render Map correctly`, () => {
   const tree = renderer

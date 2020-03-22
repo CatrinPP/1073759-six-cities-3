@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
 import OffersList from './offers-list';
-import {testOffers} from '../../mocks/tests.js';
+import {testOffers} from '../../test-mocks.js';
 import {SortingType} from '../../const';
 
 Enzyme.configure({

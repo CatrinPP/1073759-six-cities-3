@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ReviewsItem from './reviews-item.jsx';
-import {testComments} from '../../mocks/tests.js';
+import {testComments} from '../../test-mocks.js';
 
 it(`Should render each Review correctly`, () => {
   const tree = renderer
