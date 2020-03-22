@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 
+const CITIES_LIST_COUNT = 6;
+const MAX_COMMENTS_VALUE = 10;
 const MAP_ICON_SIZE = 30;
+const MAX_OFFERS_NEARBY = 3;
 const MAP_SIZE_DETAILED_OFFER = `1144px`;
 const ZOOM_VALUE = 12;
-const MAX_OFFERS_NEARBY = 3;
-const MAX_COMMENTS_VALUE = 10;
 
 const PlaceType = {
   APARTMENT: `Apartment`,
@@ -81,4 +82,4 @@ const commentShape = {
   user: PropTypes.shape(userShape).isRequired
 };
 
-export {offerShape, offersListShape, cityShape, commentShape, MAP_ICON_SIZE, ZOOM_VALUE, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, MAX_COMMENTS_VALUE, SortingType, sortTypes};
+export {offerShape, offersListShape, cityShape, commentShape, CITIES_LIST_COUNT, MAP_ICON_SIZE, ZOOM_VALUE, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, MAX_COMMENTS_VALUE, SortingType, sortTypes};

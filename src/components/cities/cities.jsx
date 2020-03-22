@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {citiesList, cityShape} from '../../utils.js';
+import {citiesList} from '../../utils.js';
+import {cityShape} from '../../const.js';
 import {ActionCreator} from '../../reducer.js';
 
 const Cities = ({city, handleCityClick}) => {

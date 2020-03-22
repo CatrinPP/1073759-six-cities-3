@@ -51,11 +51,11 @@ const Offer = ({handlePlaceCardNameClick, isCitiesClass, offer, onMouseEnter, on
 };
 
 Offer.propTypes = {
-  handlePlaceCardNameClick: PropTypes.func,
+  handlePlaceCardNameClick: PropTypes.func.isRequired,
   isCitiesClass: PropTypes.bool,
   offer: PropTypes.shape(offerShape).isRequired,
-  onMouseEnter: PropTypes.func,
-  onMouseLeave: PropTypes.func,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
 };
 
 export default Offer;

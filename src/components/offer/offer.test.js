@@ -14,6 +14,8 @@ it(`Should render Offer correctly`, () => {
         <Provider store={store}>
           <Offer
             offer={testOffers[0].offers[0]}
+            onMouseEnter={() => {}}
+            onMouseLeave={() => {}}
             handlePlaceCardHover={() => {}}
             handlePlaceCardNameClick={() => {}}
             isCitiesClass={true}

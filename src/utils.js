@@ -1,4 +1,4 @@
-import {SortingType} from './const.js';
+import {SortingType, CITIES_LIST_COUNT} from './const.js';
 import allOffers from './mocks/offers.js';
 
 const extend = (a, b) => {
@@ -13,7 +13,7 @@ const getCitiesList = (offers) => {
   return array;
 };
 
-const citiesList = getCitiesList(allOffers).slice(0, 6);
+const citiesList = getCitiesList(allOffers).slice(0, CITIES_LIST_COUNT);
 
 const getFiveStarRating = (ratingInPercent) => {
   return (ratingInPercent * 0.05);
