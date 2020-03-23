@@ -5,6 +5,7 @@ const MAX_COMMENTS_VALUE = 10;
 const MAP_ICON_SIZE = 30;
 const MAX_OFFERS_NEARBY = 3;
 const MAP_SIZE_DETAILED_OFFER = `1144px`;
+const TIMEOUT = 5000;
 const ZOOM_VALUE = 12;
 
 const PlaceType = {
@@ -82,4 +83,18 @@ const commentShape = {
   user: PropTypes.shape(userShape).isRequired
 };
 
-export {offerShape, offersListShape, cityShape, commentShape, CITIES_LIST_COUNT, MAP_ICON_SIZE, ZOOM_VALUE, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, MAX_COMMENTS_VALUE, SortingType, sortTypes};
+export {
+  CITIES_LIST_COUNT,
+  cityShape,
+  commentShape,
+  MAX_COMMENTS_VALUE,
+  MAP_ICON_SIZE,
+  MAX_OFFERS_NEARBY,
+  MAP_SIZE_DETAILED_OFFER,
+  offersListShape,
+  offerShape,
+  SortingType,
+  sortTypes,
+  TIMEOUT,
+  ZOOM_VALUE,
+};
