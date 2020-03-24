@@ -1,38 +1,23 @@
-import {extend, sortOffersByCity, transformOfferShape, transformCommentShape} from './utils.js';
-import {cities, SortingType} from './const.js';
+import {extend, sortOffersByCity, transformOfferShape, transformCommentShape} from '../../utils.js';
 import axios from 'axios';
 
 const initialState = {
   allOffers: [],
-  city: cities[0],
-  commentsList: [],
   currentOffer: null,
-  offerOnHover: null,
+  commentsList: [],
   offers: [],
   offersNearby: [],
-  sortType: SortingType.DEFAULT,
 };
 
 const ActionType = {
-  CHANGE_CARD_ON_HOVER: `CHANGE_CARD_ON_HOVER`,
-  CHANGE_CITY: `CHANGE_CITY`,
   GET_COMMENTS: `GET_COMMENTS`,
   GET_OFFERS: `GET_OFFERS`,
   GET_OFFERS_NEARBY: `GET_OFFERS_NEARBY`,
   LOAD_OFFERS: `LOAD_OFFERS`,
   OPEN_DETAILED_OFFER: `OPEN_DETAILED_OFFER`,
-  SORT_OFFERS: `SORT_OFFERS`,
 };
 
 const ActionCreator = {
-  changeCardOnHover: (offerOnHover) => ({
-    type: ActionType.CHANGE_CARD_ON_HOVER,
-    payload: offerOnHover
-  }),
-  changeCity: (newCity) => ({
-    type: ActionType.CHANGE_CITY,
-    payload: newCity
-  }),
   getComments: (comments) => ({
     type: ActionType.GET_COMMENTS,
     payload: comments
@@ -43,21 +28,17 @@ const ActionCreator = {
       payload: newCity
     });
   },
-  loadOffers: (offers) => ({
-    type: ActionType.LOAD_OFFERS,
-    payload: offers
-  }),
   getOffersNearby: (offers) => ({
     type: ActionType.GET_OFFERS_NEARBY,
+    payload: offers
+  }),
+  loadOffers: (offers) => ({
+    type: ActionType.LOAD_OFFERS,
     payload: offers
   }),
   openDetailedOffer: (offer) => ({
     type: ActionType.OPEN_DETAILED_OFFER,
     payload: offer
-  }),
-  sortOffers: (sortType) => ({
-    type: ActionType.SORT_OFFERS,
-    payload: sortType
   }),
 };
 
@@ -87,16 +68,6 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHANGE_CARD_ON_HOVER:
-      return extend(state, {
-        offerOnHover: action.payload,
-      });
-
-    case ActionType.CHANGE_CITY:
-      return extend(state, {
-        city: action.payload,
-      });
-
     case ActionType.GET_COMMENTS:
       return extend(state, {
         commentsList: action.payload,
@@ -121,11 +92,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.OPEN_DETAILED_OFFER:
       return extend(state, {
         currentOffer: action.payload,
-      });
-
-    case ActionType.SORT_OFFERS:
-      return extend(state, {
-        sortType: action.payload
       });
   }
 

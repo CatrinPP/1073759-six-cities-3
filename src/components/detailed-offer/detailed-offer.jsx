@@ -6,6 +6,8 @@ import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
 import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape} from '../../const.js';
 import {getRatingInPercent} from '../../utils.js';
+import {getCity} from '../../reducer/app/selectors.js';
+import {getCommentsList, getCurrentOffer, getOffersNearby} from '../../reducer/data/selectors.js';
 
 const DetailedOffer = ({city, commentsList, offer, offersNearby}) => {
   const ratingInPercent = getRatingInPercent(offer.rating);
@@ -195,10 +197,10 @@ DetailedOffer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  city: state.city,
-  commentsList: state.commentsList,
-  currentOffer: state.currentOffer,
-  offersNearby: state.offersNearby,
+  city: getCity(state),
+  commentsList: getCommentsList(state),
+  currentOffer: getCurrentOffer(state),
+  offersNearby: getOffersNearby(state),
 });
 
 export {DetailedOffer};

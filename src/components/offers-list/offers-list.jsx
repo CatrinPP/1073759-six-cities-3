@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator, Operation} from '../../reducer.js';
+import {ActionCreator} from '../../reducer/app/app.js';
+import {Operation} from '../../reducer/data/data.js';
 import Offer from '../offer/offer.jsx';
 import Sorting from '../sorting/sorting.jsx';
 import {offerShape, cityShape} from '../../const.js';
 import {sortOffers} from '../../utils.js';
 import withShowControl from '../../hocs/with-show-control/with-show-control.js';
+import {getSortType} from '../../reducer/app/selectors.js';
 
 const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handleSortTypeClick, isCitiesClass, offers, sortType}) => {
   const sortedOffers = JSON.parse(JSON.stringify(offers));
@@ -67,7 +69,7 @@ OffersList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  sortType: state.sortType,
+  sortType: getSortType(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
