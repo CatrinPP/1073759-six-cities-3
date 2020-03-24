@@ -5,12 +5,15 @@ import configureStore from "redux-mock-store";
 import OffersList from './offers-list.jsx';
 import {testOffers} from '../../test-mocks.js';
 import {SortingType} from '../../const.js';
+import NameSpace from '../../reducer/name-space.js';
 
 const mockStore = configureStore([]);
 
 it(`Should render Offers list correctly`, () => {
   const store = mockStore({
-    sortType: SortingType.DEFAULT,
+    [NameSpace.APP]: {
+      sortType: SortingType.DEFAULT,
+    },
   });
   const tree = renderer
     .create(

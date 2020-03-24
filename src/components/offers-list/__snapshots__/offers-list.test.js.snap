@@ -100,7 +100,6 @@ exports[`Should render Offers list correctly 1`] = `
             alt="Place image"
             className="place-card__image"
             height="200"
-            src="img/room.jpg"
             width="260"
           />
         </a>
@@ -180,7 +179,7 @@ exports[`Should render Offers list correctly 1`] = `
         <p
           className="place-card__type"
         >
-          Studio
+          room
         </p>
       </div>
     </article>
@@ -199,7 +198,6 @@ exports[`Should render Offers list correctly 1`] = `
             alt="Place image"
             className="place-card__image"
             height="200"
-            src="img/room3.jpg"
             width="260"
           />
         </a>
@@ -255,7 +253,7 @@ exports[`Should render Offers list correctly 1`] = `
             <span
               style={
                 Object {
-                  "width": "50%",
+                  "width": "1000%",
                 }
               }
             />
@@ -279,7 +277,7 @@ exports[`Should render Offers list correctly 1`] = `
         <p
           className="place-card__type"
         >
-          Apartment
+          apartment
         </p>
       </div>
     </article>

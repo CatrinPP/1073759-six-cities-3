@@ -3,8 +3,9 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
 import DetailedOffer from './detailed-offer.jsx';
-import {testOffers} from '../../test-mocks.js';
+import {testOffers, testComments} from '../../test-mocks.js';
 import {SortingType} from '../../const.js';
+import NameSpace from '../../reducer/name-space.js';
 
 const mockStore = configureStore([]);
 
@@ -14,8 +15,14 @@ const mockCity = {
 
 it(`Should render DetailedOffer correctly`, () => {
   const store = mockStore({
-    city: mockCity,
-    sortType: SortingType.DEFAULT,
+    [NameSpace.APP]: {
+      city: mockCity,
+      sortType: SortingType.DEFAULT,
+    },
+    [NameSpace.DATA]: {
+      commentsList: testComments,
+      offersNearby: testOffers[0].offers,
+    },
   });
   const tree = renderer
     .create(

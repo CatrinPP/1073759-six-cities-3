@@ -43,7 +43,7 @@ const Operation = {
   },
 
   openDetailedOffer: (offer) => (dispatch, getState, api) => {
-    axios.all([api.get(`comments/${offer.id}`),
+    return axios.all([api.get(`comments/${offer.id}`),
       api.get(`hotels/${offer.id}/nearby`)])
     .then(axios.spread((firstResponse, secondResponse) => {
       const transformedComments = firstResponse.data.map((it) => transformCommentShape(it));
