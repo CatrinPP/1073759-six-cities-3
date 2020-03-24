@@ -1,11 +1,17 @@
 import PropTypes from 'prop-types';
 
+const BASE_URL = `https://htmlacademy-react-3.appspot.com/six-cities`;
 const MAX_COMMENTS_VALUE = 10;
 const MAP_ICON_SIZE = 30;
 const MAX_OFFERS_NEARBY = 3;
 const MAP_SIZE_DETAILED_OFFER = `1144px`;
 const TIMEOUT = 5000;
 const ZOOM_VALUE = 13;
+
+const Error = {
+  UNAUTHORIZED: 401
+};
+
 
 const PlaceType = {
   APARTMENT: `apartment`,
@@ -85,9 +91,11 @@ const cities = [
 ];
 
 export {
+  BASE_URL,
   cities,
   cityShape,
   commentShape,
+  Error,
   MAX_COMMENTS_VALUE,
   MAP_ICON_SIZE,
   MAX_OFFERS_NEARBY,
