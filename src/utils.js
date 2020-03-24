@@ -1,22 +1,7 @@
-import {SortingType, CITIES_LIST_COUNT} from './const.js';
-import allOffers from './mocks/offers.js';
+import {cities, SortingType} from './const.js';
 
 const extend = (a, b) => {
   return Object.assign({}, a, b);
-};
-
-const getCitiesList = (offers) => {
-  let array = [];
-  offers.map((it) => {
-    array.push(it.city);
-  });
-  return array;
-};
-
-const citiesList = getCitiesList(allOffers).slice(0, CITIES_LIST_COUNT);
-
-const getFiveStarRating = (ratingInPercent) => {
-  return (ratingInPercent * 0.05);
 };
 
 const getRatingInPercent = (ratingFiveStar) => {
@@ -45,4 +30,53 @@ const sortOffers = (sortType, sortedOffers, offers) => {
   }
 };
 
-export {extend, citiesList, getFiveStarRating, getRatingInPercent, sortOffers};
+const transformCommentShape = (comment) => {
+  return {
+    date: comment.date,
+    id: comment.id,
+    rating: comment.rating,
+    text: comment.comment,
+    user: {
+      avatar: comment.user.avatar_url,
+      name: comment.user.name,
+    }
+  };
+};
+
+const transformOfferShape = (offer) => {
+  return {
+    bedrooms: offer.bedrooms,
+    coords: [offer.location.latitude, offer.location.longitude],
+    description: offer.description,
+    features: offer.goods,
+    guests: offer.max_adults,
+    host: {
+      avatar: offer.host.avatar_url,
+      id: offer.host.id,
+      isStar: offer.host.is_pro,
+      name: offer.host.name,
+    },
+    id: offer.id,
+    images: offer.images,
+    isPremium: offer.is_premium,
+    previewImage: offer.preview_image,
+    price: offer.price,
+    rating: offer.rating,
+    title: offer.title,
+    type: offer.type,
+  };
+};
+
+const sortOffersByCity = (allOffers) => {
+  const newArray = [];
+  cities.map((it) => {
+    const city = {name: it.name, coords: it.coords};
+    const offers1 = allOffers.filter((el) => el.city.name === it.name);
+    const offers = offers1.map((offer) => transformOfferShape(offer));
+    newArray.push({city, offers});
+  });
+
+  return newArray;
+};
+
+export {extend, getRatingInPercent, sortOffers, sortOffersByCity, transformCommentShape, transformOfferShape};

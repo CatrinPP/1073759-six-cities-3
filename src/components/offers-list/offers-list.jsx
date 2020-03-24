@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator, Operation} from '../../reducer.js';
 import Offer from '../offer/offer.jsx';
 import Sorting from '../sorting/sorting.jsx';
 import {offerShape, cityShape} from '../../const.js';
@@ -76,7 +76,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   handlePlaceCardNameClick(offer) {
-    dispatch(ActionCreator.openDetailedOffer(offer));
+    dispatch(Operation.openDetailedOffer(offer));
   },
 
   handleSortTypeClick(selectedSortType) {

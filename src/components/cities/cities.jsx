@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {citiesList} from '../../utils.js';
-import {cityShape} from '../../const.js';
+import {cities, cityShape} from '../../const.js';
 import {ActionCreator} from '../../reducer.js';
 
 const Cities = ({city, handleCityClick}) => {
@@ -10,7 +9,7 @@ const Cities = ({city, handleCityClick}) => {
 
   return (
     <ul className="locations__list tabs__list">
-      {citiesList.map((it) => (
+      {cities.map((it) => (
         <li className="locations__item"
           key={it.name}
         >

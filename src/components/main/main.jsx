@@ -52,7 +52,7 @@ const Main = ({city, offerOnHover, offers}) => {
                 <section className="cities__map map">
                   <Map
                     city={city}
-                    currentOffer={offerOnHover}
+                    offerOnHover={offerOnHover}
                     isBlockedZoom={false}
                     mapWidth={`100%`}
                     offers={offers}

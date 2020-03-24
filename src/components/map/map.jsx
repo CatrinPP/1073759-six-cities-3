@@ -5,7 +5,7 @@ import leaflet from 'leaflet';
 
 class Map extends PureComponent {
   _renderMarkers() {
-    const {currentOffer, offers} = this.props;
+    const {currentOffer, offerOnHover, offers} = this.props;
 
     if (offers.length) {
       const placesCoords = offers.map((offer) => offer.coords);
@@ -28,6 +28,8 @@ class Map extends PureComponent {
 
       if (currentOffer) {
         leaflet.marker(currentOffer.coords, {icon: this.activeIcon}).addTo(this.map);
+      } else if (offerOnHover) {
+        leaflet.marker(offerOnHover.coords, {icon: this.activeIcon}).addTo(this.map);
       }
     }
   }
@@ -55,7 +57,6 @@ class Map extends PureComponent {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(this.map);
-
     this._renderMarkers();
   }
 
@@ -64,13 +65,13 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const {city, currentOffer} = this.props;
+    const {city, currentOffer, offerOnHover} = this.props;
 
-    if (prevProps.currentOffer !== currentOffer) {
-      this._renderMarkers();
-    } else if (prevProps.city !== city) {
+    if (prevProps.currentOffer !== currentOffer || prevProps.city !== city) {
       this.map.remove();
       this._renderMap();
+    } else if (prevProps.offerOnHover !== offerOnHover) {
+      this._renderMarkers();
     }
   }
 
@@ -88,6 +89,7 @@ Map.propTypes = {
   currentOffer: PropTypes.shape(offerShape),
   isBlockedZoom: PropTypes.bool.isRequired,
   mapWidth: PropTypes.string.isRequired,
+  offerOnHover: PropTypes.shape(offerShape),
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   offersCount: PropTypes.number
 };
