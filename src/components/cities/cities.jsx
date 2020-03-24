@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {cities, cityShape} from '../../const.js';
-import {ActionCreator as DataActionCreator} from '../../reducer/data/data.js';
 import {ActionCreator as AppActionCreator} from '../../reducer/app/app.js';
 import {getCity} from '../../reducer/app/selectors.js';
 
@@ -38,7 +37,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   handleCityClick(city) {
     dispatch(AppActionCreator.changeCity(city));
-    dispatch(DataActionCreator.getOffers(city));
   }
 });
 

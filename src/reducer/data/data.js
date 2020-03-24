@@ -1,17 +1,15 @@
-import {extend, sortOffersByCity, transformOfferShape, transformCommentShape} from '../../utils.js';
+import {extend, transformOfferShape, transformCommentShape} from '../../utils.js';
 import axios from 'axios';
 
 const initialState = {
   allOffers: [],
   currentOffer: null,
   commentsList: [],
-  offers: [],
   offersNearby: [],
 };
 
 const ActionType = {
   GET_COMMENTS: `GET_COMMENTS`,
-  GET_OFFERS: `GET_OFFERS`,
   GET_OFFERS_NEARBY: `GET_OFFERS_NEARBY`,
   LOAD_OFFERS: `LOAD_OFFERS`,
   OPEN_DETAILED_OFFER: `OPEN_DETAILED_OFFER`,
@@ -22,12 +20,6 @@ const ActionCreator = {
     type: ActionType.GET_COMMENTS,
     payload: comments
   }),
-  getOffers: (newCity) => {
-    return ({
-      type: ActionType.GET_OFFERS,
-      payload: newCity
-    });
-  },
   getOffersNearby: (offers) => ({
     type: ActionType.GET_OFFERS_NEARBY,
     payload: offers
@@ -46,10 +38,7 @@ const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`hotels`)
     .then((response) => {
-      return sortOffersByCity(response.data);
-    })
-    .then((offersSortedArray) => {
-      dispatch(ActionCreator.loadOffers(offersSortedArray));
+      dispatch(ActionCreator.loadOffers(response.data));
     });
   },
 
@@ -73,11 +62,6 @@ const reducer = (state = initialState, action) => {
         commentsList: action.payload,
       });
 
-    case ActionType.GET_OFFERS:
-      return extend(state, {
-        offers: state.allOffers.filter((it) => it.city.name === action.payload.name)[0].offers,
-      });
-
     case ActionType.GET_OFFERS_NEARBY:
       return extend(state, {
         offersNearby: action.payload,
@@ -86,7 +70,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_OFFERS:
       return extend(state, {
         allOffers: action.payload,
-        offers: action.payload[0].offers
       });
 
     case ActionType.OPEN_DETAILED_OFFER:

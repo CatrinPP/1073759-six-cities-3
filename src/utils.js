@@ -1,4 +1,4 @@
-import {cities, SortingType} from './const.js';
+import {SortingType} from './const.js';
 
 const extend = (a, b) => {
   return Object.assign({}, a, b);
@@ -67,16 +67,4 @@ const transformOfferShape = (offer) => {
   };
 };
 
-const sortOffersByCity = (allOffers) => {
-  const newArray = [];
-  cities.map((it) => {
-    const city = {name: it.name, coords: it.coords};
-    const offers1 = allOffers.filter((el) => el.city.name === it.name);
-    const offers = offers1.map((offer) => transformOfferShape(offer));
-    newArray.push({city, offers});
-  });
-
-  return newArray;
-};
-
-export {extend, getRatingInPercent, sortOffers, sortOffersByCity, transformCommentShape, transformOfferShape};
+export {extend, getRatingInPercent, sortOffers, transformCommentShape, transformOfferShape};
