@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../reducer/app/app.js';
+import {Operation} from '../../reducer/data/data.js';
 import Offer from '../offer/offer.jsx';
 import Sorting from '../sorting/sorting.jsx';
 import {offerShape, cityShape} from '../../const.js';
 import {sortOffers} from '../../utils.js';
 import withShowControl from '../../hocs/with-show-control/with-show-control.js';
+import {getSortType} from '../../reducer/app/selectors.js';
 
 const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handleSortTypeClick, isCitiesClass, offers, sortType}) => {
-  const sortedOffers = [...offers];
+  const sortedOffers = JSON.parse(JSON.stringify(offers));
   const SortingWrapped = withShowControl(Sorting);
 
-  const handleCardNameClick = (newOffer) => () => handlePlaceCardNameClick(newOffer);
-  const handleCardHover = (newOffer) => () => handlePlaceCardHover(newOffer);
+  const handleCardNameClick = (offer) => () => handlePlaceCardNameClick(offer);
+  const handleCardHover = (offer) => () => handlePlaceCardHover(offer);
 
   sortOffers(sortType, sortedOffers, offers);
 
@@ -58,16 +60,16 @@ const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handl
 
 OffersList.propTypes = {
   city: PropTypes.shape(cityShape).isRequired,
-  handlePlaceCardHover: PropTypes.func,
-  handlePlaceCardNameClick: PropTypes.func,
-  handleSortTypeClick: PropTypes.func,
+  handlePlaceCardHover: PropTypes.func.isRequired,
+  handlePlaceCardNameClick: PropTypes.func.isRequired,
+  handleSortTypeClick: PropTypes.func.isRequired,
   isCitiesClass: PropTypes.bool,
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   sortType: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  sortType: state.sortType,
+  sortType: getSortType(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -76,7 +78,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   handlePlaceCardNameClick(offer) {
-    dispatch(ActionCreator.openDetailedOffer(offer));
+    dispatch(Operation.openDetailedOffer(offer));
   },
 
   handleSortTypeClick(selectedSortType) {

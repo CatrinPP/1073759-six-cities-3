@@ -1,18 +1,23 @@
 import PropTypes from 'prop-types';
 
-const MAP_ICON_SIZE = 30;
-const MAP_SIZE_DETAILED_OFFER = `1144px`;
-const ZOOM_VALUE = 12;
-const MAX_OFFERS_NEARBY = 3;
+const BASE_URL = `https://htmlacademy-react-3.appspot.com/six-cities`;
 const MAX_COMMENTS_VALUE = 10;
+const MAP_ICON_SIZE = 30;
+const MAX_OFFERS_NEARBY = 3;
+const MAP_SIZE_DETAILED_OFFER = `1144px`;
+const TIMEOUT = 5000;
+const ZOOM_VALUE = 13;
+
+const Error = {
+  UNAUTHORIZED: 401
+};
+
 
 const PlaceType = {
-  APARTMENT: `Apartment`,
-  BUNGALOW: `Bungalow`,
-  HOUSE: `House`,
-  ROOM: `Room`,
-  STUDIO: `Studio`,
-  VILLA: `Villa`
+  APARTMENT: `apartment`,
+  HOTEL: `hotel`,
+  HOUSE: `house`,
+  ROOM: `room`,
 };
 
 const SortingType = {
@@ -25,16 +30,17 @@ const SortingType = {
 const sortTypes = [SortingType.DEFAULT, SortingType.PRICE_LOW_TO_HIGH, SortingType.PRICE_HIGH_TO_LOW, SortingType.TOP_RATED];
 
 const Feature = {
-  WI_FI: `Wifi`,
-  HEATING: `Heating`,
-  KITCHEN: `Kitchen`,
+  AIR_CONDITIONING: `Air conditioning`,
+  BABY_SEAT: `Baby seat`,
+  BREAKFAST: `Breakfast`,
   CABLE_TV: `Cable TV`,
-  FRIDGE: `Fridge`,
-  WASHING_MACHINE: `Washing machine`,
   COFFEE_MACHINE: `Coffee machine`,
   DISHWASHER: `Dishwasher`,
+  FRIDGE: `Fridge`,
+  LAPTOP_FRIENDLY_WORKSPACE: `Laptop friendly workspace`,
   TOWELS: `Towels`,
-  BABY_SEAT: `Baby seat`
+  WASHER: `Washer`,
+  WASHING_MACHINE: `Washing machine`,
 };
 
 const cityShape = {
@@ -46,26 +52,20 @@ const offerShape = {
   bedrooms: PropTypes.number,
   coords: PropTypes.arrayOf(PropTypes.number.isRequired),
   description: PropTypes.string,
-  features: PropTypes.arrayOf(PropTypes.oneOf([Feature.WI_FI, Feature.HEATING, Feature.KITCHEN, Feature.CABLE_TV, Feature.FRIDGE, Feature.WASHING_MACHINE, Feature.COFFEE_MACHINE, Feature.DISHWASHER, Feature.TOWELS, Feature.BABY_SEAT])),
+  features: PropTypes.arrayOf(PropTypes.oneOf([Feature.AIR_CONDITIONING, Feature.BABY_SEAT, Feature.BREAKFAST, Feature.CABLE_TV, Feature.COFFEE_MACHINE, Feature.DISHWASHER, Feature.FRIDGE, Feature.LAPTOP_FRIENDLY_WORKSPACE, Feature.TOWELS, Feature.WASHER, Feature.WASHING_MACHINE])),
   guests: PropTypes.number,
   host: PropTypes.shape({
     avatar: PropTypes.string,
     name: PropTypes.string,
     isStar: PropTypes.bool,
   }),
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   isPremium: PropTypes.bool.isRequired,
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  type: PropTypes.oneOf([PlaceType.APARTMENT, PlaceType.BUNGALOW, PlaceType.HOUSE, PlaceType.ROOM, PlaceType.STUDIO, PlaceType.VILLA]).isRequired,
-};
-
-const offersListShape = {
-  city: PropTypes.shape(cityShape).isRequired,
-  coords: PropTypes.arrayOf(PropTypes.number.isRequired),
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)),
+  type: PropTypes.oneOf([PlaceType.APARTMENT, PlaceType.HOTEL, PlaceType.HOUSE, PlaceType.ROOM]).isRequired,
 };
 
 const userShape = {
@@ -81,4 +81,28 @@ const commentShape = {
   user: PropTypes.shape(userShape).isRequired
 };
 
-export {offerShape, offersListShape, cityShape, commentShape, MAP_ICON_SIZE, ZOOM_VALUE, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, MAX_COMMENTS_VALUE, SortingType, sortTypes};
+const cities = [
+  {name: `Paris`, coords: [48.85661, 2.351499]},
+  {name: `Cologne`, coords: [50.938361, 6.959974]},
+  {name: `Brussels`, coords: [50.846557, 4.351697]},
+  {name: `Amsterdam`, coords: [52.37454, 4.897976]},
+  {name: `Hamburg`, coords: [53.550341, 10.000654]},
+  {name: `Dusseldorf`, coords: [51.225402, 6.776314]},
+];
+
+export {
+  BASE_URL,
+  cities,
+  cityShape,
+  commentShape,
+  Error,
+  MAX_COMMENTS_VALUE,
+  MAP_ICON_SIZE,
+  MAX_OFFERS_NEARBY,
+  MAP_SIZE_DETAILED_OFFER,
+  offerShape,
+  SortingType,
+  sortTypes,
+  TIMEOUT,
+  ZOOM_VALUE,
+};

@@ -1,20 +1,15 @@
-import {extend} from './utils.js';
-import allOffers from './mocks/offers.js';
-import {SortingType} from './const.js';
+import {extend} from '../../utils.js';
+import {cities, SortingType} from '../../const.js';
 
 const initialState = {
-  city: allOffers[0].city,
-  currentOffer: null,
+  city: cities[0],
   offerOnHover: null,
-  offers: allOffers[0].offers,
   sortType: SortingType.DEFAULT,
 };
 
 const ActionType = {
   CHANGE_CARD_ON_HOVER: `CHANGE_CARD_ON_HOVER`,
   CHANGE_CITY: `CHANGE_CITY`,
-  GET_OFFERS: `GET_OFFERS`,
-  OPEN_DETAILED_OFFER: `OPEN_DETAILED_OFFER`,
   SORT_OFFERS: `SORT_OFFERS`,
 };
 
@@ -26,17 +21,6 @@ const ActionCreator = {
   changeCity: (newCity) => ({
     type: ActionType.CHANGE_CITY,
     payload: newCity
-  }),
-  getOffers: (newCity) => {
-    const cityOffers = allOffers.filter((it) => it.city.name === newCity.name);
-    return ({
-      type: ActionType.GET_OFFERS,
-      payload: cityOffers[0].offers
-    });
-  },
-  openDetailedOffer: (offer) => ({
-    type: ActionType.OPEN_DETAILED_OFFER,
-    payload: offer
   }),
   sortOffers: (sortType) => ({
     type: ActionType.SORT_OFFERS,
@@ -54,16 +38,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CITY:
       return extend(state, {
         city: action.payload,
-      });
-
-    case ActionType.GET_OFFERS:
-      return extend(state, {
-        offers: action.payload,
-      });
-
-    case ActionType.OPEN_DETAILED_OFFER:
-      return extend(state, {
-        currentOffer: action.payload,
       });
 
     case ActionType.SORT_OFFERS:

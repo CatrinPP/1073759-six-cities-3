@@ -3,6 +3,8 @@
 exports[`Should render Offer correctly 1`] = `
 <article
   className="place-card cities__place-card"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="place-card__mark"
@@ -21,7 +23,6 @@ exports[`Should render Offer correctly 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="img/room.jpg"
         width="260"
       />
     </a>
@@ -101,7 +102,7 @@ exports[`Should render Offer correctly 1`] = `
     <p
       className="place-card__type"
     >
-      Studio
+      room
     </p>
   </div>
 </article>

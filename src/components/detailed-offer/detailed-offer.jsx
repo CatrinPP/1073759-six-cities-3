@@ -4,16 +4,14 @@ import {connect} from 'react-redux';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
-import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY} from '../../const.js';
-import {getFiveStarRating} from '../../utils.js';
-import commentsList from '../../mocks/comments.js';
-import placesNearby from '../../mocks/places-nearby.js';
+import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape} from '../../const.js';
+import {getRatingInPercent} from '../../utils.js';
+import {getCity} from '../../reducer/app/selectors.js';
+import {getCommentsList, getCurrentOffer, getOffersNearby} from '../../reducer/data/selectors.js';
 
-const DetailedOffer = ({city, offer}) => {
-  const fiveStarRating = getFiveStarRating(offer.rating).toFixed(1);
-  const offersNearbyToShow = placesNearby.filter((it) => {
-    return (it.city.name === city.name);
-  })[0].offers.slice(0, MAX_OFFERS_NEARBY);
+const DetailedOffer = ({city, commentsList, offer, offersNearby}) => {
+  const ratingInPercent = getRatingInPercent(offer.rating);
+  const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);
 
   return (
     <div className="page">
@@ -70,10 +68,10 @@ const DetailedOffer = ({city, offer}) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${offer.rating}%`}}></span>
+                  <span style={{width: `${ratingInPercent}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{fiveStarRating}</span>
+                <span className="property__rating-value rating__value">{offer.rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
@@ -192,13 +190,17 @@ const DetailedOffer = ({city, offer}) => {
 
 DetailedOffer.propTypes = {
   city: PropTypes.shape(cityShape).isRequired,
+  commentsList: PropTypes.arrayOf(PropTypes.shape(commentShape)),
   currentOffer: PropTypes.shape(offerShape),
   offer: PropTypes.shape(offerShape),
+  offersNearby: PropTypes.arrayOf(PropTypes.shape(offerShape)),
 };
 
 const mapStateToProps = (state) => ({
-  city: state.city,
-  currentOffer: state.currentOffer,
+  city: getCity(state),
+  commentsList: getCommentsList(state),
+  currentOffer: getCurrentOffer(state),
+  offersNearby: getOffersNearby(state),
 });
 
 export {DetailedOffer};

@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import Main from '../main/main.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
 import {offerShape} from '../../const.js';
+import {getCurrentOffer, getOffers} from '../../reducer/data/selectors.js';
 
 class App extends PureComponent {
   _renderApp() {
@@ -54,8 +55,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  currentOffer: state.currentOffer,
+  offers: getOffers(state),
+  currentOffer: getCurrentOffer(state),
 });
 
 export {App};

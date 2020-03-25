@@ -5,6 +5,8 @@ import OffersList from '../offers-list/offers-list.jsx';
 import Cities from '../cities/cities.jsx';
 import Map from '../map/map.jsx';
 import {offerShape, cityShape} from '../../const.js';
+import {getOffers} from '../../reducer/data/selectors.js';
+import {getCity, getOfferOnHover} from '../../reducer/app/selectors.js';
 
 const Main = ({city, offerOnHover, offers}) => {
 
@@ -52,7 +54,7 @@ const Main = ({city, offerOnHover, offers}) => {
                 <section className="cities__map map">
                   <Map
                     city={city}
-                    currentOffer={offerOnHover}
+                    offerOnHover={offerOnHover}
                     isBlockedZoom={false}
                     mapWidth={`100%`}
                     offers={offers}
@@ -75,9 +77,9 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  city: state.city,
-  offerOnHover: state.offerOnHover,
-  offers: state.offers,
+  city: getCity(state),
+  offerOnHover: getOfferOnHover(state),
+  offers: getOffers(state),
 });
 
 export {Main};

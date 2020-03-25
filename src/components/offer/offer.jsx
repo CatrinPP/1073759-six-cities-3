@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {offerShape} from '../../const.js';
+import {getRatingInPercent} from '../../utils.js';
 
 const Offer = ({handlePlaceCardNameClick, isCitiesClass, offer, onMouseEnter, onMouseLeave}) => {
+  const ratingInPercent = getRatingInPercent(offer.rating);
+
   return (
     <article className={`place-card ${isCitiesClass ? `cities__place-card` : `near-places__card`}`}
       onMouseEnter={onMouseEnter}
@@ -15,7 +18,7 @@ const Offer = ({handlePlaceCardNameClick, isCitiesClass, offer, onMouseEnter, on
 
       <div className={`place-card__image-wrapper ${isCitiesClass ? `cities__image-wrapper` : `near-places__image-wrapper`}`}>
         <a href="#">
-          <img className="place-card__image" src={offer.images[0]} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image"/>
         </a>
       </div>
       <div className="place-card__info">
@@ -33,7 +36,7 @@ const Offer = ({handlePlaceCardNameClick, isCitiesClass, offer, onMouseEnter, on
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${offer.rating}%`}}></span>
+            <span style={{width: `${ratingInPercent}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -51,11 +54,11 @@ const Offer = ({handlePlaceCardNameClick, isCitiesClass, offer, onMouseEnter, on
 };
 
 Offer.propTypes = {
-  handlePlaceCardNameClick: PropTypes.func,
+  handlePlaceCardNameClick: PropTypes.func.isRequired,
   isCitiesClass: PropTypes.bool,
   offer: PropTypes.shape(offerShape).isRequired,
-  onMouseEnter: PropTypes.func,
-  onMouseLeave: PropTypes.func,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
 };
 
 export default Offer;

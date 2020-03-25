@@ -161,7 +161,7 @@ exports[`Render App 1`] = `
             <span
               className="property__rating-value rating__value"
             >
-              0.0
+              0
             </span>
           </div>
           <ul
@@ -170,7 +170,7 @@ exports[`Render App 1`] = `
             <li
               className="property__feature property__feature--entire"
             >
-              Studio
+              room
             </li>
             <li
               className="property__feature property__feature--bedrooms"
@@ -212,12 +212,12 @@ exports[`Render App 1`] = `
               <li
                 className="property__inside-item"
               >
-                Wifi
+                Washer
               </li>
               <li
                 className="property__inside-item"
               >
-                Heating
+                Washing machine
               </li>
             </ul>
           </div>
@@ -269,7 +269,7 @@ exports[`Render App 1`] = `
               <span
                 className="reviews__amount"
               >
-                12
+                8
               </span>
             </h2>
             <ul
@@ -324,13 +324,13 @@ exports[`Render App 1`] = `
                   <p
                     className="reviews__text"
                   >
-                    Comment #12
+                    Test Comment #8
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2019-07-08"
+                    dateTime="2019-01-01"
                   >
-                    July 2019
+                    January 2019
                   </time>
                 </div>
               </li>
@@ -383,13 +383,131 @@ exports[`Render App 1`] = `
                   <p
                     className="reviews__text"
                   >
-                    Comment #11
+                    Test Comment #7
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2019-06-18"
+                    dateTime="2018-11-18"
                   >
-                    June 2019
+                    November 2018
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Max
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "80%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Test Comment #5
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2018-10-12"
+                  >
+                    October 2018
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Max
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "80%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Test Comment #3
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2018-09-10"
+                  >
+                    September 2018
                   </time>
                 </div>
               </li>
@@ -442,72 +560,13 @@ exports[`Render App 1`] = `
                   <p
                     className="reviews__text"
                   >
-                    Comment #10
+                    Test Comment #6
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2019-06-09"
+                    dateTime="2018-05-13"
                   >
-                    June 2019
-                  </time>
-                </div>
-              </li>
-              <li
-                className="reviews__item"
-              >
-                <div
-                  className="reviews__user user"
-                >
-                  <div
-                    className="reviews__avatar-wrapper user__avatar-wrapper"
-                  >
-                    <img
-                      alt="Reviews avatar"
-                      className="reviews__avatar user__avatar"
-                      height="54"
-                      src="img/avatar-max.jpg"
-                      width="54"
-                    />
-                  </div>
-                  <span
-                    className="reviews__user-name"
-                  >
-                    Max
-                  </span>
-                </div>
-                <div
-                  className="reviews__info"
-                >
-                  <div
-                    className="reviews__rating rating"
-                  >
-                    <div
-                      className="reviews__stars rating__stars"
-                    >
-                      <span
-                        style={
-                          Object {
-                            "width": "80%",
-                          }
-                        }
-                      />
-                      <span
-                        className="visually-hidden"
-                      >
-                        Rating
-                      </span>
-                    </div>
-                  </div>
-                  <p
-                    className="reviews__text"
-                  >
-                    Comment #9
-                  </p>
-                  <time
-                    className="reviews__time"
-                    dateTime="2019-06-08"
-                  >
-                    June 2019
+                    May 2018
                   </time>
                 </div>
               </li>
@@ -560,13 +619,13 @@ exports[`Render App 1`] = `
                   <p
                     className="reviews__text"
                   >
-                    Comment #8
+                    Test Comment #2
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2019-05-28"
+                    dateTime="2018-05-09"
                   >
-                    May 2019
+                    May 2018
                   </time>
                 </div>
               </li>
@@ -619,13 +678,13 @@ exports[`Render App 1`] = `
                   <p
                     className="reviews__text"
                   >
-                    Comment #7
+                    Test Comment #1
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2019-05-18"
+                    dateTime="2018-05-08"
                   >
-                    May 2019
+                    May 2018
                   </time>
                 </div>
               </li>
@@ -678,190 +737,13 @@ exports[`Render App 1`] = `
                   <p
                     className="reviews__text"
                   >
-                    Comment #6
+                    Test Comment #4
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2019-05-13"
+                    dateTime="2018-01-11"
                   >
-                    May 2019
-                  </time>
-                </div>
-              </li>
-              <li
-                className="reviews__item"
-              >
-                <div
-                  className="reviews__user user"
-                >
-                  <div
-                    className="reviews__avatar-wrapper user__avatar-wrapper"
-                  >
-                    <img
-                      alt="Reviews avatar"
-                      className="reviews__avatar user__avatar"
-                      height="54"
-                      src="img/avatar-max.jpg"
-                      width="54"
-                    />
-                  </div>
-                  <span
-                    className="reviews__user-name"
-                  >
-                    Max
-                  </span>
-                </div>
-                <div
-                  className="reviews__info"
-                >
-                  <div
-                    className="reviews__rating rating"
-                  >
-                    <div
-                      className="reviews__stars rating__stars"
-                    >
-                      <span
-                        style={
-                          Object {
-                            "width": "80%",
-                          }
-                        }
-                      />
-                      <span
-                        className="visually-hidden"
-                      >
-                        Rating
-                      </span>
-                    </div>
-                  </div>
-                  <p
-                    className="reviews__text"
-                  >
-                    Comment #5
-                  </p>
-                  <time
-                    className="reviews__time"
-                    dateTime="2019-05-12"
-                  >
-                    May 2019
-                  </time>
-                </div>
-              </li>
-              <li
-                className="reviews__item"
-              >
-                <div
-                  className="reviews__user user"
-                >
-                  <div
-                    className="reviews__avatar-wrapper user__avatar-wrapper"
-                  >
-                    <img
-                      alt="Reviews avatar"
-                      className="reviews__avatar user__avatar"
-                      height="54"
-                      src="img/avatar-angelina.jpg"
-                      width="54"
-                    />
-                  </div>
-                  <span
-                    className="reviews__user-name"
-                  >
-                    Angelina
-                  </span>
-                </div>
-                <div
-                  className="reviews__info"
-                >
-                  <div
-                    className="reviews__rating rating"
-                  >
-                    <div
-                      className="reviews__stars rating__stars"
-                    >
-                      <span
-                        style={
-                          Object {
-                            "width": "60%",
-                          }
-                        }
-                      />
-                      <span
-                        className="visually-hidden"
-                      >
-                        Rating
-                      </span>
-                    </div>
-                  </div>
-                  <p
-                    className="reviews__text"
-                  >
-                    Comment #4
-                  </p>
-                  <time
-                    className="reviews__time"
-                    dateTime="2019-05-11"
-                  >
-                    May 2019
-                  </time>
-                </div>
-              </li>
-              <li
-                className="reviews__item"
-              >
-                <div
-                  className="reviews__user user"
-                >
-                  <div
-                    className="reviews__avatar-wrapper user__avatar-wrapper"
-                  >
-                    <img
-                      alt="Reviews avatar"
-                      className="reviews__avatar user__avatar"
-                      height="54"
-                      src="img/avatar-max.jpg"
-                      width="54"
-                    />
-                  </div>
-                  <span
-                    className="reviews__user-name"
-                  >
-                    Max
-                  </span>
-                </div>
-                <div
-                  className="reviews__info"
-                >
-                  <div
-                    className="reviews__rating rating"
-                  >
-                    <div
-                      className="reviews__stars rating__stars"
-                    >
-                      <span
-                        style={
-                          Object {
-                            "width": "80%",
-                          }
-                        }
-                      />
-                      <span
-                        className="visually-hidden"
-                      >
-                        Rating
-                      </span>
-                    </div>
-                  </div>
-                  <p
-                    className="reviews__text"
-                  >
-                    Comment #3
-                  </p>
-                  <time
-                    className="reviews__time"
-                    dateTime="2019-05-10"
-                  >
-                    May 2019
+                    January 2018
                   </time>
                 </div>
               </li>
@@ -1064,204 +946,6 @@ exports[`Render App 1`] = `
             onMouseLeave={[Function]}
           >
             <div
-              className="place-card__image-wrapper near-places__image-wrapper"
-            >
-              <a
-                href="#"
-              >
-                <img
-                  alt="Place image"
-                  className="place-card__image"
-                  height="200"
-                  src="img/apartment-01.jpg"
-                  width="260"
-                />
-              </a>
-            </div>
-            <div
-              className="place-card__info"
-            >
-              <div
-                className="place-card__price-wrapper"
-              >
-                <div
-                  className="place-card__price"
-                >
-                  <b
-                    className="place-card__price-value"
-                  >
-                    €
-                    120
-                     
-                  </b>
-                  <span
-                    className="place-card__price-text"
-                  >
-                    / night
-                  </span>
-                </div>
-                <button
-                  className="place-card__bookmark-button button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    height="19"
-                    width="18"
-                  >
-                    <use
-                      xlinkHref="#icon-bookmark"
-                    />
-                  </svg>
-                  <span
-                    className="visually-hidden"
-                  >
-                    To bookmarks
-                  </span>
-                </button>
-              </div>
-              <div
-                className="place-card__rating rating"
-              >
-                <div
-                  className="place-card__stars rating__stars"
-                >
-                  <span
-                    style={
-                      Object {
-                        "width": "4.8%",
-                      }
-                    }
-                  />
-                  <span
-                    className="visually-hidden"
-                  >
-                    Rating
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="place-card__name"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Beautiful & luxurious studio at great location (Paris)
-                </a>
-              </h2>
-              <p
-                className="place-card__type"
-              >
-                Apartment
-              </p>
-            </div>
-          </article>
-          <article
-            className="place-card near-places__card"
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <div
-              className="place-card__image-wrapper near-places__image-wrapper"
-            >
-              <a
-                href="#"
-              >
-                <img
-                  alt="Place image"
-                  className="place-card__image"
-                  height="200"
-                  src="img/apartment-02.jpg"
-                  width="260"
-                />
-              </a>
-            </div>
-            <div
-              className="place-card__info"
-            >
-              <div
-                className="place-card__price-wrapper"
-              >
-                <div
-                  className="place-card__price"
-                >
-                  <b
-                    className="place-card__price-value"
-                  >
-                    €
-                    100
-                     
-                  </b>
-                  <span
-                    className="place-card__price-text"
-                  >
-                    / night
-                  </span>
-                </div>
-                <button
-                  className="place-card__bookmark-button button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    height="19"
-                    width="18"
-                  >
-                    <use
-                      xlinkHref="#icon-bookmark"
-                    />
-                  </svg>
-                  <span
-                    className="visually-hidden"
-                  >
-                    To bookmarks
-                  </span>
-                </button>
-              </div>
-              <div
-                className="place-card__rating rating"
-              >
-                <div
-                  className="place-card__stars rating__stars"
-                >
-                  <span
-                    style={
-                      Object {
-                        "width": "3.8%",
-                      }
-                    }
-                  />
-                  <span
-                    className="visually-hidden"
-                  >
-                    Rating
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="place-card__name"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Beautiful apartment, great location (Paris)
-                </a>
-              </h2>
-              <p
-                className="place-card__type"
-              >
-                Apartment
-              </p>
-            </div>
-          </article>
-          <article
-            className="place-card near-places__card"
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <div
               className="place-card__mark"
             >
               <span>
@@ -1278,7 +962,6 @@ exports[`Render App 1`] = `
                   alt="Place image"
                   className="place-card__image"
                   height="200"
-                  src="img/apartment-03.jpg"
                   width="260"
                 />
               </a>
@@ -1296,7 +979,7 @@ exports[`Render App 1`] = `
                     className="place-card__price-value"
                   >
                     €
-                    40
+                    98
                      
                   </b>
                   <span
@@ -1334,7 +1017,7 @@ exports[`Render App 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "2.9%",
+                        "width": "0%",
                       }
                     }
                   />
@@ -1352,13 +1035,111 @@ exports[`Render App 1`] = `
                   href="#"
                   onClick={[Function]}
                 >
-                  Small room (Paris)
+                  Cozy Studio
                 </a>
               </h2>
               <p
                 className="place-card__type"
               >
-                Room
+                room
+              </p>
+            </div>
+          </article>
+          <article
+            className="place-card near-places__card"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="place-card__image-wrapper near-places__image-wrapper"
+            >
+              <a
+                href="#"
+              >
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height="200"
+                  width="260"
+                />
+              </a>
+            </div>
+            <div
+              className="place-card__info"
+            >
+              <div
+                className="place-card__price-wrapper"
+              >
+                <div
+                  className="place-card__price"
+                >
+                  <b
+                    className="place-card__price-value"
+                  >
+                    €
+                    34
+                     
+                  </b>
+                  <span
+                    className="place-card__price-text"
+                  >
+                    / night
+                  </span>
+                </div>
+                <button
+                  className="place-card__bookmark-button button"
+                  type="button"
+                >
+                  <svg
+                    className="place-card__bookmark-icon"
+                    height="19"
+                    width="18"
+                  >
+                    <use
+                      xlinkHref="#icon-bookmark"
+                    />
+                  </svg>
+                  <span
+                    className="visually-hidden"
+                  >
+                    To bookmarks
+                  </span>
+                </button>
+              </div>
+              <div
+                className="place-card__rating rating"
+              >
+                <div
+                  className="place-card__stars rating__stars"
+                >
+                  <span
+                    style={
+                      Object {
+                        "width": "1000%",
+                      }
+                    }
+                  />
+                  <span
+                    className="visually-hidden"
+                  >
+                    Rating
+                  </span>
+                </div>
+              </div>
+              <h2
+                className="place-card__name"
+              >
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  Big Vintage Apartment
+                </a>
+              </h2>
+              <p
+                className="place-card__type"
+              >
+                apartment
               </p>
             </div>
           </article>
