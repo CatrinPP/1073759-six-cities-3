@@ -4,12 +4,13 @@ import {connect} from 'react-redux';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
-import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape} from '../../const.js';
+import {AuthorizationStatus, offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape} from '../../const.js';
 import {getRatingInPercent} from '../../utils.js';
 import {getCity} from '../../reducer/app/selectors.js';
 import {getCommentsList, getCurrentOffer, getOffersNearby} from '../../reducer/data/selectors.js';
+import {getAuthorizationStatus, getUserName} from '../../reducer/user/selectors.js';
 
-const DetailedOffer = ({city, commentsList, offer, offersNearby}) => {
+const DetailedOffer = ({authorizationStatus, city, commentsList, handleSignInLinkClick, offer, offersNearby, userName}) => {
   const ratingInPercent = getRatingInPercent(offer.rating);
   const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);
 
@@ -29,7 +30,8 @@ const DetailedOffer = ({city, commentsList, offer, offersNearby}) => {
                   <a className="header__nav-link header__nav-link--profile" href="#">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    {authorizationStatus === AuthorizationStatus.NO_AUTH && <span className="header__login" onClick={handleSignInLinkClick}>Sign in</span> ||
+                    <span className="header__user-name user__name" onClick={handleSignInLinkClick}>{userName}</span>}
                   </a>
                 </li>
               </ul>
@@ -189,18 +191,23 @@ const DetailedOffer = ({city, commentsList, offer, offersNearby}) => {
 };
 
 DetailedOffer.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   city: PropTypes.shape(cityShape).isRequired,
   commentsList: PropTypes.arrayOf(PropTypes.shape(commentShape)),
   currentOffer: PropTypes.shape(offerShape),
+  handleSignInLinkClick: PropTypes.func.isRequired,
   offer: PropTypes.shape(offerShape),
   offersNearby: PropTypes.arrayOf(PropTypes.shape(offerShape)),
+  userName: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
   city: getCity(state),
   commentsList: getCommentsList(state),
   currentOffer: getCurrentOffer(state),
   offersNearby: getOffersNearby(state),
+  userName: getUserName(state),
 });
 
 export {DetailedOffer};

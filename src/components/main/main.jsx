@@ -4,11 +4,12 @@ import {connect} from 'react-redux';
 import OffersList from '../offers-list/offers-list.jsx';
 import Cities from '../cities/cities.jsx';
 import Map from '../map/map.jsx';
-import {offerShape, cityShape} from '../../const.js';
+import {offerShape, cityShape, AuthorizationStatus} from '../../const.js';
 import {getOffers} from '../../reducer/data/selectors.js';
 import {getCity, getOfferOnHover} from '../../reducer/app/selectors.js';
+import {getAuthorizationStatus, getUserName} from '../../reducer/user/selectors.js';
 
-const Main = ({city, offerOnHover, offers}) => {
+const Main = ({authorizationStatus, city, handleSignInLinkClick, offerOnHover, offers, userName}) => {
 
   return (
     <div className="page page--gray page--main">
@@ -26,7 +27,8 @@ const Main = ({city, offerOnHover, offers}) => {
                   <a className="header__nav-link header__nav-link--profile" href="#">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    {authorizationStatus === AuthorizationStatus.NO_AUTH && <span className="header__login" onClick={handleSignInLinkClick}>Sign in</span> ||
+                    <span className="header__user-name user__name" onClick={handleSignInLinkClick}>{userName}</span>}
                   </a>
                 </li>
               </ul>
@@ -71,15 +73,20 @@ const Main = ({city, offerOnHover, offers}) => {
 };
 
 Main.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   city: PropTypes.shape(cityShape).isRequired,
+  handleSignInLinkClick: PropTypes.func.isRequired,
   offerOnHover: PropTypes.shape(offerShape),
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  userName: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
   city: getCity(state),
   offerOnHover: getOfferOnHover(state),
   offers: getOffers(state),
+  userName: getUserName(state),
 });
 
 export {Main};
