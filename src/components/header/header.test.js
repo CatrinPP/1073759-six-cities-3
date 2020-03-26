@@ -2,33 +2,24 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
-import Main from './main.jsx';
-import {testOffers} from '../../test-mocks.js';
-import {SortingType} from '../../const.js';
+import Header from './header.jsx';
 import NameSpace from '../../reducer/name-space.js';
+import {AuthorizationStatus} from '../../const.js';
 
 const mockStore = configureStore([]);
 
-const mockCity = {
-  name: `Paris`,
-};
-
-it(`Should render Main correctly`, () => {
+it(`Should render Header correctly`, () => {
   const store = mockStore({
-    [NameSpace.APP]: {
-      city: mockCity,
-      sortType: SortingType.DEFAULT,
-    },
-    [NameSpace.DATA]: {
-      allOffers: testOffers,
-      isLoaded: false,
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.AUTH
     },
   });
-
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main />
+          <Header
+            handleSignInLinkClick={() => {}}
+          />
         </Provider>
     )
     .toJSON();

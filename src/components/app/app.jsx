@@ -4,15 +4,38 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Main from '../main/main.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
-import {offerShape} from '../../const.js';
+import {offerShape, AuthorizationStatus} from '../../const.js';
 import {getCurrentOffer, getOffers} from '../../reducer/data/selectors.js';
+import {getAuthorizationStatus, getIsSignInRequired} from '../../reducer/user/selectors.js';
+import {Operation} from '../../reducer/user/user.js';
+import SignIn from '../sign-in/sign-in.jsx';
+import {getServerError} from '../../reducer/app/selectors.js';
+import Error from '../error/error.jsx';
 
 class App extends PureComponent {
   _renderApp() {
     const {
-      offers,
+      authorizationStatus,
       currentOffer,
+      isSignInRequired,
+      login,
+      offers,
+      serverError,
     } = this.props;
+
+    if (isSignInRequired && authorizationStatus === AuthorizationStatus.NO_AUTH) {
+      return (
+        <SignIn
+          onSubmit={login}
+        />
+      );
+    }
+
+    if (serverError) {
+      return (
+        <Error />
+      );
+    }
 
     if (currentOffer === null) {
       return (
@@ -43,6 +66,11 @@ class App extends PureComponent {
               offer={currentOffer}
             />
           </Route>
+          <Route exact path="/dev-auth">
+            <SignIn
+              onSubmit={() => {}}
+            />
+          </Route>
         </Switch>
       </BrowserRouter>
     );
@@ -50,14 +78,27 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   currentOffer: PropTypes.shape(offerShape),
+  isSignInRequired: PropTypes.bool.isRequired,
+  login: PropTypes.func.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  serverError: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  offers: getOffers(state),
+  authorizationStatus: getAuthorizationStatus(state),
   currentOffer: getCurrentOffer(state),
+  isSignInRequired: getIsSignInRequired(state),
+  offers: getOffers(state),
+  serverError: getServerError(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  login(authData) {
+    dispatch(Operation.login(authData));
+  }
 });
 
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

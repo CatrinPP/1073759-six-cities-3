@@ -8,10 +8,16 @@ const MAP_SIZE_DETAILED_OFFER = `1144px`;
 const TIMEOUT = 5000;
 const ZOOM_VALUE = 13;
 
-const Error = {
-  UNAUTHORIZED: 401
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
 };
 
+const Error = {
+  BAD_REQUEST: 400,
+  SERVER_ERROR: 500,
+  UNAUTHORIZED: 401
+};
 
 const PlaceType = {
   APARTMENT: `apartment`,
@@ -91,6 +97,7 @@ const cities = [
 ];
 
 export {
+  AuthorizationStatus,
   BASE_URL,
   cities,
   cityShape,

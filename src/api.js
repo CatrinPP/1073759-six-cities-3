@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {TIMEOUT, BASE_URL, Error} from './const.js';
 
-export const createAPI = (onUnauthorized) => {
+export const createAPI = (onUnauthorized, onServerError) => {
   const api = axios.create({
     baseURL: BASE_URL,
     timeout: TIMEOUT,
@@ -15,8 +15,13 @@ export const createAPI = (onUnauthorized) => {
   const onFail = (err) => {
     const {response} = err;
 
-    if (response.status === Error.UNAUTHORIZED) {
+    if (response.status === Error.UNAUTHORIZED || response.status === Error.BAD_REQUEST) {
       onUnauthorized();
+      throw err;
+    }
+
+    if (response.status >= Error.SERVER_ERROR) {
+      onServerError();
       throw err;
     }
 

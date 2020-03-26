@@ -18,7 +18,6 @@ const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handl
   const handleCardHover = (offer) => () => handlePlaceCardHover(offer);
 
   sortOffers(sortType, sortedOffers, offers);
-
   return !sortedOffers.length ?
     (
       <section className="cities__no-places">

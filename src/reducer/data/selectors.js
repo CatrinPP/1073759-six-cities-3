@@ -18,6 +18,10 @@ const getCurrentCity = (state) => {
   return state[NameSpace.APP].city;
 };
 
+const getLoadedState = (state) => {
+  return state[NameSpace.DATA].isLoaded;
+};
+
 const getOffers = createSelector(
     getAllOffers,
     getCurrentCity,
@@ -31,4 +35,4 @@ const getOffersNearby = (state) => {
   return state[NameSpace.DATA].offersNearby;
 };
 
-export {getCommentsList, getCurrentOffer, getOffers, getOffersNearby};
+export {getCommentsList, getCurrentOffer, getLoadedState, getOffers, getOffersNearby};

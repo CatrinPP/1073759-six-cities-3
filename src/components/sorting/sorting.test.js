@@ -4,7 +4,7 @@ import Sorting from './sorting.jsx';
 import {SortingType} from '../../const.js';
 
 
-it(`Should render Reviews list correctly`, () => {
+it(`Should render Sorting component correctly`, () => {
   const tree = renderer
     .create(<Sorting
       handleShowUpClick={() => {}}

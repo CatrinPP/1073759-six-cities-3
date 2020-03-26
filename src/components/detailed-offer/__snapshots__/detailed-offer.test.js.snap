@@ -17,8 +17,7 @@ exports[`Should render DetailedOffer correctly 1`] = `
           className="header__left"
         >
           <a
-            className="header__logo-link"
-            href="main.html"
+            className="header__logo-link header__logo-link--active"
           >
             <img
               alt="6 cities logo"
@@ -47,9 +46,8 @@ exports[`Should render DetailedOffer correctly 1`] = `
                 />
                 <span
                   className="header__user-name user__name"
-                >
-                  Oliver.conner@gmail.com
-                </span>
+                  onClick={[Function]}
+                />
               </a>
             </li>
           </ul>
