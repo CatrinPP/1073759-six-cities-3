@@ -14,6 +14,7 @@ const AuthorizationStatus = {
 };
 
 const Error = {
+  SERVER_ERROR: 500,
   UNAUTHORIZED: 401
 };
 

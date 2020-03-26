@@ -9,6 +9,8 @@ import {getCurrentOffer, getOffers} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getIsSignInRequired} from '../../reducer/user/selectors.js';
 import {Operation} from '../../reducer/user/user.js';
 import SignIn from '../sign-in/sign-in.jsx';
+import {getServerError} from '../../reducer/app/selectors.js';
+import Error from '../error/error.jsx';
 
 class App extends PureComponent {
   _renderApp() {
@@ -18,6 +20,7 @@ class App extends PureComponent {
       isSignInRequired,
       login,
       offers,
+      serverError,
     } = this.props;
 
     if (isSignInRequired && authorizationStatus === AuthorizationStatus.NO_AUTH) {
@@ -25,6 +28,12 @@ class App extends PureComponent {
         <SignIn
           onSubmit={login}
         />
+      );
+    }
+
+    if (serverError) {
+      return (
+        <Error />
       );
     }
 
@@ -74,6 +83,7 @@ App.propTypes = {
   isSignInRequired: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  serverError: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -81,6 +91,7 @@ const mapStateToProps = (state) => ({
   currentOffer: getCurrentOffer(state),
   isSignInRequired: getIsSignInRequired(state),
   offers: getOffers(state),
+  serverError: getServerError(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

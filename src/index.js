@@ -7,15 +7,20 @@ import {compose} from 'recompose';
 import App from './components/app/app.jsx';
 import reducer from './reducer/reducer.js';
 import {Operation as DataOperation} from './reducer/data/data.js';
-import {Operation as UserOperation, ActionCreator} from './reducer/user/user.js';
+import {ActionCreator as AppActionCreator} from './reducer/app/app.js';
+import {Operation as UserOperation, ActionCreator as UserActionCreator} from './reducer/user/user.js';
 import {createAPI} from './api.js';
 import {AuthorizationStatus} from './const.js';
 
 const onUnauthorized = () => {
-  store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+  store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
 };
 
-const api = createAPI(onUnauthorized);
+const onServerError = () => {
+  store.dispatch(AppActionCreator.showError());
+};
+
+const api = createAPI(onUnauthorized, onServerError);
 
 const store = createStore(
     reducer,
