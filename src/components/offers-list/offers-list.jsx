@@ -9,6 +9,7 @@ import {offerShape, cityShape} from '../../const.js';
 import {sortOffers} from '../../utils.js';
 import withShowControl from '../../hocs/with-show-control/with-show-control.js';
 import {getSortType} from '../../reducer/app/selectors.js';
+import {getLoadedState} from '../../reducer/data/selectors.js';
 
 const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handleSortTypeClick, isCitiesClass, offers, sortType}) => {
   const sortedOffers = JSON.parse(JSON.stringify(offers));
@@ -18,7 +19,6 @@ const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handl
   const handleCardHover = (offer) => () => handlePlaceCardHover(offer);
 
   sortOffers(sortType, sortedOffers, offers);
-
   return !sortedOffers.length ?
     (
       <section className="cities__no-places">
@@ -64,11 +64,13 @@ OffersList.propTypes = {
   handlePlaceCardNameClick: PropTypes.func.isRequired,
   handleSortTypeClick: PropTypes.func.isRequired,
   isCitiesClass: PropTypes.bool,
+  isLoaded: PropTypes.bool.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   sortType: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  isLoaded: getLoadedState(state),
   sortType: getSortType(state),
 });
 

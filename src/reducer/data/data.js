@@ -5,11 +5,13 @@ const initialState = {
   allOffers: [],
   currentOffer: null,
   commentsList: [],
+  isLoaded: false,
   offersNearby: [],
 };
 
 const ActionType = {
   GET_COMMENTS: `GET_COMMENTS`,
+  GET_LOADED_STATE: `GET_LOADED_STATE`,
   GET_OFFERS_NEARBY: `GET_OFFERS_NEARBY`,
   LOAD_OFFERS: `LOAD_OFFERS`,
   OPEN_DETAILED_OFFER: `OPEN_DETAILED_OFFER`,
@@ -19,6 +21,9 @@ const ActionCreator = {
   getComments: (comments) => ({
     type: ActionType.GET_COMMENTS,
     payload: comments
+  }),
+  getLoadedState: () => ({
+    type: ActionType.GET_LOADED_STATE,
   }),
   getOffersNearby: (offers) => ({
     type: ActionType.GET_OFFERS_NEARBY,
@@ -39,6 +44,7 @@ const Operation = {
     return api.get(`hotels`)
     .then((response) => {
       dispatch(ActionCreator.loadOffers(response.data));
+      dispatch(ActionCreator.getLoadedState());
     });
   },
 
@@ -60,6 +66,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_COMMENTS:
       return extend(state, {
         commentsList: action.payload,
+      });
+
+    case ActionType.GET_LOADED_STATE:
+      return extend(state, {
+        isLoaded: true,
       });
 
     case ActionType.GET_OFFERS_NEARBY:

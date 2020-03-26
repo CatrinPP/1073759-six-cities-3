@@ -5,13 +5,13 @@ import OffersList from '../offers-list/offers-list.jsx';
 import Cities from '../cities/cities.jsx';
 import Map from '../map/map.jsx';
 import {offerShape, cityShape, AuthorizationStatus} from '../../const.js';
-import {getOffers} from '../../reducer/data/selectors.js';
+import {getOffers, getLoadedState} from '../../reducer/data/selectors.js';
 import {getCity, getOfferOnHover} from '../../reducer/app/selectors.js';
 import {getAuthorizationStatus, getUserName} from '../../reducer/user/selectors.js';
 
-const Main = ({authorizationStatus, city, handleSignInLinkClick, offerOnHover, offers, userName}) => {
+const Main = ({authorizationStatus, city, handleSignInLinkClick, isLoaded, offerOnHover, offers, userName}) => {
 
-  return (
+  return isLoaded ? (
     <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
@@ -69,13 +69,14 @@ const Main = ({authorizationStatus, city, handleSignInLinkClick, offerOnHover, o
         </div>
       </main>
     </div>
-  );
+  ) : (``);
 };
 
 Main.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   city: PropTypes.shape(cityShape).isRequired,
   handleSignInLinkClick: PropTypes.func.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
   offerOnHover: PropTypes.shape(offerShape),
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   userName: PropTypes.string,
@@ -84,6 +85,7 @@ Main.propTypes = {
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   city: getCity(state),
+  isLoaded: getLoadedState(state),
   offerOnHover: getOfferOnHover(state),
   offers: getOffers(state),
   userName: getUserName(state),
