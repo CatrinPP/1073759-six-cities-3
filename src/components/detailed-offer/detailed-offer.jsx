@@ -4,42 +4,19 @@ import {connect} from 'react-redux';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
-import {AuthorizationStatus, offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape} from '../../const.js';
+import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape} from '../../const.js';
 import {getRatingInPercent} from '../../utils.js';
 import {getCity} from '../../reducer/app/selectors.js';
 import {getCommentsList, getCurrentOffer, getOffersNearby} from '../../reducer/data/selectors.js';
-import {getAuthorizationStatus, getUserName} from '../../reducer/user/selectors.js';
+import Header from '../header/header.jsx';
 
-const DetailedOffer = ({authorizationStatus, city, commentsList, handleSignInLinkClick, offer, offersNearby, userName}) => {
+const DetailedOffer = ({city, commentsList, offer, offersNearby}) => {
   const ratingInPercent = getRatingInPercent(offer.rating);
   const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);
 
   return (
     <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    {authorizationStatus === AuthorizationStatus.NO_AUTH && <span className="header__login" onClick={handleSignInLinkClick}>Sign in</span> ||
-                    <span className="header__user-name user__name" onClick={handleSignInLinkClick}>{userName}</span>}
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+      <Header />
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -191,23 +168,18 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, handleSignInLin
 };
 
 DetailedOffer.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
   city: PropTypes.shape(cityShape).isRequired,
   commentsList: PropTypes.arrayOf(PropTypes.shape(commentShape)),
   currentOffer: PropTypes.shape(offerShape),
-  handleSignInLinkClick: PropTypes.func.isRequired,
   offer: PropTypes.shape(offerShape),
   offersNearby: PropTypes.arrayOf(PropTypes.shape(offerShape)),
-  userName: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
   city: getCity(state),
   commentsList: getCommentsList(state),
   currentOffer: getCurrentOffer(state),
   offersNearby: getOffersNearby(state),
-  userName: getUserName(state),
 });
 
 export {DetailedOffer};

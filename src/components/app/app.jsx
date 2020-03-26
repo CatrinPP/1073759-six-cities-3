@@ -7,7 +7,7 @@ import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
 import {offerShape, AuthorizationStatus} from '../../const.js';
 import {getCurrentOffer, getOffers} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getIsSignInRequired} from '../../reducer/user/selectors.js';
-import {ActionCreator, Operation} from '../../reducer/user/user.js';
+import {Operation} from '../../reducer/user/user.js';
 import SignIn from '../sign-in/sign-in.jsx';
 
 class App extends PureComponent {
@@ -15,7 +15,6 @@ class App extends PureComponent {
     const {
       authorizationStatus,
       currentOffer,
-      handleSignInLinkClick,
       isSignInRequired,
       login,
       offers,
@@ -32,14 +31,12 @@ class App extends PureComponent {
     if (currentOffer === null) {
       return (
         <Main
-          handleSignInLinkClick={handleSignInLinkClick}
           offers={offers}
         />
       );
     } else {
       return (
         <DetailedOffer
-          handleSignInLinkClick={handleSignInLinkClick}
           offer={currentOffer}
         />
       );
@@ -77,7 +74,6 @@ App.propTypes = {
   isSignInRequired: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
-  handleSignInLinkClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -88,10 +84,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleSignInLinkClick() {
-    dispatch(ActionCreator.openSignInPage(true));
-  },
-
   login(authData) {
     dispatch(Operation.login(authData));
   }
