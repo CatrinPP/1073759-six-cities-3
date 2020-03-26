@@ -6,6 +6,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     city: cities[0],
     offerOnHover: null,
+    serverError: false,
     sortType: SortingType.DEFAULT,
   });
 });
@@ -14,6 +15,7 @@ it(`Reducer should change city name with given value`, () => {
   expect(reducer({
     city: cities[0],
     offerOnHover: null,
+    serverError: false,
     sortType: SortingType.DEFAULT,
   }, {
     type: ActionType.CHANGE_CITY,
@@ -21,6 +23,7 @@ it(`Reducer should change city name with given value`, () => {
   })).toEqual({
     city: `Berlin`,
     offerOnHover: null,
+    serverError: false,
     sortType: SortingType.DEFAULT,
   });
 });
@@ -29,6 +32,7 @@ it(`Reducer should return new offer by given value`, () => {
   expect(reducer({
     offerOnHover: null,
     city: cities[0],
+    serverError: false,
     sortType: SortingType.DEFAULT,
   }, {
     type: ActionType.CHANGE_CARD_ON_HOVER,
@@ -36,6 +40,7 @@ it(`Reducer should return new offer by given value`, () => {
   })).toEqual({
     offerOnHover: testOffers[1],
     city: cities[0],
+    serverError: false,
     sortType: SortingType.DEFAULT,
   });
 });
@@ -44,6 +49,7 @@ it(`Reducer should change sorting type with given value`, () => {
   expect(reducer({
     city: cities[0],
     offerOnHover: null,
+    serverError: false,
     sortType: SortingType.DEFAULT,
   }, {
     type: ActionType.SORT_OFFERS,
@@ -51,7 +57,24 @@ it(`Reducer should change sorting type with given value`, () => {
   })).toEqual({
     city: cities[0],
     offerOnHover: null,
+    serverError: false,
     sortType: SortingType.PRICE_HIGH_TO_LOW,
+  });
+});
+
+it(`Reducer should enable error status`, () => {
+  expect(reducer({
+    city: cities[0],
+    offerOnHover: null,
+    serverError: false,
+    sortType: SortingType.DEFAULT,
+  }, {
+    type: ActionType.SHOW_ERROR,
+  })).toEqual({
+    city: cities[0],
+    offerOnHover: null,
+    serverError: true,
+    sortType: SortingType.DEFAULT,
   });
 });
 
@@ -74,6 +97,12 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.sortOffers(SortingType.TOP_RATED)).toEqual({
       type: ActionType.SORT_OFFERS,
       payload: SortingType.TOP_RATED
+    });
+  });
+
+  it(`Action creator for error show returns correct action`, () => {
+    expect(ActionCreator.showError()).toEqual({
+      type: ActionType.SHOW_ERROR,
     });
   });
 });

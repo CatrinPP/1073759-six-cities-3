@@ -10,7 +10,7 @@ const getOfferOnHover = (state) => {
 
 const getServerError = (state) => {
   return state[NameSpace.APP].serverError;
-}
+};
 
 const getSortType = (state) => {
   return state[NameSpace.APP].sortType;
