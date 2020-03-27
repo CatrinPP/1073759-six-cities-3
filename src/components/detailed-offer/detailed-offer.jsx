@@ -11,8 +11,9 @@ import {getCommentsList, getCurrentOffer, getOffersNearby} from '../../reducer/d
 import Header from '../header/header.jsx';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 import ReviewsForm from '../reviews-form/reviews-form.jsx';
+import {Operation} from '../../reducer/user/user.js';
 
-const DetailedOffer = ({authorizationStatus, city, commentsList, offer, offersNearby}) => {
+const DetailedOffer = ({authorizationStatus, city, commentsList, offer, offersNearby, sendComment}) => {
   const ratingInPercent = getRatingInPercent(offer.rating);
   const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);
 
@@ -99,7 +100,10 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, offer, offersNe
                 <ReviewsList
                   commentsList={commentsList}
                 />
-                {authorizationStatus === AuthorizationStatus.AUTH && <ReviewsForm />}
+                {authorizationStatus === AuthorizationStatus.AUTH &&
+                <ReviewsForm
+                  onSubmit={sendComment}
+                />}
               </section>
             </div>
           </div>
@@ -131,6 +135,7 @@ DetailedOffer.propTypes = {
   currentOffer: PropTypes.shape(offerShape),
   offer: PropTypes.shape(offerShape),
   offersNearby: PropTypes.arrayOf(PropTypes.shape(offerShape)),
+  sendComment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -141,5 +146,11 @@ const mapStateToProps = (state) => ({
   offersNearby: getOffersNearby(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  sendComment(formData) {
+    dispatch(Operation.sendComment(formData));
+  }
+});
+
 export {DetailedOffer};
-export default connect(mapStateToProps)(DetailedOffer);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailedOffer);

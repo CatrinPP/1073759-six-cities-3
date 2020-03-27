@@ -1,5 +1,6 @@
 import {AuthorizationStatus} from '../../const.js';
 import {extend} from '../../utils.js';
+import {getCurrentOffer} from '../data/selectors.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -58,6 +59,15 @@ const Operation = {
       dispatch(ActionCreator.saveUserName(authData.login));
     });
   },
+
+  sendComment: (formData) => (dispatch, getState, api) => {
+    const state = getState();
+    const offerId = getCurrentOffer(state).id;
+    return api.post(`comments/${offerId}`, {
+      comment: formData.comment,
+      rating: formData.rating,
+    });
+  }
 };
 
 const reducer = (state = initialState, action) => {
