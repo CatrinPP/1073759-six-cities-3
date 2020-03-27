@@ -1,5 +1,6 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
+import {MAX_COMMENT_LENGTH, MIN_COMMENT_LENGTH} from '../../const.js';
 
 class ReviewsForm extends PureComponent {
   constructor(props) {
@@ -10,6 +11,26 @@ class ReviewsForm extends PureComponent {
     this.rating = null;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
+    this.handleTextareaInput = this.handleTextareaInput.bind(this);
+
+    this.state = {
+      isCommentFilled: false,
+      isRatingSet: false,
+      isBlocked: true,
+    };
+  }
+
+  componentDidUpdate() {
+    const {isRatingSet, isCommentFilled} = this.state;
+    if (isCommentFilled && isRatingSet) {
+      this.setState({
+        isBlocked: false,
+      });
+    } else {
+      this.setState({
+        isBlocked: true,
+      });
+    }
   }
 
   handleSubmit(evt) {
@@ -25,9 +46,29 @@ class ReviewsForm extends PureComponent {
 
   handleInputClick(evt) {
     this.rating = evt.target.value;
+
+    this.setState({
+      isRatingSet: true
+    });
+  }
+
+  handleTextareaInput(evt) {
+    evt.preventDefault();
+    const commentLength = evt.target.textLength;
+    if (commentLength >= MIN_COMMENT_LENGTH && commentLength <= MAX_COMMENT_LENGTH) {
+      this.setState({
+        isCommentFilled: true
+      });
+    } else {
+      this.setState({
+        isCommentFilled: false
+      });
+    }
   }
 
   render() {
+    const {isBlocked} = this.state;
+
     return (
       <form className="reviews__form form" action="#" method="post" onSubmit={this.handleSubmit}>
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -77,14 +118,14 @@ class ReviewsForm extends PureComponent {
             </svg>
           </label>
         </div>
-        <textarea className="reviews__textarea form__textarea" id="review" maxLength="300" minLength="50" name="review" placeholder="Tell how was your stay, what you like and what can be improved"
+        <textarea className="reviews__textarea form__textarea" id="review" maxLength={MAX_COMMENT_LENGTH} minLength={MIN_COMMENT_LENGTH} name="review" onChange={this.handleTextareaInput} placeholder="Tell how was your stay, what you like and what can be improved"
           ref={this.commentRef}
         ></textarea>
         <div className="reviews__button-wrapper">
           <p className="reviews__help">
             To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
           </p>
-          <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
+          <button className="reviews__submit form__submit button" type="submit" disabled={isBlocked === true}>Submit</button>
         </div>
       </form>
     );
