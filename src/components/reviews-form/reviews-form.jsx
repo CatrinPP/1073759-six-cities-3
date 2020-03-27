@@ -77,7 +77,7 @@ class ReviewsForm extends PureComponent {
             </svg>
           </label>
         </div>
-        <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"
+        <textarea className="reviews__textarea form__textarea" id="review" maxLength="300" minLength="50" name="review" placeholder="Tell how was your stay, what you like and what can be improved"
           ref={this.commentRef}
         ></textarea>
         <div className="reviews__button-wrapper">
