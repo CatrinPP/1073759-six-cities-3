@@ -9,11 +9,11 @@ import {getRatingInPercent} from '../../utils.js';
 import {getCity} from '../../reducer/app/selectors.js';
 import {getCommentsList, getCurrentOffer, getOffersNearby} from '../../reducer/data/selectors.js';
 import Header from '../header/header.jsx';
-import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
+import {getAuthorizationStatus, getReviewFormStatus} from '../../reducer/user/selectors.js';
 import ReviewsForm from '../reviews-form/reviews-form.jsx';
-import {Operation} from '../../reducer/user/user.js';
+import {Operation, ActionCreator} from '../../reducer/user/user.js';
 
-const DetailedOffer = ({authorizationStatus, city, commentsList, offer, offersNearby, sendComment}) => {
+const DetailedOffer = ({authorizationStatus, city, commentsList, isReviewFormBlocked, offer, offersNearby, sendComment}) => {
   const ratingInPercent = getRatingInPercent(offer.rating);
   const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);
 
@@ -103,6 +103,7 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, offer, offersNe
                 {authorizationStatus === AuthorizationStatus.AUTH &&
                 <ReviewsForm
                   onSubmit={sendComment}
+                  isReviewFormBlocked={isReviewFormBlocked}
                 />}
               </section>
             </div>
@@ -135,6 +136,7 @@ DetailedOffer.propTypes = {
   currentOffer: PropTypes.shape(offerShape),
   offer: PropTypes.shape(offerShape),
   offersNearby: PropTypes.arrayOf(PropTypes.shape(offerShape)),
+  isReviewFormBlocked: PropTypes.bool.isRequired,
   sendComment: PropTypes.func.isRequired,
 };
 
@@ -144,10 +146,12 @@ const mapStateToProps = (state) => ({
   commentsList: getCommentsList(state),
   currentOffer: getCurrentOffer(state),
   offersNearby: getOffersNearby(state),
+  isReviewFormBlocked: getReviewFormStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   sendComment(formData) {
+    dispatch(ActionCreator.blockReviewForm(true));
     dispatch(Operation.sendComment(formData));
   }
 });

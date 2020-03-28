@@ -1,20 +1,30 @@
 import {AuthorizationStatus} from '../../const.js';
-import {extend} from '../../utils.js';
+import {extend, transformCommentShape} from '../../utils.js';
 import {getCurrentOffer} from '../data/selectors.js';
+import {ActionCreator as DataActionCreator} from '../data/data.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  isReviewFormBlocked: false,
   isSignInRequired: false,
   userName: null,
 };
 
 const ActionType = {
+  BLOCK_REVIEW_FORM: `BLOCK_REVIEW_FORM`,
   OPEN_SIGN_IN_PAGE: `OPEN_SIGN_IN_PAGE`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   SAVE_USERNAME: `SAVE_USERNAME`,
 };
 
 const ActionCreator = {
+  blockReviewForm: (status) => {
+    return {
+      type: ActionType.BLOCK_REVIEW_FORM,
+      payload: status,
+    };
+  },
+
   openSignInPage: (status) => {
     return {
       type: ActionType.OPEN_SIGN_IN_PAGE,
@@ -66,12 +76,27 @@ const Operation = {
     return api.post(`comments/${offerId}`, {
       comment: formData.comment,
       rating: formData.rating,
+    })
+    .then(() => {
+      dispatch(ActionCreator.blockReviewForm(false));
+    })
+    .then(() => {
+      return api.get(`comments/${offerId}`);
+    })
+    .then((response) => {
+      const transformedComments = response.data.map((it) => transformCommentShape(it));
+      dispatch(DataActionCreator.getComments(transformedComments));
     });
   }
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.BLOCK_REVIEW_FORM:
+      return extend(state, {
+        isReviewFormBlocked: action.payload,
+      });
+
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
         authorizationStatus: action.payload,
