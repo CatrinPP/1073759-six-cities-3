@@ -12,10 +12,12 @@ import Header from '../header/header.jsx';
 import {getAuthorizationStatus, getReviewFormStatus} from '../../reducer/user/selectors.js';
 import ReviewsForm from '../reviews-form/reviews-form.jsx';
 import {Operation, ActionCreator} from '../../reducer/user/user.js';
+import withButtonBlock from '../../hocs/with-button-block/with-button-block.js';
 
 const DetailedOffer = ({authorizationStatus, city, commentsList, isReviewFormBlocked, offer, offersNearby, sendComment}) => {
   const ratingInPercent = getRatingInPercent(offer.rating);
   const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);
+  const ReviewsFormWrapped = withButtonBlock(ReviewsForm);
 
   return (
     <div className="page">
@@ -101,9 +103,9 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, isReviewFormBlo
                   commentsList={commentsList}
                 />
                 {authorizationStatus === AuthorizationStatus.AUTH &&
-                <ReviewsForm
-                  onSubmit={sendComment}
+                <ReviewsFormWrapped
                   isReviewFormBlocked={isReviewFormBlocked}
+                  onSubmit={sendComment}
                 />}
               </section>
             </div>

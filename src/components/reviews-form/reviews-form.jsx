@@ -12,34 +12,6 @@ class ReviewsForm extends PureComponent {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
     this.handleTextareaInput = this.handleTextareaInput.bind(this);
-
-    this.state = {
-      isCommentFilled: false,
-      isRatingSet: false,
-      isSubmitButtonBlocked: true,
-    };
-  }
-
-  clearForm() {
-    document.querySelector(`.reviews__form`).reset();
-  }
-
-  componentDidUpdate(prevProps) {
-    const {isRatingSet, isCommentFilled} = this.state;
-    const {isReviewFormBlocked} = this.props;
-    if (prevProps.isReviewFormBlocked === true && isReviewFormBlocked === false) {
-      this.clearForm();
-    }
-
-    if (isCommentFilled && isRatingSet) {
-      this.setState({
-        isSubmitButtonBlocked: false,
-      });
-    } else {
-      this.setState({
-        isSubmitButtonBlocked: true,
-      });
-    }
   }
 
   handleSubmit(evt) {
@@ -54,30 +26,24 @@ class ReviewsForm extends PureComponent {
   }
 
   handleInputClick(evt) {
+    const {setRating} = this.props;
     this.rating = evt.target.value;
-
-    this.setState({
-      isRatingSet: true
-    });
+    setRating();
   }
 
   handleTextareaInput(evt) {
+    const {checkCommentFilled, uncheckCommentFilled} = this.props;
     evt.preventDefault();
     const commentLength = evt.target.textLength;
     if (commentLength >= MIN_COMMENT_LENGTH && commentLength <= MAX_COMMENT_LENGTH) {
-      this.setState({
-        isCommentFilled: true
-      });
+      checkCommentFilled();
     } else {
-      this.setState({
-        isCommentFilled: false
-      });
+      uncheckCommentFilled();
     }
   }
 
   render() {
-    const {isSubmitButtonBlocked} = this.state;
-    const {isReviewFormBlocked} = this.props;
+    const {isReviewFormBlocked, isSubmitButtonBlocked} = this.props;
 
     return (
       <form className="reviews__form form" action="#" method="post" onSubmit={this.handleSubmit}>
@@ -145,8 +111,12 @@ class ReviewsForm extends PureComponent {
 }
 
 ReviewsForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  checkCommentFilled: PropTypes.func.isRequired,
   isReviewFormBlocked: PropTypes.bool.isRequired,
+  isSubmitButtonBlocked: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  setRating: PropTypes.func.isRequired,
+  uncheckCommentFilled: PropTypes.func.isRequired,
 };
 
 export default ReviewsForm;
