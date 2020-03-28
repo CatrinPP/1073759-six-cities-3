@@ -26,7 +26,7 @@ class App extends PureComponent {
     if (isSignInRequired && authorizationStatus === AuthorizationStatus.NO_AUTH) {
       return (
         <SignIn
-          onSubmit={login}
+          handleFormSubmit={login}
         />
       );
     }
@@ -68,7 +68,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-auth">
             <SignIn
-              onSubmit={() => {}}
+              handleFormSubmit={() => {}}
             />
           </Route>
         </Switch>

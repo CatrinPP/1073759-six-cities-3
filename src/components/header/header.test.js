@@ -8,10 +8,29 @@ import {AuthorizationStatus} from '../../const.js';
 
 const mockStore = configureStore([]);
 
-it(`Should render Header correctly`, () => {
+it(`Should render Header for authorized user correctly`, () => {
   const store = mockStore({
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH
+    },
+  });
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <Header
+            handleSignInLinkClick={() => {}}
+          />
+        </Provider>
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Should render Header for unauthorized user correctly`, () => {
+  const store = mockStore({
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH
     },
   });
   const tree = renderer

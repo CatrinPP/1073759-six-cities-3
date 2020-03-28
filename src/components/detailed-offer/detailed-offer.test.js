@@ -13,7 +13,7 @@ const mockCity = {
   name: `Paris`,
 };
 
-it(`Should render DetailedOffer correctly`, () => {
+it(`Should render DetailedOffer for authorized user correctly`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
       city: mockCity,
@@ -25,6 +25,35 @@ it(`Should render DetailedOffer correctly`, () => {
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH,
+      isReviewFormBlocked: false,
+    },
+  });
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <DetailedOffer
+            offer={testOffers[0].offers[0]}
+          />
+        </Provider>
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Should render DetailedOffer for unauthorized user correctly`, () => {
+  const store = mockStore({
+    [NameSpace.APP]: {
+      city: mockCity,
+      sortType: SortingType.DEFAULT,
+    },
+    [NameSpace.DATA]: {
+      commentsList: testComments,
+      offersNearby: testOffers[0].offers,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      isReviewFormBlocked: false,
     },
   });
   const tree = renderer

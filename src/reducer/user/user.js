@@ -67,13 +67,16 @@ const Operation = {
     .then(() => {
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       dispatch(ActionCreator.saveUserName(authData.login));
+    })
+    .catch((err) => {
+      throw err;
     });
   },
 
   sendComment: (formData) => (dispatch, getState, api) => {
     const state = getState();
     const offerId = getCurrentOffer(state).id;
-    return api.post(`comments/${offerId}`, {
+    return api.post(`/comments/${offerId}`, {
       comment: formData.comment,
       rating: formData.rating,
     })
@@ -81,11 +84,14 @@ const Operation = {
       dispatch(ActionCreator.blockReviewForm(false));
     })
     .then(() => {
-      return api.get(`comments/${offerId}`);
+      return api.get(`/comments/${offerId}`);
     })
     .then((response) => {
       const transformedComments = response.data.map((it) => transformCommentShape(it));
       dispatch(DataActionCreator.getComments(transformedComments));
+    })
+    .catch((err) => {
+      throw err;
     });
   }
 };
