@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import PropTypes from "prop-types";
-import withButtonBlock from './with-button-block.js';
+import withBlockStatus from './with-block-status.js';
 
 const MockComponent = (props) => {
   const {children} = props;
@@ -20,9 +20,9 @@ MockComponent.propTypes = {
   ]),
 };
 
-const MockComponentWrapped = withButtonBlock(MockComponent);
+const MockComponentWrapped = withBlockStatus(MockComponent);
 
-it(`withButtonBlock is rendered correctly`, () => {
+it(`withBlockStatus is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
       setRating={() => {}}

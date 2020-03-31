@@ -20,6 +20,7 @@ describe(`Events`, () => {
     const reviewForm = mount(
         <Provider store={store}>
           <ReviewsForm
+            blockForm={() => {}}
             setRating={setRatingMock}
             checkCommentFilled={() => {}}
             isReviewFormBlocked={false}
@@ -49,6 +50,7 @@ describe(`Events`, () => {
     const reviewForm = mount(
         <Provider store={store}>
           <ReviewsForm
+            blockForm={() => {}}
             setRating={() => {}}
             checkCommentFilled={handleTextareaChangeMock}
             isReviewFormBlocked={false}
@@ -72,6 +74,7 @@ describe(`Events`, () => {
     const reviewForm = mount(
         <Provider store={store}>
           <ReviewsForm
+            blockForm={() => {}}
             setRating={() => {}}
             checkCommentFilled={() => {}}
             isReviewFormBlocked={false}

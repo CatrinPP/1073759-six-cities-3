@@ -1,27 +1,25 @@
 import React, {PureComponent} from 'react';
 
-const withButtonBlock = (Component) => {
-  class WithButtonBlock extends PureComponent {
+const withBlockStatus = (Component) => {
+  class WithBlockStatus extends PureComponent {
     constructor(props) {
       super(props);
 
       this.state = {
         isCommentFilled: false,
+        isError: false,
         isRatingSet: false,
+        isReviewFormBlocked: false,
         isSubmitButtonBlocked: true,
       };
 
-      this.unblockButton = this.unblockButton.bind(this);
       this.blockButton = this.blockButton.bind(this);
-      this.setRating = this.setRating.bind(this);
+      this.blockForm = this.blockForm.bind(this);
       this.checkCommentFilled = this.checkCommentFilled.bind(this);
+      this.setRating = this.setRating.bind(this);
+      this.showError = this.showError.bind(this);
+      this.unblockButton = this.unblockButton.bind(this);
       this.uncheckCommentFilled = this.uncheckCommentFilled.bind(this);
-    }
-
-    unblockButton() {
-      this.setState({
-        isSubmitButtonBlocked: false,
-      });
     }
 
     blockButton() {
@@ -30,9 +28,15 @@ const withButtonBlock = (Component) => {
       });
     }
 
-    setRating() {
+    unblockButton() {
       this.setState({
-        isRatingSet: true
+        isSubmitButtonBlocked: false,
+      });
+    }
+
+    blockForm() {
+      this.setState({
+        isReviewFormBlocked: true,
       });
     }
 
@@ -48,6 +52,19 @@ const withButtonBlock = (Component) => {
       });
     }
 
+    showError() {
+      this.setState({
+        isError: true,
+        isReviewFormBlocked: false
+      });
+    }
+
+    setRating() {
+      this.setState({
+        isRatingSet: true
+      });
+    }
+
     componentDidUpdate() {
       const {isCommentFilled, isRatingSet} = this.state;
 
@@ -59,21 +76,25 @@ const withButtonBlock = (Component) => {
     }
 
     render() {
-      const {isSubmitButtonBlocked} = this.state;
+      const {isError, isReviewFormBlocked, isSubmitButtonBlocked} = this.state;
 
       return (
         <Component
           {...this.props}
-          setRating={this.setRating}
+          blockForm={this.blockForm}
           checkCommentFilled={this.checkCommentFilled}
-          uncheckCommentFilled={this.uncheckCommentFilled}
+          isError={isError}
+          isReviewFormBlocked={isReviewFormBlocked}
           isSubmitButtonBlocked={isSubmitButtonBlocked}
+          setRating={this.setRating}
+          showError={this.showError}
+          uncheckCommentFilled={this.uncheckCommentFilled}
         />
       );
     }
   }
 
-  return WithButtonBlock;
+  return WithBlockStatus;
 };
 
-export default withButtonBlock;
+export default withBlockStatus;

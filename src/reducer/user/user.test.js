@@ -8,7 +8,6 @@ import NameSpace from '../name-space.js';
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
-    isReviewFormBlocked: false,
     isSignInRequired: false,
     userName: null,
   });
@@ -17,7 +16,6 @@ it(`Reducer without additional parameters should return initial state`, () => {
 it(`Reducer should change authorization status to opposite`, () => {
   expect(reducer({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
-    isReviewFormBlocked: false,
     isSignInRequired: false,
     userName: null,
   }, {
@@ -25,7 +23,6 @@ it(`Reducer should change authorization status to opposite`, () => {
     payload: AuthorizationStatus.AUTH,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.AUTH,
-    isReviewFormBlocked: false,
     isSignInRequired: false,
     userName: null,
   });
@@ -34,7 +31,6 @@ it(`Reducer should change authorization status to opposite`, () => {
 it(`Reducer should change isSignInRequired status to opposite`, () => {
   expect(reducer({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
-    isReviewFormBlocked: false,
     isSignInRequired: false,
     userName: null,
   }, {
@@ -42,7 +38,6 @@ it(`Reducer should change isSignInRequired status to opposite`, () => {
     payload: true,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
-    isReviewFormBlocked: false,
     isSignInRequired: true,
     userName: null,
   });
@@ -51,7 +46,6 @@ it(`Reducer should change isSignInRequired status to opposite`, () => {
 it(`Reducer should change user name with given value`, () => {
   expect(reducer({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
-    isReviewFormBlocked: false,
     isSignInRequired: false,
     userName: null,
   }, {
@@ -59,26 +53,8 @@ it(`Reducer should change user name with given value`, () => {
     payload: `Catrin`,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
-    isReviewFormBlocked: false,
     isSignInRequired: false,
     userName: `Catrin`,
-  });
-});
-
-it(`Reducer should change review form block status to opposite`, () => {
-  expect(reducer({
-    authorizationStatus: AuthorizationStatus.NO_AUTH,
-    isReviewFormBlocked: false,
-    isSignInRequired: false,
-    userName: null,
-  }, {
-    type: ActionType.BLOCK_REVIEW_FORM,
-    payload: true,
-  })).toEqual({
-    authorizationStatus: AuthorizationStatus.NO_AUTH,
-    isReviewFormBlocked: true,
-    isSignInRequired: false,
-    userName: null,
   });
 });
 
@@ -101,13 +77,6 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.saveUserName(`Catrin`)).toEqual({
       type: ActionType.SAVE_USERNAME,
       payload: `Catrin`
-    });
-  });
-
-  it(`Action creator for changing blocking form status returns correct action`, () => {
-    expect(ActionCreator.blockReviewForm(true)).toEqual({
-      type: ActionType.BLOCK_REVIEW_FORM,
-      payload: true
     });
   });
 });
@@ -226,7 +195,7 @@ describe(`Operations work correctly`, () => {
       'comment': `My New Comment - What an amazing view!`,
       'date': `2020-02-24T22:52:54.373Z`,
     };
-    const commentSender = Operation.sendComment(comment);
+    const commentSender = Operation.sendComment(comment, () => {}, () => {});
 
     apiMock
       .onPost(`/comments/10`)
@@ -246,12 +215,8 @@ describe(`Operations work correctly`, () => {
       }, comment]);
     return commentSender(dispatch, () => state, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.BLOCK_REVIEW_FORM,
-          payload: false,
-        });
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: DataActionType.GET_COMMENTS,
           payload: [{
             'id': 1,

@@ -53,7 +53,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {currentOffer} = this.props;
+    const {currentOffer, login} = this.props;
 
     return (
       <BrowserRouter>
@@ -68,7 +68,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-auth">
             <SignIn
-              handleFormSubmit={() => {}}
+              handleFormSubmit={login}
             />
           </Route>
         </Switch>

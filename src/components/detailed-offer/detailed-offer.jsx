@@ -9,15 +9,15 @@ import {getRatingInPercent} from '../../utils.js';
 import {getCity} from '../../reducer/app/selectors.js';
 import {getCommentsList, getCurrentOffer, getOffersNearby} from '../../reducer/data/selectors.js';
 import Header from '../header/header.jsx';
-import {getAuthorizationStatus, getReviewFormStatus} from '../../reducer/user/selectors.js';
+import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 import ReviewsForm from '../reviews-form/reviews-form.jsx';
-import {Operation, ActionCreator} from '../../reducer/user/user.js';
-import withButtonBlock from '../../hocs/with-button-block/with-button-block.js';
+import {Operation} from '../../reducer/user/user.js';
+import withBlockStatus from '../../hocs/with-block-status/with-block-status.js';
 
-const DetailedOffer = ({authorizationStatus, city, commentsList, isReviewFormBlocked, offer, offersNearby, sendComment}) => {
+const DetailedOffer = ({authorizationStatus, city, commentsList, offer, offersNearby, sendComment}) => {
   const ratingInPercent = getRatingInPercent(offer.rating);
   const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);
-  const ReviewsFormWrapped = withButtonBlock(ReviewsForm);
+  const ReviewsFormWrapped = withBlockStatus(ReviewsForm);
 
   return (
     <div className="page">
@@ -104,7 +104,6 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, isReviewFormBlo
                 />
                 {authorizationStatus === AuthorizationStatus.AUTH &&
                 <ReviewsFormWrapped
-                  isReviewFormBlocked={isReviewFormBlocked}
                   onSubmit={sendComment}
                 />}
               </section>
@@ -138,7 +137,6 @@ DetailedOffer.propTypes = {
   currentOffer: PropTypes.shape(offerShape),
   offer: PropTypes.shape(offerShape),
   offersNearby: PropTypes.arrayOf(PropTypes.shape(offerShape)),
-  isReviewFormBlocked: PropTypes.bool.isRequired,
   sendComment: PropTypes.func.isRequired,
 };
 
@@ -148,13 +146,11 @@ const mapStateToProps = (state) => ({
   commentsList: getCommentsList(state),
   currentOffer: getCurrentOffer(state),
   offersNearby: getOffersNearby(state),
-  isReviewFormBlocked: getReviewFormStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  sendComment(formData) {
-    dispatch(ActionCreator.blockReviewForm(true));
-    dispatch(Operation.sendComment(formData));
+  sendComment(formData, blockForm, onError) {
+    dispatch(Operation.sendComment(formData, blockForm, onError));
   }
 });
 

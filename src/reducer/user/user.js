@@ -5,26 +5,17 @@ import {ActionCreator as DataActionCreator} from '../data/data.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  isReviewFormBlocked: false,
   isSignInRequired: false,
   userName: null,
 };
 
 const ActionType = {
-  BLOCK_REVIEW_FORM: `BLOCK_REVIEW_FORM`,
   OPEN_SIGN_IN_PAGE: `OPEN_SIGN_IN_PAGE`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   SAVE_USERNAME: `SAVE_USERNAME`,
 };
 
 const ActionCreator = {
-  blockReviewForm: (status) => {
-    return {
-      type: ActionType.BLOCK_REVIEW_FORM,
-      payload: status,
-    };
-  },
-
   openSignInPage: (status) => {
     return {
       type: ActionType.OPEN_SIGN_IN_PAGE,
@@ -73,15 +64,13 @@ const Operation = {
     });
   },
 
-  sendComment: (formData) => (dispatch, getState, api) => {
+  sendComment: (formData, blockForm, onError) => (dispatch, getState, api) => {
     const state = getState();
     const offerId = getCurrentOffer(state).id;
+    blockForm();
     return api.post(`/comments/${offerId}`, {
       comment: formData.comment,
       rating: formData.rating,
-    })
-    .then(() => {
-      dispatch(ActionCreator.blockReviewForm(false));
     })
     .then(() => {
       return api.get(`/comments/${offerId}`);
@@ -91,6 +80,7 @@ const Operation = {
       dispatch(DataActionCreator.getComments(transformedComments));
     })
     .catch((err) => {
+      onError();
       throw err;
     });
   }
@@ -98,11 +88,6 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.BLOCK_REVIEW_FORM:
-      return extend(state, {
-        isReviewFormBlocked: action.payload,
-      });
-
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
         authorizationStatus: action.payload,

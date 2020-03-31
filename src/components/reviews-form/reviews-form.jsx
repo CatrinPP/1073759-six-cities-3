@@ -15,14 +15,13 @@ class ReviewsForm extends PureComponent {
   }
 
   handleSubmit(evt) {
-    const {onSubmit} = this.props;
-
+    const {onSubmit, blockForm, showError} = this.props;
     evt.preventDefault();
 
     onSubmit({
       comment: this.commentRef.current.value,
       rating: this.rating,
-    });
+    }, blockForm, showError);
   }
 
   handleInputClick(evt) {
@@ -34,7 +33,7 @@ class ReviewsForm extends PureComponent {
   handleTextareaInput(evt) {
     const {checkCommentFilled, uncheckCommentFilled} = this.props;
     evt.preventDefault();
-    const commentLength = evt.target.textLength;
+    const commentLength = evt.target.value.trim().length;
     if (commentLength >= MIN_COMMENT_LENGTH && commentLength <= MAX_COMMENT_LENGTH) {
       checkCommentFilled();
     } else {
@@ -43,7 +42,7 @@ class ReviewsForm extends PureComponent {
   }
 
   render() {
-    const {isReviewFormBlocked, isSubmitButtonBlocked} = this.props;
+    const {isError, isReviewFormBlocked, isSubmitButtonBlocked} = this.props;
 
     return (
       <form className="reviews__form form" action="#" method="post" onSubmit={this.handleSubmit}>
@@ -95,6 +94,7 @@ class ReviewsForm extends PureComponent {
               </svg>
             </label>
           </div>
+          {isError && <b style={{color: `red`}}>Sorry - there was a problem posting your comment. Please try again</b>}
           <textarea className="reviews__textarea form__textarea" id="review" maxLength={MAX_COMMENT_LENGTH} minLength={MIN_COMMENT_LENGTH} name="review" onChange={this.handleTextareaInput} placeholder="Tell how was your stay, what you like and what can be improved"
             ref={this.commentRef}
           ></textarea>
@@ -111,7 +111,10 @@ class ReviewsForm extends PureComponent {
 }
 
 ReviewsForm.propTypes = {
+  blockForm: PropTypes.func.isRequired,
   checkCommentFilled: PropTypes.func.isRequired,
+  showError: PropTypes.func,
+  isError: PropTypes.bool,
   isReviewFormBlocked: PropTypes.bool.isRequired,
   isSubmitButtonBlocked: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
