@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/user/user.js';
 import {getAuthorizationStatus, getUserName} from '../../reducer/user/selectors.js';
 import {AuthorizationStatus} from '../../const.js';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const.js';
 
 const Header = ({authorizationStatus, handleSignInLinkClick, userName}) => {
   return (
@@ -21,8 +23,8 @@ const Header = ({authorizationStatus, handleSignInLinkClick, userName}) => {
                 <a className="header__nav-link header__nav-link--profile" href="#">
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
-                  {authorizationStatus === AuthorizationStatus.NO_AUTH && <span className="header__login" onClick={handleSignInLinkClick}>Sign in</span> ||
-                  <span className="header__user-name user__name" onClick={handleSignInLinkClick}>{userName}</span>}
+                  {authorizationStatus === AuthorizationStatus.NO_AUTH && <Link className="header__login" to={AppRoute.LOGIN} onClick={handleSignInLinkClick}>Sign in</Link> ||
+                  <Link className="header__user-name user__name" to={AppRoute.FAVORITES} onClick={handleSignInLinkClick}>{userName}</Link>}
                 </a>
               </li>
             </ul>

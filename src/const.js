@@ -10,6 +10,12 @@ const MAP_SIZE_DETAILED_OFFER = `1144px`;
 const TIMEOUT = 5000;
 const ZOOM_VALUE = 13;
 
+const AppRoute = {
+  LOGIN: `/login`,
+  ROOT: `/`,
+  FAVORITES: `/favorites`,
+};
+
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
@@ -99,6 +105,7 @@ const cities = [
 ];
 
 export {
+  AppRoute,
   AuthorizationStatus,
   BASE_URL,
   cities,
