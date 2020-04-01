@@ -26,7 +26,7 @@ class App extends PureComponent {
     if (isSignInRequired && authorizationStatus === AuthorizationStatus.NO_AUTH) {
       return (
         <SignIn
-          onSubmit={login}
+          handleFormSubmit={login}
         />
       );
     }
@@ -53,7 +53,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {currentOffer} = this.props;
+    const {currentOffer, login} = this.props;
 
     return (
       <BrowserRouter>
@@ -68,7 +68,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-auth">
             <SignIn
-              onSubmit={() => {}}
+              handleFormSubmit={login}
             />
           </Route>
         </Switch>

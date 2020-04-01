@@ -1,5 +1,7 @@
 import {AuthorizationStatus} from '../../const.js';
-import {extend} from '../../utils.js';
+import {extend, transformCommentShape} from '../../utils.js';
+import {getCurrentOffer} from '../data/selectors.js';
+import {ActionCreator as DataActionCreator} from '../data/data.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -56,8 +58,32 @@ const Operation = {
     .then(() => {
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       dispatch(ActionCreator.saveUserName(authData.login));
+    })
+    .catch((err) => {
+      throw err;
     });
   },
+
+  sendComment: (formData, blockForm, onError) => (dispatch, getState, api) => {
+    const state = getState();
+    const offerId = getCurrentOffer(state).id;
+    blockForm();
+    return api.post(`/comments/${offerId}`, {
+      comment: formData.comment,
+      rating: formData.rating,
+    })
+    .then(() => {
+      return api.get(`/comments/${offerId}`);
+    })
+    .then((response) => {
+      const transformedComments = response.data.map((it) => transformCommentShape(it));
+      dispatch(DataActionCreator.getComments(transformedComments));
+    })
+    .catch((err) => {
+      onError();
+      throw err;
+    });
+  }
 };
 
 const reducer = (state = initialState, action) => {

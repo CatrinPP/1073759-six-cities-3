@@ -13,7 +13,7 @@ const mockCity = {
   name: `Paris`,
 };
 
-it(`Render App`, () => {
+it(`Render App for unauthorized user`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
       city: mockCity,
@@ -29,6 +29,39 @@ it(`Render App`, () => {
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
+      isReviewFormBlocked: false,
+      isSignInRequired: false,
+    }
+  });
+
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <App />
+        </Provider>
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Render App for authorized user`, () => {
+  const store = mockStore({
+    [NameSpace.APP]: {
+      city: mockCity,
+      serverError: false,
+      sortType: SortingType.DEFAULT,
+    },
+    [NameSpace.DATA]: {
+      allOffers: testOffers,
+      commentsList: testComments,
+      currentOffer: testOffers[0].offers[0],
+      isLoaded: false,
+      offersNearby: testOffers[0].offers,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+      isReviewFormBlocked: false,
       isSignInRequired: false,
     }
   });

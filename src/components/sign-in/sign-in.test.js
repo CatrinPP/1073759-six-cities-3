@@ -18,7 +18,7 @@ it(`Should render SignIn page correctly`, () => {
   .create(
       <Provider store={store}>
         <SignIn
-          onSubmit={() => {}}
+          handleFormSubmit={() => {}}
         />
       </Provider>
   )

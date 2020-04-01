@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 
 const BASE_URL = `https://htmlacademy-react-3.appspot.com/six-cities`;
 const MAX_COMMENTS_VALUE = 10;
+const MAX_COMMENT_LENGTH = 300;
+const MIN_COMMENT_LENGTH = 50;
 const MAP_ICON_SIZE = 30;
 const MAX_OFFERS_NEARBY = 3;
 const MAP_SIZE_DETAILED_OFFER = `1144px`;
@@ -103,7 +105,9 @@ export {
   cityShape,
   commentShape,
   Error,
+  MAX_COMMENT_LENGTH,
   MAX_COMMENTS_VALUE,
+  MIN_COMMENT_LENGTH,
   MAP_ICON_SIZE,
   MAX_OFFERS_NEARBY,
   MAP_SIZE_DETAILED_OFFER,

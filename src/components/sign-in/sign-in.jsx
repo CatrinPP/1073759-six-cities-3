@@ -13,11 +13,11 @@ class SignIn extends PureComponent {
   }
 
   handleSubmit(evt) {
-    const {onSubmit} = this.props;
+    const {handleFormSubmit} = this.props;
 
     evt.preventDefault();
 
-    onSubmit({
+    handleFormSubmit({
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,
     });
@@ -62,7 +62,7 @@ class SignIn extends PureComponent {
 }
 
 SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  handleFormSubmit: PropTypes.func.isRequired,
 };
 
 export default SignIn;
