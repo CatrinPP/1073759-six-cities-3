@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {Router, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Main from '../main/main.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
@@ -11,6 +11,7 @@ import {Operation} from '../../reducer/user/user.js';
 import SignIn from '../sign-in/sign-in.jsx';
 import {getServerError} from '../../reducer/app/selectors.js';
 import Error from '../error/error.jsx';
+import history from '../../history.js';
 
 class App extends PureComponent {
   _renderApp() {
@@ -56,7 +57,9 @@ class App extends PureComponent {
     const {currentOffer, login} = this.props;
 
     return (
-      <BrowserRouter>
+      <Router
+        history={history}
+      >
         <Switch>
           <Route exact path="/">
             {this._renderApp()}
@@ -72,7 +75,7 @@ class App extends PureComponent {
             />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
