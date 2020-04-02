@@ -27,6 +27,11 @@ const Error = {
   UNAUTHORIZED: 401
 };
 
+const FavoriteRequiredAction = {
+  ADD: 1,
+  DELETE: 0
+};
+
 const PlaceType = {
   APARTMENT: `apartment`,
   HOTEL: `hotel`,
@@ -113,6 +118,7 @@ export {
   cityShape,
   commentShape,
   Error,
+  FavoriteRequiredAction,
   MAX_COMMENT_LENGTH,
   MAX_COMMENTS_VALUE,
   MIN_COMMENT_LENGTH,

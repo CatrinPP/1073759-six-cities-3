@@ -1,4 +1,5 @@
 import {extend, transformOfferShape, transformCommentShape} from '../../utils.js';
+import {FavoriteRequiredAction} from '../../const.js';
 import axios from 'axios';
 
 const initialState = {
@@ -61,7 +62,7 @@ const Operation = {
   },
 
   toggleIsFavorite: (offer) => (dispatch, getState, api) => {
-    const status = offer.isFavorite ? 0 : 1;
+    const status = offer.isFavorite ? FavoriteRequiredAction.DELETE : FavoriteRequiredAction.ADD;
     return api.post(`/favorite/${offer.id}/${status}`);
   },
 };
