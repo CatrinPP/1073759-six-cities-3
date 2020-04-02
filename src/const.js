@@ -75,6 +75,7 @@ const offerShape = {
   }),
   id: PropTypes.number.isRequired,
   images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  isFavorite: PropTypes.bool.isRequired,
   isPremium: PropTypes.bool.isRequired,
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,

@@ -58,7 +58,12 @@ const Operation = {
       dispatch(ActionCreator.getOffersNearby(transformedOffers));
       dispatch(ActionCreator.openDetailedOffer(offer));
     }));
-  }
+  },
+
+  toggleIsFavorite: (offer) => (dispatch, getState, api) => {
+    const status = offer.isFavorite ? 0 : 1;
+    return api.post(`/favorite/${offer.id}/${status}`);
+  },
 };
 
 const reducer = (state = initialState, action) => {

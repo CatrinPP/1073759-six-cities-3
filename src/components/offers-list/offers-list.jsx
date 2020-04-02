@@ -10,10 +10,11 @@ import {sortOffers} from '../../utils.js';
 import withShowControl from '../../hocs/with-show-control/with-show-control.js';
 import {getSortType} from '../../reducer/app/selectors.js';
 
-const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handleSortTypeClick, isCitiesClass, offers, sortType}) => {
+const OffersList = ({city, handleBookmarkButtonClick, handlePlaceCardHover, handlePlaceCardNameClick, handleSortTypeClick, isCitiesClass, offers, sortType}) => {
   const sortedOffers = JSON.parse(JSON.stringify(offers));
   const SortingWrapped = withShowControl(Sorting);
 
+  const handleButtonClick = (offer) => () => handleBookmarkButtonClick(offer);
   const handleCardNameClick = (offer) => () => handlePlaceCardNameClick(offer);
   const handleCardHover = (offer) => () => handlePlaceCardHover(offer);
 
@@ -47,6 +48,7 @@ const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handl
               isCitiesClass={isCitiesClass}
               key={it.id}
               offer={it}
+              handleBookmarkButtonClick={handleButtonClick(it)}
               handlePlaceCardNameClick={handleCardNameClick(it)}
               onMouseEnter={handleCardHover(it)}
               onMouseLeave={handleCardHover(null)}
@@ -59,6 +61,7 @@ const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handl
 
 OffersList.propTypes = {
   city: PropTypes.shape(cityShape).isRequired,
+  handleBookmarkButtonClick: PropTypes.func.isRequired,
   handlePlaceCardHover: PropTypes.func.isRequired,
   handlePlaceCardNameClick: PropTypes.func.isRequired,
   handleSortTypeClick: PropTypes.func.isRequired,
@@ -72,6 +75,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  handleBookmarkButtonClick(offer) {
+    dispatch(Operation.toggleIsFavorite(offer));
+    dispatch(Operation.loadOffers());
+  },
+
   handlePlaceCardHover(offer) {
     dispatch(ActionCreator.changeCardOnHover(offer));
   },
