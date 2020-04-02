@@ -23,10 +23,11 @@ describe(`Events`, () => {
     });
     store.dispatch = jest.fn();
 
-    const placeCard = mount(
+    const offersList = mount(
         <Provider store={store}>
           <OffersList
             city={testOffers[0].city}
+            handleBookmarkButtonClick={store.dispatch}
             handlePlaceCardHover={store.dispatch}
             handlePlaceCardNameClick={store.dispatch}
             handleSortTypeClick={store.dispatch}
@@ -36,7 +37,7 @@ describe(`Events`, () => {
         </Provider>
     );
 
-    placeCard.find(`.place-card`).first().simulate(`mouseEnter`);
+    offersList.find(`.place-card`).first().simulate(`mouseEnter`);
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
@@ -48,10 +49,11 @@ describe(`Events`, () => {
     });
     store.dispatch = jest.fn();
 
-    const placeCard = mount(
+    const offersList = mount(
         <Provider store={store}>
           <OffersList
             city={testOffers[0].city}
+            handleBookmarkButtonClick={store.dispatch}
             handlePlaceCardHover={store.dispatch}
             handlePlaceCardNameClick={store.dispatch}
             handleSortTypeClick={store.dispatch}
@@ -61,7 +63,7 @@ describe(`Events`, () => {
         </Provider>
     );
 
-    placeCard.find(`.place-card`).first().simulate(`mouseLeave`);
+    offersList.find(`.place-card`).first().simulate(`mouseLeave`);
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
@@ -73,10 +75,11 @@ describe(`Events`, () => {
     });
     store.dispatch = jest.fn();
 
-    const placeCard = mount(
+    const offersList = mount(
         <Provider store={store}>
           <OffersList
             city={testOffers[0].city}
+            handleBookmarkButtonClick={store.dispatch}
             handlePlaceCardHover={store.dispatch}
             handlePlaceCardNameClick={store.dispatch}
             handleSortTypeClick={store.dispatch}
@@ -86,7 +89,33 @@ describe(`Events`, () => {
         </Provider>
     );
 
-    placeCard.find(`.place-card__name a`).first().simulate(`click`);
+    offersList.find(`.place-card__name a`).first().simulate(`click`);
     expect(store.dispatch).toHaveBeenCalledTimes(1);
+  });
+
+  it(`Get function on bookmark click`, () => {
+    const store = mockStore({
+      [NameSpace.APP]: {
+        sortType: SortingType.DEFAULT,
+      },
+    });
+    store.dispatch = jest.fn();
+
+    const offersList = mount(
+        <Provider store={store}>
+          <OffersList
+            city={testOffers[0].city}
+            handleBookmarkButtonClick={store.dispatch}
+            handlePlaceCardHover={store.dispatch}
+            handlePlaceCardNameClick={store.dispatch}
+            handleSortTypeClick={store.dispatch}
+            isCitiesClass={true}
+            offers={testOffers[0].offers}
+          />
+        </Provider>
+    );
+
+    offersList.find(`.place-card__bookmark-button`).first().simulate(`click`);
+    expect(store.dispatch).toHaveBeenCalledTimes(2);
   });
 });

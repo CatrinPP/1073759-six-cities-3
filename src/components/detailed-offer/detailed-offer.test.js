@@ -1,4 +1,6 @@
 import React from 'react';
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
@@ -30,11 +32,13 @@ it(`Should render DetailedOffer for authorized user correctly`, () => {
   });
   const tree = renderer
     .create(
-        <Provider store={store}>
-          <DetailedOffer
-            offer={testOffers[0].offers[0]}
-          />
-        </Provider>
+        <Router history={history}>
+          <Provider store={store}>
+            <DetailedOffer
+              offer={testOffers[0].offers[0]}
+            />
+          </Provider>
+        </Router>
     )
     .toJSON();
 
@@ -58,11 +62,13 @@ it(`Should render DetailedOffer for unauthorized user correctly`, () => {
   });
   const tree = renderer
     .create(
-        <Provider store={store}>
-          <DetailedOffer
-            offer={testOffers[0].offers[0]}
-          />
-        </Provider>
+        <Router history={history}>
+          <Provider store={store}>
+            <DetailedOffer
+              offer={testOffers[0].offers[0]}
+            />
+          </Provider>
+        </Router>
     )
     .toJSON();
 
