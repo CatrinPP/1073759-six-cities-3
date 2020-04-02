@@ -13,6 +13,7 @@ import SignIn from '../sign-in/sign-in.jsx';
 import {getServerError} from '../../reducer/app/selectors.js';
 // import Error from '../error/error.jsx';
 import history from '../../history.js';
+import Favorites from '../favorites/favorites.jsx';
 
 class App extends PureComponent {
   // _renderApp() {
@@ -64,6 +65,9 @@ class App extends PureComponent {
         <Switch>
           <Route exact path={AppRoute.ROOT}>
             <Main />
+          </Route>
+          <Route exact path="/dev-favorites">
+            <Favorites />
           </Route>
           {/* <Route exact path="/dev-offer">
             <DetailedOffer
