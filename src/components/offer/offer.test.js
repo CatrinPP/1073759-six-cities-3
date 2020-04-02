@@ -16,6 +16,7 @@ it(`Should render Offer correctly`, () => {
             offer={testOffers[0].offers[0]}
             onMouseEnter={() => {}}
             onMouseLeave={() => {}}
+            handleBookmarkButtonClick={() => {}}
             handlePlaceCardHover={() => {}}
             handlePlaceCardNameClick={() => {}}
             isCitiesClass={true}

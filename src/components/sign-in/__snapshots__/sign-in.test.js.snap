@@ -39,14 +39,14 @@ exports[`Should render SignIn page correctly 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/favorites"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
                 />
                 <span
                   className="header__user-name user__name"
-                  onClick={[Function]}
                 />
               </a>
             </li>
@@ -135,3 +135,5 @@ exports[`Should render SignIn page correctly 1`] = `
   </main>
 </div>
 `;
+
+exports[`Should render SignIn page correctly for authorized user 1`] = `null`;

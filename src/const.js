@@ -10,6 +10,12 @@ const MAP_SIZE_DETAILED_OFFER = `1144px`;
 const TIMEOUT = 5000;
 const ZOOM_VALUE = 13;
 
+const AppRoute = {
+  LOGIN: `/login`,
+  ROOT: `/`,
+  FAVORITES: `/favorites`,
+};
+
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
@@ -19,6 +25,11 @@ const Error = {
   BAD_REQUEST: 400,
   SERVER_ERROR: 500,
   UNAUTHORIZED: 401
+};
+
+const FavoriteRequiredAction = {
+  ADD: 1,
+  DELETE: 0
 };
 
 const PlaceType = {
@@ -69,6 +80,7 @@ const offerShape = {
   }),
   id: PropTypes.number.isRequired,
   images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  isFavorite: PropTypes.bool.isRequired,
   isPremium: PropTypes.bool.isRequired,
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
@@ -99,12 +111,14 @@ const cities = [
 ];
 
 export {
+  AppRoute,
   AuthorizationStatus,
   BASE_URL,
   cities,
   cityShape,
   commentShape,
   Error,
+  FavoriteRequiredAction,
   MAX_COMMENT_LENGTH,
   MAX_COMMENTS_VALUE,
   MIN_COMMENT_LENGTH,

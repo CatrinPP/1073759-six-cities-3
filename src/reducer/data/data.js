@@ -1,5 +1,7 @@
 import {extend, transformOfferShape, transformCommentShape} from '../../utils.js';
+import {FavoriteRequiredAction, AppRoute, Error} from '../../const.js';
 import axios from 'axios';
+import history from '../../history.js';
 
 const initialState = {
   allOffers: [],
@@ -58,7 +60,17 @@ const Operation = {
       dispatch(ActionCreator.getOffersNearby(transformedOffers));
       dispatch(ActionCreator.openDetailedOffer(offer));
     }));
-  }
+  },
+
+  toggleIsFavorite: (offer) => (dispatch, getState, api) => {
+    const status = offer.isFavorite ? FavoriteRequiredAction.DELETE : FavoriteRequiredAction.ADD;
+    return api.post(`/favorite/${offer.id}/${status}`)
+    .catch((err) => {
+      if (err.response.status === Error.UNAUTHORIZED) {
+        history.push(AppRoute.LOGIN);
+      }
+    });
+  },
 };
 
 const reducer = (state = initialState, action) => {

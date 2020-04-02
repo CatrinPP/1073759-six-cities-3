@@ -58,6 +58,7 @@ const transformOfferShape = (offer) => {
     },
     id: offer.id,
     images: offer.images,
+    isFavorite: offer.is_favorite,
     isPremium: offer.is_premium,
     previewImage: offer.preview_image,
     price: offer.price,
