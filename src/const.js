@@ -32,6 +32,18 @@ const FavoriteRequiredAction = {
   DELETE: 0
 };
 
+const FavoriteImageSize = {
+  WIDTH: `150`,
+  HEIGHT: `110`,
+};
+
+const PlaceCardType = {
+  CITIES: `cities`,
+  FAVORITES: `favorites`,
+  NEAR_PLACES: `near-places`,
+  DEFAULT: ``,
+};
+
 const PlaceType = {
   APARTMENT: `apartment`,
   HOTEL: `hotel`,
@@ -118,6 +130,7 @@ export {
   cityShape,
   commentShape,
   Error,
+  FavoriteImageSize,
   FavoriteRequiredAction,
   MAX_COMMENT_LENGTH,
   MAX_COMMENTS_VALUE,
@@ -126,6 +139,7 @@ export {
   MAX_OFFERS_NEARBY,
   MAP_SIZE_DETAILED_OFFER,
   offerShape,
+  PlaceCardType,
   SortingType,
   sortTypes,
   TIMEOUT,
