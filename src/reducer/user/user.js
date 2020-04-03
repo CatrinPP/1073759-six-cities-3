@@ -1,10 +1,10 @@
-import {AuthorizationStatus} from '../../const.js';
+import {AuthorizationStatus, Error} from '../../const.js';
 import {extend, transformCommentShape} from '../../utils.js';
 import {getCurrentOffer} from '../data/selectors.js';
 import {ActionCreator as DataActionCreator} from '../data/data.js';
 
 const initialState = {
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authorizationStatus: AuthorizationStatus.AUTH,
   favorites: [],
   isSignInRequired: false,
   userName: null,
@@ -53,7 +53,9 @@ const Operation = {
         dispatch(ActionCreator.saveUserName(response.data.email));
       })
       .catch((err) => {
-        throw err;
+        if (err.response.status === Error.UNAUTHORIZED) {
+          dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+        }
       });
   },
 
