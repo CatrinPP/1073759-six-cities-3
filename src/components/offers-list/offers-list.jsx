@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
@@ -78,7 +77,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleBookmarkButtonClick(offer) {
-    dispatch(Operation.toggleIsFavorite(offer));
+    dispatch(Operation.toggleFavorite(offer));
     dispatch(Operation.loadOffers());
   },
 
@@ -87,7 +86,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   handlePlaceCardNameClick(offer) {
-    dispatch(Operation.openDetailedOffer(offer));
+    dispatch(Operation.getDetailedData(offer));
   },
 
   handleSortTypeClick(selectedSortType) {

@@ -111,7 +111,7 @@ it(`Reducer should change loading status to true`, () => {
 
 describe(`Action creators work correctly`, () => {
   it(`Action creator for getting offer on click returns correct action`, () => {
-    expect(ActionCreator.openDetailedOffer(testOffers[1].offers[1])).toEqual({
+    expect(ActionCreator.getDetailedData(testOffers[1].offers[1])).toEqual({
       type: ActionType.OPEN_DETAILED_OFFER,
       payload: testOffers[1].offers[1]
     });
@@ -171,7 +171,7 @@ describe(`Operations work correctly`, () => {
   it(`Should make a correct API call to /hotels/offer.id/nearby and to /comments`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const dataLoader = Operation.openDetailedOffer(testOffers[0].offers[0]);
+    const dataLoader = Operation.getDetailedData(testOffers[0].offers[0]);
 
     apiMock
       .onGet(`/comments/${testOffers[0].offers[0].id}`)

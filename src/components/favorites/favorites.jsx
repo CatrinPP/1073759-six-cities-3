@@ -97,12 +97,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   handleBookmarkButtonClick(offer) {
-    dispatch(DataOperation.toggleIsFavorite(offer));
+    dispatch(DataOperation.toggleFavorite(offer));
     dispatch(UserOperation.getFavorites());
   },
 
   handlePlaceCardNameClick(offer) {
-    dispatch(DataOperation.openDetailedOffer(offer));
+    dispatch(DataOperation.getDetailedData(offer));
   },
 });
 

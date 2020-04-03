@@ -13,16 +13,20 @@ const initialState = {
 
 const ActionType = {
   GET_COMMENTS: `GET_COMMENTS`,
+  GET_DETAILED_DATA: `OPEN_DETAILED_OFFER`,
   GET_LOADED_STATE: `GET_LOADED_STATE`,
   GET_OFFERS_NEARBY: `GET_OFFERS_NEARBY`,
   LOAD_OFFERS: `LOAD_OFFERS`,
-  OPEN_DETAILED_OFFER: `OPEN_DETAILED_OFFER`,
 };
 
 const ActionCreator = {
   getComments: (comments) => ({
     type: ActionType.GET_COMMENTS,
     payload: comments
+  }),
+  getDetailedData: (offer) => ({
+    type: ActionType.GET_DETAILED_DATA,
+    payload: offer
   }),
   getLoadedState: () => ({
     type: ActionType.GET_LOADED_STATE,
@@ -35,10 +39,6 @@ const ActionCreator = {
     type: ActionType.LOAD_OFFERS,
     payload: offers
   }),
-  openDetailedOffer: (offer) => ({
-    type: ActionType.OPEN_DETAILED_OFFER,
-    payload: offer
-  }),
 };
 
 const Operation = {
@@ -50,7 +50,7 @@ const Operation = {
     });
   },
 
-  openDetailedOffer: (offer) => (dispatch, getState, api) => {
+  getDetailedData: (offer) => (dispatch, getState, api) => {
     return axios.all([api.get(`comments/${offer.id}`),
       api.get(`hotels/${offer.id}/nearby`)])
     .then(axios.spread((firstResponse, secondResponse) => {
@@ -58,11 +58,11 @@ const Operation = {
       dispatch(ActionCreator.getComments(transformedComments));
       const transformedOffers = secondResponse.data.map((it) => transformOfferShape(it));
       dispatch(ActionCreator.getOffersNearby(transformedOffers));
-      dispatch(ActionCreator.openDetailedOffer(offer));
+      dispatch(ActionCreator.getDetailedData(offer));
     }));
   },
 
-  toggleIsFavorite: (offer) => (dispatch, getState, api) => {
+  toggleFavorite: (offer) => (dispatch, getState, api) => {
     const status = offer.isFavorite ? FavoriteRequiredAction.DELETE : FavoriteRequiredAction.ADD;
     return api.post(`/favorite/${offer.id}/${status}`)
     .catch((err) => {
@@ -80,6 +80,11 @@ const reducer = (state = initialState, action) => {
         commentsList: action.payload,
       });
 
+    case ActionType.GET_DETAILED_DATA:
+      return extend(state, {
+        currentOffer: action.payload,
+      });
+
     case ActionType.GET_LOADED_STATE:
       return extend(state, {
         isLoaded: true,
@@ -93,11 +98,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_OFFERS:
       return extend(state, {
         allOffers: action.payload,
-      });
-
-    case ActionType.OPEN_DETAILED_OFFER:
-      return extend(state, {
-        currentOffer: action.payload,
       });
   }
 
