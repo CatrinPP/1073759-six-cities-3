@@ -11,9 +11,10 @@ const TIMEOUT = 5000;
 const ZOOM_VALUE = 13;
 
 const AppRoute = {
-  LOGIN: `/login`,
-  ROOT: `/`,
   FAVORITES: `/favorites`,
+  LOGIN: `/login`,
+  OFFER: `/offer`,
+  ROOT: `/`,
 };
 
 const AuthorizationStatus = {
