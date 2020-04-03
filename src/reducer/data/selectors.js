@@ -35,4 +35,4 @@ const getOffersNearby = (state) => {
   return state[NameSpace.DATA].offersNearby;
 };
 
-export {getCommentsList, getCurrentOffer, getLoadedState, getOffers, getOffersNearby};
+export {getAllOffers, getCommentsList, getCurrentOffer, getLoadedState, getOffers, getOffersNearby};
