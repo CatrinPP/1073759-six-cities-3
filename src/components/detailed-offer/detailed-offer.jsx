@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
-import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape, AuthorizationStatus, PlaceCardType} from '../../const.js';
+import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape, AuthorizationStatus, PlaceCardType, RADIX} from '../../const.js';
 import {getRatingInPercent, transformOfferShape} from '../../utils.js';
 import {getCity} from '../../reducer/app/selectors.js';
 import {getCommentsList, getOffersNearby, getAllOffers} from '../../reducer/data/selectors.js';
@@ -21,7 +21,7 @@ const DetailedOffer = ({allOffers, authorizationStatus, city, commentsList, hand
   const ReviewsFormWrapped = withBlockStatus(ReviewsForm);
   const {id} = useParams();
   const getOfferById = () => {
-    const needOffer = allOffers.find((it) => it.id === parseInt(id, 10));
+    const needOffer = allOffers.find((it) => it.id === parseInt(id, RADIX));
     return transformOfferShape(needOffer);
   };
 
