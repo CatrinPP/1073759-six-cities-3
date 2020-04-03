@@ -59,7 +59,7 @@ const Offer = ({handleBookmarkButtonClick, handlePlaceCardNameClick, placeCardTy
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link href="#"
+          <Link
             onClick={handlePlaceCardNameClick}
             to={`${AppRoute.OFFER}/${offer.id}`}
           >

@@ -21,7 +21,7 @@ const Header = ({authorizationStatus, handleSignInLinkClick, userName}) => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <Link className="header__nav-link header__nav-link--profile" href="#" onClick={handleSignInLinkClick} to={authorizationStatus === AuthorizationStatus.NO_AUTH && AppRoute.LOGIN || AppRoute.FAVORITES}>
+                <Link className="header__nav-link header__nav-link--profile" onClick={handleSignInLinkClick} to={authorizationStatus === AuthorizationStatus.NO_AUTH && AppRoute.LOGIN || AppRoute.FAVORITES}>
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
                   {authorizationStatus === AuthorizationStatus.NO_AUTH && <span className="header__login">Sign in</span> ||
