@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FavoriteImageSize, offerShape, PlaceCardType} from '../../const.js';
 import {getRatingInPercent} from '../../utils.js';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const.js';
 
 const Offer = ({handleBookmarkButtonClick, handlePlaceCardNameClick, placeCardType, offer, onMouseEnter, onMouseLeave}) => {
   const ratingInPercent = getRatingInPercent(offer.rating);
@@ -57,11 +59,12 @@ const Offer = ({handleBookmarkButtonClick, handlePlaceCardNameClick, placeCardTy
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#"
+          <Link href="#"
             onClick={handlePlaceCardNameClick}
+            to={`${AppRoute.OFFER}/${offer.id}`}
           >
             {offer.title}
-          </a>
+          </Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

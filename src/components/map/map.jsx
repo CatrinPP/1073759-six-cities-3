@@ -11,12 +11,12 @@ class Map extends PureComponent {
       const placesCoords = offers.map((offer) => offer.coords);
 
       this.regularIcon = leaflet.icon({
-        iconUrl: `img/pin.svg`,
+        iconUrl: `/img/pin.svg`,
         iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
       });
 
       this.activeIcon = leaflet.icon({
-        iconUrl: `img/pin-active.svg`,
+        iconUrl: `/img/pin-active.svg`,
         iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
       });
 
