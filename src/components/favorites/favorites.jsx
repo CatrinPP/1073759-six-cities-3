@@ -5,8 +5,9 @@ import {getSortedFavorites} from '../../reducer/user/selectors.js';
 import {connect} from 'react-redux';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
-import {favoritesShape, PlaceCardType} from '../../const.js';
+import {favoritesShape, PlaceCardType, AppRoute} from '../../const.js';
 import Offer from '../offer/offer.jsx';
+import {Link} from 'react-router-dom';
 
 class Favorites extends PureComponent {
   componentDidMount() {
@@ -68,9 +69,11 @@ class Favorites extends PureComponent {
           </div>
         </main>
         <footer className="footer container">
-          <a className="footer__logo-link" href="main.html">
+          <Link className="footer__logo-link"
+            to={AppRoute.ROOT}
+          >
             <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
-          </a>
+          </Link>
         </footer>
       </div>
     );
