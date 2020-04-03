@@ -100,6 +100,11 @@ const offerShape = {
   type: PropTypes.oneOf([PlaceType.APARTMENT, PlaceType.HOTEL, PlaceType.HOUSE, PlaceType.ROOM]).isRequired,
 };
 
+const favoritesShape = {
+  city: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape).isRequired).isRequired,
+};
+
 const userShape = {
   avatar: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -132,6 +137,7 @@ export {
   Error,
   FavoriteImageSize,
   FavoriteRequiredAction,
+  favoritesShape,
   MAX_COMMENT_LENGTH,
   MAX_COMMENTS_VALUE,
   MIN_COMMENT_LENGTH,

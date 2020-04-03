@@ -74,8 +74,8 @@ Offer.propTypes = {
   handlePlaceCardNameClick: PropTypes.func.isRequired,
   placeCardType: PropTypes.string.isRequired,
   offer: PropTypes.shape(offerShape).isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
 };
 
 export default Offer;
