@@ -16,10 +16,9 @@ class Favorites extends PureComponent {
   }
 
   render() {
-    const {favorites, handleBookmarkButtonClick, handlePlaceCardNameClick} = this.props;
+    const {favorites, handleBookmarkButtonClick} = this.props;
 
     const handleButtonClick = (offer) => () => handleBookmarkButtonClick(offer);
-    const handleCardNameClick = (offer) => () => handlePlaceCardNameClick(offer);
 
     return (
       <div className={`page ${!favorites.length ? ` page--favorites-empty` : ``}`}>
@@ -56,7 +55,6 @@ class Favorites extends PureComponent {
                               offer={offer}
                               placeCardType={PlaceCardType.FAVORITES}
                               handleBookmarkButtonClick={handleButtonClick(offer)}
-                              handlePlaceCardNameClick={handleCardNameClick(offer)}
                             />
                           ))}
                         </div>
@@ -84,7 +82,6 @@ Favorites.propTypes = {
   favorites: PropTypes.arrayOf(PropTypes.shape(favoritesShape).isRequired).isRequired,
   getFavoriteOffers: PropTypes.func.isRequired,
   handleBookmarkButtonClick: PropTypes.func.isRequired,
-  handlePlaceCardNameClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -99,10 +96,6 @@ const mapDispatchToProps = (dispatch) => ({
   handleBookmarkButtonClick(offer) {
     dispatch(DataOperation.toggleFavorite(offer));
     dispatch(UserOperation.getFavorites());
-  },
-
-  handlePlaceCardNameClick(offer) {
-    dispatch(DataOperation.getDetailedData(offer));
   },
 });
 
