@@ -21,7 +21,6 @@ it(`Should render Offer correctly with class cities`, () => {
               onMouseLeave={() => {}}
               handleBookmarkButtonClick={() => {}}
               handlePlaceCardHover={() => {}}
-              handlePlaceCardNameClick={() => {}}
               placeCardType={PlaceCardType.CITIES}
             />
           </Provider>
@@ -44,7 +43,6 @@ it(`Should render Offer correctly with class near-places`, () => {
               onMouseLeave={() => {}}
               handleBookmarkButtonClick={() => {}}
               handlePlaceCardHover={() => {}}
-              handlePlaceCardNameClick={() => {}}
               placeCardType={PlaceCardType.NEAR_PLACES}
             />
           </Provider>
@@ -67,7 +65,6 @@ it(`Should render Offer correctly with class favorite`, () => {
               onMouseLeave={() => {}}
               handleBookmarkButtonClick={() => {}}
               handlePlaceCardHover={() => {}}
-              handlePlaceCardNameClick={() => {}}
               placeCardType={PlaceCardType.FAVORITES}
             />
           </Provider>
