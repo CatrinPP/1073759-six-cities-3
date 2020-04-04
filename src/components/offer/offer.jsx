@@ -5,7 +5,7 @@ import {getRatingInPercent} from '../../utils.js';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const.js';
 
-const Offer = ({handleBookmarkButtonClick, handlePlaceCardNameClick, placeCardType, offer, onMouseEnter, onMouseLeave}) => {
+const Offer = ({handleBookmarkButtonClick, placeCardType, offer, onMouseEnter, onMouseLeave}) => {
   const ratingInPercent = getRatingInPercent(offer.rating);
 
   const getCardClass = () => {
@@ -60,7 +60,6 @@ const Offer = ({handleBookmarkButtonClick, handlePlaceCardNameClick, placeCardTy
         </div>
         <h2 className="place-card__name">
           <Link
-            onClick={handlePlaceCardNameClick}
             to={`${AppRoute.OFFER}/${offer.id}`}
           >
             {offer.title}
@@ -74,7 +73,6 @@ const Offer = ({handleBookmarkButtonClick, handlePlaceCardNameClick, placeCardTy
 
 Offer.propTypes = {
   handleBookmarkButtonClick: PropTypes.func.isRequired,
-  handlePlaceCardNameClick: PropTypes.func.isRequired,
   placeCardType: PropTypes.string.isRequired,
   offer: PropTypes.shape(offerShape).isRequired,
   onMouseEnter: PropTypes.func,

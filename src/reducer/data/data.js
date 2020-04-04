@@ -5,7 +5,7 @@ import history from '../../history.js';
 
 const initialState = {
   allOffers: [],
-  currentOffer: null,
+  currentId: null,
   commentsList: [],
   isLoaded: false,
   offersNearby: [],
@@ -13,20 +13,16 @@ const initialState = {
 
 const ActionType = {
   GET_COMMENTS: `GET_COMMENTS`,
-  GET_DETAILED_DATA: `OPEN_DETAILED_OFFER`,
   GET_LOADED_STATE: `GET_LOADED_STATE`,
   GET_OFFERS_NEARBY: `GET_OFFERS_NEARBY`,
   LOAD_OFFERS: `LOAD_OFFERS`,
+  SAVE_ID: `SAVE_ID`,
 };
 
 const ActionCreator = {
   getComments: (comments) => ({
     type: ActionType.GET_COMMENTS,
     payload: comments
-  }),
-  getDetailedData: (offer) => ({
-    type: ActionType.GET_DETAILED_DATA,
-    payload: offer
   }),
   getLoadedState: () => ({
     type: ActionType.GET_LOADED_STATE,
@@ -39,6 +35,10 @@ const ActionCreator = {
     type: ActionType.LOAD_OFFERS,
     payload: offers
   }),
+  saveId: (id) => ({
+    type: ActionType.SAVE_ID,
+    payload: id
+  }),
 };
 
 const Operation = {
@@ -50,15 +50,15 @@ const Operation = {
     });
   },
 
-  getDetailedData: (offer) => (dispatch, getState, api) => {
-    return axios.all([api.get(`comments/${offer.id}`),
-      api.get(`hotels/${offer.id}/nearby`)])
+  getDetailedData: (id) => (dispatch, getState, api) => {
+    return axios.all([api.get(`comments/${id}`),
+      api.get(`hotels/${id}/nearby`)])
     .then(axios.spread((firstResponse, secondResponse) => {
       const transformedComments = firstResponse.data.map((it) => transformCommentShape(it));
       dispatch(ActionCreator.getComments(transformedComments));
       const transformedOffers = secondResponse.data.map((it) => transformOfferShape(it));
       dispatch(ActionCreator.getOffersNearby(transformedOffers));
-      dispatch(ActionCreator.getDetailedData(offer));
+      dispatch(ActionCreator.saveId(id));
     }));
   },
 
@@ -80,11 +80,6 @@ const reducer = (state = initialState, action) => {
         commentsList: action.payload,
       });
 
-    case ActionType.GET_DETAILED_DATA:
-      return extend(state, {
-        currentOffer: action.payload,
-      });
-
     case ActionType.GET_LOADED_STATE:
       return extend(state, {
         isLoaded: true,
@@ -98,6 +93,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_OFFERS:
       return extend(state, {
         allOffers: action.payload,
+      });
+
+    case ActionType.SAVE_ID:
+      return extend(state, {
+        currentId: action.payload,
       });
   }
 

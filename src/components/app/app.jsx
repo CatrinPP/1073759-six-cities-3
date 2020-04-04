@@ -6,7 +6,8 @@ import Main from '../main/main.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
 import {AppRoute} from '../../const.js';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
-import {Operation} from '../../reducer/user/user.js';
+import {Operation as UserOperation} from '../../reducer/user/user.js';
+import {Operation as DataOperation} from '../../reducer/data/data.js';
 import SignIn from '../sign-in/sign-in.jsx';
 import {getServerError} from '../../reducer/app/selectors.js';
 import Error from '../error/error.jsx';
@@ -31,7 +32,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {authorizationStatus, login} = this.props;
+    const {authorizationStatus, loadCardDetailedData, login} = this.props;
 
     return (
       <Router
@@ -41,7 +42,15 @@ class App extends PureComponent {
           <Route exact path={AppRoute.ROOT}>
             {this._renderApp()}
           </Route>
-          <Route exact path={`${AppRoute.OFFER}/:id`} component={DetailedOffer} />
+          <Route exact path={`${AppRoute.OFFER}/:id`}
+            render={({match}) => {
+              loadCardDetailedData(+match.params.id);
+              return (
+                <DetailedOffer
+                  id={+match.params.id}/>
+              );
+            }}
+          />
           <Route exact path={AppRoute.LOGIN}
             render={() => {
               return (
@@ -68,6 +77,7 @@ class App extends PureComponent {
 
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
+  loadCardDetailedData: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   serverError: PropTypes.bool.isRequired
 };
@@ -79,7 +89,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {
-    dispatch(Operation.login(authData));
+    dispatch(UserOperation.login(authData));
+  },
+
+  loadCardDetailedData(id) {
+    dispatch(DataOperation.getDetailedData(id));
   }
 });
 

@@ -65,7 +65,11 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const {city, currentOffer, offerOnHover} = this.props;
+    const {city, currentOffer, offers, offerOnHover} = this.props;
+
+    if (prevProps.offers !== offers) {
+      this._renderMarkers();
+    }
 
     if (prevProps.currentOffer !== currentOffer || prevProps.city !== city) {
       this.map.remove();

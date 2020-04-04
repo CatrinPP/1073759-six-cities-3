@@ -1,6 +1,6 @@
 import {AuthorizationStatus, Error} from '../../const.js';
 import {extend, transformCommentShape} from '../../utils.js';
-import {getCurrentOffer} from '../data/selectors.js';
+import {getCurrentId} from '../data/selectors.js';
 import {ActionCreator as DataActionCreator} from '../data/data.js';
 
 const initialState = {
@@ -82,7 +82,7 @@ const Operation = {
 
   sendComment: (formData, blockForm, onError) => (dispatch, getState, api) => {
     const state = getState();
-    const offerId = getCurrentOffer(state).id;
+    const offerId = getCurrentId(state);
     blockForm();
     return api.post(`/comments/${offerId}`, {
       comment: formData.comment,

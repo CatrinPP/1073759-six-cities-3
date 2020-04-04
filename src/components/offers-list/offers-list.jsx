@@ -10,12 +10,11 @@ import {sortOffers} from '../../utils.js';
 import withShowControl from '../../hocs/with-show-control/with-show-control.js';
 import {getSortType} from '../../reducer/app/selectors.js';
 
-const OffersList = ({city, handleBookmarkButtonClick, handlePlaceCardHover, handlePlaceCardNameClick, handleSortTypeClick, isCitiesClass, offers, placeCardType, sortType}) => {
+const OffersList = ({city, handleBookmarkButtonClick, handlePlaceCardHover, handleSortTypeClick, isCitiesClass, offers, placeCardType, sortType}) => {
   const sortedOffers = JSON.parse(JSON.stringify(offers));
   const SortingWrapped = withShowControl(Sorting);
 
   const handleButtonClick = (offer) => () => handleBookmarkButtonClick(offer);
-  const handleCardNameClick = (offer) => () => handlePlaceCardNameClick(offer);
   const handleCardHover = (offer) => () => handlePlaceCardHover(offer);
 
   sortOffers(sortType, sortedOffers, offers);
@@ -49,7 +48,6 @@ const OffersList = ({city, handleBookmarkButtonClick, handlePlaceCardHover, hand
               key={it.id}
               offer={it}
               handleBookmarkButtonClick={handleButtonClick(it)}
-              handlePlaceCardNameClick={handleCardNameClick(it)}
               onMouseEnter={handleCardHover(it)}
               onMouseLeave={handleCardHover(null)}
             />
@@ -63,7 +61,6 @@ OffersList.propTypes = {
   city: PropTypes.shape(cityShape).isRequired,
   handleBookmarkButtonClick: PropTypes.func.isRequired,
   handlePlaceCardHover: PropTypes.func.isRequired,
-  handlePlaceCardNameClick: PropTypes.func.isRequired,
   handleSortTypeClick: PropTypes.func.isRequired,
   isCitiesClass: PropTypes.bool,
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
@@ -85,9 +82,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeCardOnHover(offer));
   },
 
-  handlePlaceCardNameClick(offer) {
-    dispatch(Operation.getDetailedData(offer));
-  },
+  // handlePlaceCardNameClick(offer) {
+  //   dispatch(Operation.getDetailedData(offer));
+  // },
 
   handleSortTypeClick(selectedSortType) {
     dispatch(ActionCreator.sortOffers(selectedSortType));

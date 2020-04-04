@@ -10,8 +10,8 @@ const getCommentsList = (state) => {
   return state[NameSpace.DATA].commentsList;
 };
 
-const getCurrentOffer = (state) => {
-  return state[NameSpace.DATA].currentOffer;
+const getCurrentId = (state) => {
+  return state[NameSpace.DATA].currentId;
 };
 
 const getCurrentCity = (state) => {
@@ -35,4 +35,4 @@ const getOffersNearby = (state) => {
   return state[NameSpace.DATA].offersNearby;
 };
 
-export {getAllOffers, getCommentsList, getCurrentOffer, getLoadedState, getOffers, getOffersNearby};
+export {getAllOffers, getCommentsList, getCurrentId, getLoadedState, getOffers, getOffersNearby};
