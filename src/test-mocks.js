@@ -1,3 +1,113 @@
+const testFavorites = [
+  {
+    city: `Moscow`,
+    offers: [
+      {
+        bedrooms: 2,
+        coords: [52.3909553943508, 4.85309666406198],
+        description: ``,
+        features: [`Washer`, `Washing machine`],
+        guests: 5,
+        host: {
+          avatar: ``,
+          name: `Ann`,
+          isStar: true
+        },
+        id: 1,
+        images: [`img/room.jpg`, `img/room1.jpg`, `img/room2.jpg`],
+        isFavorite: false,
+        isPremium: true,
+        price: 98,
+        rating: 0,
+        title: `Cozy Studio`,
+        type: `room`,
+      }, {
+        bedrooms: 4,
+        coords: [52.369553943508, 4.85309666406198],
+        description: ``,
+        features: [`Fridge`],
+        guests: 10,
+        host: {
+          avatar: ``,
+          name: `Anny`,
+          isStar: false
+        },
+        id: 2,
+        images: [`img/room3.jpg`, `img/room4.jpg`, `img/room5.jpg`],
+        isFavorite: false,
+        isPremium: false,
+        price: 34,
+        rating: 50,
+        title: `Big Vintage Apartment`,
+        type: `apartment`,
+      },
+    ]
+  }, {
+    city: `Tokyo`,
+    offers: [
+      {
+        bedrooms: 1,
+        coords: [52.3909553943508, 4.929309666406198],
+        description: ``,
+        features: [`Cable TV`],
+        guests: 1,
+        host: {
+          avatar: ``,
+          name: `Vince`,
+          isStar: true
+        },
+        id: 3,
+        images: [`img/room6.jpg`, `img/room7.jpg`, `img/room8.jpg`],
+        isFavorite: false,
+        isPremium: false,
+        price: 80,
+        rating: 100,
+        title: `Small Country House`,
+        type: `house`,
+      }, {
+        bedrooms: 0,
+        coords: [52.3809553943508, 4.939309666406198],
+        description: ``,
+        features: [`Breakfast`],
+        guests: 0,
+        host: {
+          avatar: ``,
+          name: `Minni`,
+          isStar: false
+        },
+        id: 4,
+        images: [`img/room9.jpg`, `img/room10.jpg`, `img/room11.jpg`],
+        isFavorite: false,
+        isPremium: true,
+        price: 3200,
+        rating: 95,
+        title: `Villa with no view`,
+        type: `hotel`,
+      }, {
+        bedrooms: 20,
+        coords: [52.3809553943508, 4.93930966640619],
+        description: ``,
+        features: [`Breakfast`, `Washer`],
+        guests: 50,
+        host: {
+          avatar: ``,
+          name: `Polly`,
+          isStar: true
+        },
+        id: 5,
+        images: [`img/room12.jpg`, `img/room13.jpg`, `img/room14.jpg`],
+        isFavorite: false,
+        isPremium: false,
+        price: 5,
+        rating: 15,
+        title: `Tiny bungalow`,
+        type: `house`,
+      },
+    ]
+  }
+];
+
+
 const testOffers = [
   {
     city: {
@@ -240,4 +350,4 @@ const testComments = [
   },
 ];
 
-export {testOffers, testComments};
+export {testFavorites, testOffers, testComments};

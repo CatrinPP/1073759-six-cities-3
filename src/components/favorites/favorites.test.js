@@ -3,8 +3,8 @@ import {BrowserRouter} from "react-router-dom";
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
-import Favorites from './favorites.jsx';
-import {testOffers} from '../../test-mocks.js';
+import {Favorites} from './favorites.jsx';
+import {testFavorites} from '../../test-mocks.js';
 import NameSpace from '../../reducer/name-space.js';
 import {AuthorizationStatus} from '../../const.js';
 
@@ -13,7 +13,7 @@ const mockStore = configureStore([]);
 it(`Should render Favorites correctly for authorized user`, () => {
   const store = mockStore({
     [NameSpace.USER]: {
-      favorites: testOffers,
+      authorizationStatus: AuthorizationStatus.AUTH,
     },
   });
 
@@ -22,7 +22,9 @@ it(`Should render Favorites correctly for authorized user`, () => {
         <BrowserRouter>
           <Provider store={store}>
             <Favorites
-              authorizationStatus={AuthorizationStatus.AUTH}
+              favorites={testFavorites}
+              getFavoriteOffers={() => {}}
+              handleBookmarkButtonClick={() => {}}
             />
           </Provider>
         </BrowserRouter>
@@ -35,7 +37,7 @@ it(`Should render Favorites correctly for authorized user`, () => {
 it(`Should render Favorites correctly for unauthorized user`, () => {
   const store = mockStore({
     [NameSpace.USER]: {
-      favorites: testOffers,
+      authorizationStatus: AuthorizationStatus.AUTH,
     },
   });
 
@@ -44,7 +46,9 @@ it(`Should render Favorites correctly for unauthorized user`, () => {
         <BrowserRouter>
           <Provider store={store}>
             <Favorites
-              authorizationStatus={AuthorizationStatus.NO_AUTH}
+              favorites={testFavorites}
+              getFavoriteOffers={() => {}}
+              handleBookmarkButtonClick={() => {}}
             />
           </Provider>
         </BrowserRouter>
