@@ -65,6 +65,7 @@ const Operation = {
   toggleFavorite: (offer) => (dispatch, getState, api) => {
     const status = offer.isFavorite ? FavoriteRequiredAction.DELETE : FavoriteRequiredAction.ADD;
     return api.post(`/favorite/${offer.id}/${status}`)
+    .then(dispatch(Operation.loadOffers()))
     .catch((err) => {
       if (err.response.status === Error.UNAUTHORIZED) {
         history.push(AppRoute.LOGIN);

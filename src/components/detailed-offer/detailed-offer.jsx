@@ -165,7 +165,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleBookmarkButtonClick(offer) {
     dispatch(DataOperation.toggleFavorite(offer));
-    dispatch(DataOperation.loadOffers());
   },
 });
 
