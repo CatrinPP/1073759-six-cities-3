@@ -82,10 +82,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeCardOnHover(offer));
   },
 
-  // handlePlaceCardNameClick(offer) {
-  //   dispatch(Operation.getDetailedData(offer));
-  // },
-
   handleSortTypeClick(selectedSortType) {
     dispatch(ActionCreator.sortOffers(selectedSortType));
   },

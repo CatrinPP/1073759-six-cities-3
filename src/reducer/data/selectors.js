@@ -31,8 +31,15 @@ const getOffers = createSelector(
     }
 );
 
+const getAllOffersTransformed = createSelector(
+    getAllOffers,
+    (allOffers) => {
+      return allOffers.map((it) => transformOfferShape(it));
+    }
+);
+
 const getOffersNearby = (state) => {
   return state[NameSpace.DATA].offersNearby;
 };
 
-export {getAllOffers, getCommentsList, getCurrentId, getLoadedState, getOffers, getOffersNearby};
+export {getAllOffers, getAllOffersTransformed, getCommentsList, getCurrentId, getLoadedState, getOffers, getOffersNearby};

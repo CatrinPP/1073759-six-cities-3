@@ -7,7 +7,7 @@ import OffersList from '../offers-list/offers-list.jsx';
 import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape, AuthorizationStatus, PlaceCardType} from '../../const.js';
 import {getRatingInPercent} from '../../utils.js';
 import {getCity} from '../../reducer/app/selectors.js';
-import {getCommentsList, getOffersNearby, getOffers} from '../../reducer/data/selectors.js';
+import {getCommentsList, getOffersNearby, getAllOffersTransformed} from '../../reducer/data/selectors.js';
 import Header from '../header/header.jsx';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 import ReviewsForm from '../reviews-form/reviews-form.jsx';
@@ -18,11 +18,9 @@ import withBlockStatus from '../../hocs/with-block-status/with-block-status.js';
 const DetailedOffer = ({authorizationStatus, city, commentsList, handleBookmarkButtonClick, id, offers, offersNearby, sendComment}) => {
   const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);
   const ReviewsFormWrapped = withBlockStatus(ReviewsForm);
-
   const getOfferById = () => {
     return offers.find((it) => it.id === id);
   };
-
   const offer = getOfferById();
   const ratingInPercent = getRatingInPercent(offer.rating);
   const handleButtonClick = () => handleBookmarkButtonClick(offer);
@@ -156,7 +154,7 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   city: getCity(state),
   commentsList: getCommentsList(state),
-  offers: getOffers(state),
+  offers: getAllOffersTransformed(state),
   offersNearby: getOffersNearby(state),
 });
 

@@ -18,12 +18,14 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -73,25 +75,7 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
             <img
               alt="Photo studio"
               className="property__image"
-              src="img/room.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="img/room1.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="img/room2.jpg"
+              src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg"
             />
           </div>
         </div>
@@ -103,26 +87,20 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
           className="property__wrapper"
         >
           <div
-            className="property__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
-          <div
             className="property__name-wrapper"
           >
             <h1
               className="property__name"
             >
-              Cozy Studio
+              Canal View Prinsengracht
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="property__bookmark-button button "
+              onClick={[Function]}
               type="button"
             >
               <svg
-                className="property__bookmark-icon"
+                className="property__bookmark-icon place-card__bookmark-icon"
                 height="33"
                 width="31"
               >
@@ -146,7 +124,7 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
               <span
                 style={
                   Object {
-                    "width": "0%",
+                    "width": "80%",
                   }
                 }
               />
@@ -159,7 +137,7 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
             <span
               className="property__rating-value rating__value"
             >
-              0
+              4
             </span>
           </div>
           <ul
@@ -168,17 +146,17 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
             <li
               className="property__feature property__feature--entire"
             >
-              room
+              apartment
             </li>
             <li
               className="property__feature property__feature--bedrooms"
             >
-              2 Bedrooms
+              3 Bedrooms
             </li>
             <li
               className="property__feature property__feature--adults"
             >
-              Max 5 adults
+              Max 6 adults
             </li>
           </ul>
           <div
@@ -188,7 +166,7 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
               className="property__price-value"
             >
               €
-              98
+              255
             </b>
             <span
               className="property__price-text"
@@ -210,12 +188,12 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
               <li
                 className="property__inside-item"
               >
-                Washer
+                Laptop friendly workspace
               </li>
               <li
                 className="property__inside-item"
               >
-                Washing machine
+                Breakfast
               </li>
             </ul>
           </div>
@@ -237,14 +215,14 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
                   alt="Host avatar"
                   className="property__avatar user__avatar"
                   height="74"
-                  src=""
+                  src="/img/avatar-angelina.jpg"
                   width="74"
                 />
               </div>
               <span
                 className="property__user-name"
               >
-                Ann
+                Angelina
               </span>
             </div>
             <div
@@ -253,7 +231,7 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
               <p
                 className="property__text"
               >
-                
+                This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.
               </p>
             </div>
           </div>
@@ -957,7 +935,7 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
           className="places__list near-places__list"
         >
           <article
-            className="place-card near-places__card"
+            className="near-places__card place-card "
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
@@ -983,7 +961,7 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
               </a>
             </div>
             <div
-              className="place-card__info"
+              className="place-card__info "
             >
               <div
                 className="place-card__price-wrapper"
@@ -1049,7 +1027,7 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/1"
                   onClick={[Function]}
                 >
                   Cozy Studio
@@ -1063,7 +1041,7 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
             </div>
           </article>
           <article
-            className="place-card near-places__card"
+            className="near-places__card place-card "
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
@@ -1082,7 +1060,7 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
               </a>
             </div>
             <div
-              className="place-card__info"
+              className="place-card__info "
             >
               <div
                 className="place-card__price-wrapper"
@@ -1148,7 +1126,7 @@ exports[`Should render DetailedOffer for authorized user correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/2"
                   onClick={[Function]}
                 >
                   Big Vintage Apartment
@@ -1186,12 +1164,14 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -1243,25 +1223,7 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
             <img
               alt="Photo studio"
               className="property__image"
-              src="img/room.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="img/room1.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="img/room2.jpg"
+              src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg"
             />
           </div>
         </div>
@@ -1273,26 +1235,20 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
           className="property__wrapper"
         >
           <div
-            className="property__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
-          <div
             className="property__name-wrapper"
           >
             <h1
               className="property__name"
             >
-              Cozy Studio
+              Canal View Prinsengracht
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="property__bookmark-button button "
+              onClick={[Function]}
               type="button"
             >
               <svg
-                className="property__bookmark-icon"
+                className="property__bookmark-icon place-card__bookmark-icon"
                 height="33"
                 width="31"
               >
@@ -1316,7 +1272,7 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
               <span
                 style={
                   Object {
-                    "width": "0%",
+                    "width": "80%",
                   }
                 }
               />
@@ -1329,7 +1285,7 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
             <span
               className="property__rating-value rating__value"
             >
-              0
+              4
             </span>
           </div>
           <ul
@@ -1338,17 +1294,17 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
             <li
               className="property__feature property__feature--entire"
             >
-              room
+              apartment
             </li>
             <li
               className="property__feature property__feature--bedrooms"
             >
-              2 Bedrooms
+              3 Bedrooms
             </li>
             <li
               className="property__feature property__feature--adults"
             >
-              Max 5 adults
+              Max 6 adults
             </li>
           </ul>
           <div
@@ -1358,7 +1314,7 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
               className="property__price-value"
             >
               €
-              98
+              255
             </b>
             <span
               className="property__price-text"
@@ -1380,12 +1336,12 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
               <li
                 className="property__inside-item"
               >
-                Washer
+                Laptop friendly workspace
               </li>
               <li
                 className="property__inside-item"
               >
-                Washing machine
+                Breakfast
               </li>
             </ul>
           </div>
@@ -1407,14 +1363,14 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
                   alt="Host avatar"
                   className="property__avatar user__avatar"
                   height="74"
-                  src=""
+                  src="/img/avatar-angelina.jpg"
                   width="74"
                 />
               </div>
               <span
                 className="property__user-name"
               >
-                Ann
+                Angelina
               </span>
             </div>
             <div
@@ -1423,7 +1379,7 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
               <p
                 className="property__text"
               >
-                
+                This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.
               </p>
             </div>
           </div>
@@ -1949,7 +1905,106 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
           className="places__list near-places__list"
         >
           <article
-            className="place-card near-places__card"
+            className="near-places__card place-card "
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="place-card__image-wrapper near-places__image-wrapper"
+            >
+              <a
+                href="#"
+              >
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height="200"
+                  width="260"
+                />
+              </a>
+            </div>
+            <div
+              className="place-card__info "
+            >
+              <div
+                className="place-card__price-wrapper"
+              >
+                <div
+                  className="place-card__price"
+                >
+                  <b
+                    className="place-card__price-value"
+                  >
+                    €
+                    80
+                     
+                  </b>
+                  <span
+                    className="place-card__price-text"
+                  >
+                    / night
+                  </span>
+                </div>
+                <button
+                  className="place-card__bookmark-button button "
+                  onClick={[Function]}
+                  type="button"
+                >
+                  <svg
+                    className="place-card__bookmark-icon"
+                    height="19"
+                    width="18"
+                  >
+                    <use
+                      xlinkHref="#icon-bookmark"
+                    />
+                  </svg>
+                  <span
+                    className="visually-hidden"
+                  >
+                    To bookmarks
+                  </span>
+                </button>
+              </div>
+              <div
+                className="place-card__rating rating"
+              >
+                <div
+                  className="place-card__stars rating__stars"
+                >
+                  <span
+                    style={
+                      Object {
+                        "width": "2000%",
+                      }
+                    }
+                  />
+                  <span
+                    className="visually-hidden"
+                  >
+                    Rating
+                  </span>
+                </div>
+              </div>
+              <h2
+                className="place-card__name"
+              >
+                <a
+                  href="/offer/3"
+                  onClick={[Function]}
+                >
+                  Small Country House
+                </a>
+              </h2>
+              <p
+                className="place-card__type"
+              >
+                house
+              </p>
+            </div>
+          </article>
+          <article
+            className="near-places__card place-card "
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
@@ -1975,7 +2030,7 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
               </a>
             </div>
             <div
-              className="place-card__info"
+              className="place-card__info "
             >
               <div
                 className="place-card__price-wrapper"
@@ -1987,7 +2042,7 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
                     className="place-card__price-value"
                   >
                     €
-                    98
+                    3200
                      
                   </b>
                   <span
@@ -2026,7 +2081,7 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "0%",
+                        "width": "1900%",
                       }
                     }
                   />
@@ -2041,21 +2096,21 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/4"
                   onClick={[Function]}
                 >
-                  Cozy Studio
+                  Villa with no view
                 </a>
               </h2>
               <p
                 className="place-card__type"
               >
-                room
+                hotel
               </p>
             </div>
           </article>
           <article
-            className="place-card near-places__card"
+            className="near-places__card place-card "
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
@@ -2074,7 +2129,7 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
               </a>
             </div>
             <div
-              className="place-card__info"
+              className="place-card__info "
             >
               <div
                 className="place-card__price-wrapper"
@@ -2086,7 +2141,7 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
                     className="place-card__price-value"
                   >
                     €
-                    34
+                    5
                      
                   </b>
                   <span
@@ -2125,7 +2180,7 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "1000%",
+                        "width": "300%",
                       }
                     }
                   />
@@ -2140,16 +2195,16 @@ exports[`Should render DetailedOffer for unauthorized user correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/5"
                   onClick={[Function]}
                 >
-                  Big Vintage Apartment
+                  Tiny bungalow
                 </a>
               </h2>
               <p
                 className="place-card__type"
               >
-                apartment
+                house
               </p>
             </div>
           </article>
