@@ -1,6 +1,5 @@
 import NameSpace from '../name-space.js';
 import {createSelector} from 'reselect';
-import {cities} from '../../const.js';
 import {transformOfferShape} from '../../utils.js';
 
 const getAuthorizationStatus = (state) => {
@@ -15,13 +14,12 @@ const getSortedFavorites = createSelector(
     getFavorites,
     (offers) => {
       const arr = [];
-      cities.map((city) => {
-        const cityOffers = offers.filter((offer) => offer.city.name === city.name)
-        .map((offer) => transformOfferShape(offer));
-
-        if (cityOffers.length) {
-          arr.push({city: city.name, offers: cityOffers});
-        }
+      const cities = Array.from(new Set(offers.map((offer) => offer.city.name)));
+      cities.map((it) => {
+        arr.push({
+          city: it,
+          offers: offers.filter((offer) => offer.city.name === it).map((el) => transformOfferShape(el))
+        });
       });
       return arr;
     }
