@@ -7,6 +7,7 @@ const MIN_COMMENT_LENGTH = 50;
 const MAP_ICON_SIZE = 30;
 const MAX_OFFERS_NEARBY = 3;
 const MAP_SIZE_DETAILED_OFFER = `1144px`;
+const RADIX = 10;
 const TIMEOUT = 5000;
 const ZOOM_VALUE = 13;
 
@@ -147,6 +148,7 @@ export {
   MAP_SIZE_DETAILED_OFFER,
   offerShape,
   PlaceCardType,
+  RADIX,
   SortingType,
   sortTypes,
   TIMEOUT,

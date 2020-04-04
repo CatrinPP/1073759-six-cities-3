@@ -4,7 +4,7 @@ import {Router, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Main from '../main/main.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
-import {AppRoute} from '../../const.js';
+import {AppRoute, RADIX} from '../../const.js';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
@@ -39,10 +39,11 @@ class App extends PureComponent {
           <Route exact path={AppRoute.ROOT} component={Main} />
           <Route exact path={`${AppRoute.OFFER}/:id`}
             render={({match}) => {
-              loadCardDetailedData(+match.params.id);
+              const id = parseInt(match.params.id, RADIX);
+              loadCardDetailedData(id);
               return (
                 <DetailedOffer
-                  id={+match.params.id}/>
+                  id={id}/>
               );
             }}
           />
