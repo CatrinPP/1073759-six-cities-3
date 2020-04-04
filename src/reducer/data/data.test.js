@@ -23,7 +23,7 @@ it(`Reducer should return new offer object by given value`, () => {
     isLoaded: false,
     offersNearby: [],
   }, {
-    type: ActionType.OPEN_DETAILED_OFFER,
+    type: ActionType.GET_DETAILED_DATA,
     payload: testOffers[1],
   })).toEqual({
     currentOffer: testOffers[1],
@@ -112,7 +112,7 @@ it(`Reducer should change loading status to true`, () => {
 describe(`Action creators work correctly`, () => {
   it(`Action creator for getting offer on click returns correct action`, () => {
     expect(ActionCreator.getDetailedData(testOffers[1].offers[1])).toEqual({
-      type: ActionType.OPEN_DETAILED_OFFER,
+      type: ActionType.GET_DETAILED_DATA,
       payload: testOffers[1].offers[1]
     });
   });
@@ -319,7 +319,7 @@ describe(`Operations work correctly`, () => {
           }]
         });
         expect(dispatch).toHaveBeenNthCalledWith(3, {
-          type: ActionType.OPEN_DETAILED_OFFER,
+          type: ActionType.GET_DETAILED_DATA,
           payload: testOffers[0].offers[0],
         });
       });

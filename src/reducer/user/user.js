@@ -60,7 +60,7 @@ const Operation = {
   },
 
   getFavorites: () => (dispatch, getState, api) => {
-    return api.get(`favorite`)
+    return api.get(`/favorite`)
       .then((response) => {
         dispatch(ActionCreator.getFavorites(response.data));
       });

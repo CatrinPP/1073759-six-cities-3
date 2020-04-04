@@ -1,12 +1,11 @@
 import React from 'react';
-import {Router} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
 import Header from './header.jsx';
 import NameSpace from '../../reducer/name-space.js';
 import {AuthorizationStatus} from '../../const.js';
-import history from "../../history.js";
 
 const mockStore = configureStore([]);
 
@@ -18,13 +17,13 @@ it(`Should render Header for authorized user correctly`, () => {
   });
   const tree = renderer
     .create(
-        <Router history={history}>
+        <BrowserRouter>
           <Provider store={store}>
             <Header
               handleSignInLinkClick={() => {}}
             />
           </Provider>
-        </Router>
+        </BrowserRouter>
     )
     .toJSON();
 
@@ -39,13 +38,13 @@ it(`Should render Header for unauthorized user correctly`, () => {
   });
   const tree = renderer
     .create(
-        <Router history={history}>
+        <BrowserRouter>
           <Provider store={store}>
             <Header
               handleSignInLinkClick={() => {}}
             />
           </Provider>
-        </Router>
+        </BrowserRouter>
     )
     .toJSON();
 
