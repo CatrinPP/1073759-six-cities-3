@@ -8,25 +8,25 @@ const api = createAPI(() => {});
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     allOffers: [],
-    currentOffer: null,
+    currentId: null,
     commentsList: [],
     isLoaded: false,
     offersNearby: [],
   });
 });
 
-it(`Reducer should return new offer object by given value`, () => {
+it(`Reducer should return new offer id by given value`, () => {
   expect(reducer({
     allOffers: [],
-    currentOffer: null,
+    currentId: null,
     commentsList: [],
     isLoaded: false,
     offersNearby: [],
   }, {
-    type: ActionType.GET_DETAILED_DATA,
-    payload: testOffers[1],
+    type: ActionType.SAVE_ID,
+    payload: 10,
   })).toEqual({
-    currentOffer: testOffers[1],
+    currentId: 10,
     allOffers: [],
     commentsList: [],
     isLoaded: false,
@@ -37,7 +37,7 @@ it(`Reducer should return new offer object by given value`, () => {
 it(`Reducer should return commentsList by given value`, () => {
   expect(reducer({
     allOffers: [],
-    currentOffer: null,
+    currentId: null,
     commentsList: [],
     isLoaded: false,
     offersNearby: [],
@@ -45,7 +45,7 @@ it(`Reducer should return commentsList by given value`, () => {
     type: ActionType.GET_COMMENTS,
     payload: testComments,
   })).toEqual({
-    currentOffer: null,
+    currentId: null,
     allOffers: [],
     commentsList: testComments,
     isLoaded: false,
@@ -56,7 +56,7 @@ it(`Reducer should return commentsList by given value`, () => {
 it(`Reducer should return an array of offers by given value`, () => {
   expect(reducer({
     allOffers: [],
-    currentOffer: null,
+    currentId: null,
     commentsList: [],
     isLoaded: false,
     offersNearby: [],
@@ -64,7 +64,7 @@ it(`Reducer should return an array of offers by given value`, () => {
     type: ActionType.GET_OFFERS_NEARBY,
     payload: testOffers[1].offers,
   })).toEqual({
-    currentOffer: null,
+    currentId: null,
     allOffers: [],
     commentsList: [],
     isLoaded: false,
@@ -75,7 +75,7 @@ it(`Reducer should return an array of offers by given value`, () => {
 it(`Reducer should return an array of offers by given value`, () => {
   expect(reducer({
     allOffers: [],
-    currentOffer: null,
+    currentId: null,
     commentsList: [],
     isLoaded: false,
     offersNearby: [],
@@ -83,7 +83,7 @@ it(`Reducer should return an array of offers by given value`, () => {
     type: ActionType.LOAD_OFFERS,
     payload: testOffers,
   })).toEqual({
-    currentOffer: null,
+    currentId: null,
     allOffers: testOffers,
     commentsList: [],
     isLoaded: false,
@@ -94,7 +94,7 @@ it(`Reducer should return an array of offers by given value`, () => {
 it(`Reducer should change loading status to true`, () => {
   expect(reducer({
     allOffers: [],
-    currentOffer: null,
+    currentId: null,
     commentsList: [],
     isLoaded: false,
     offersNearby: [],
@@ -102,7 +102,7 @@ it(`Reducer should change loading status to true`, () => {
     type: ActionType.GET_LOADED_STATE,
   })).toEqual({
     allOffers: [],
-    currentOffer: null,
+    currentId: null,
     commentsList: [],
     isLoaded: true,
     offersNearby: [],
@@ -111,9 +111,9 @@ it(`Reducer should change loading status to true`, () => {
 
 describe(`Action creators work correctly`, () => {
   it(`Action creator for getting offer on click returns correct action`, () => {
-    expect(ActionCreator.getDetailedData(testOffers[1].offers[1])).toEqual({
-      type: ActionType.GET_DETAILED_DATA,
-      payload: testOffers[1].offers[1]
+    expect(ActionCreator.saveId(testOffers[1].offers[1].id)).toEqual({
+      type: ActionType.SAVE_ID,
+      payload: testOffers[1].offers[1].id
     });
   });
 
@@ -171,7 +171,7 @@ describe(`Operations work correctly`, () => {
   it(`Should make a correct API call to /hotels/offer.id/nearby and to /comments`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const dataLoader = Operation.getDetailedData(testOffers[0].offers[0]);
+    const dataLoader = Operation.getDetailedData(testOffers[0].offers[0].id);
 
     apiMock
       .onGet(`/comments/${testOffers[0].offers[0].id}`)
@@ -319,8 +319,8 @@ describe(`Operations work correctly`, () => {
           }]
         });
         expect(dispatch).toHaveBeenNthCalledWith(3, {
-          type: ActionType.GET_DETAILED_DATA,
-          payload: testOffers[0].offers[0],
+          type: ActionType.SAVE_ID,
+          payload: testOffers[0].offers[0].id,
         });
       });
   });

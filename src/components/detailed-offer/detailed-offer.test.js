@@ -1,6 +1,5 @@
 import React from 'react';
-import {Router} from "react-router-dom";
-import history from "../../history.js";
+import {BrowserRouter} from "react-router-dom";
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
@@ -22,6 +21,7 @@ it(`Should render DetailedOffer for authorized user correctly`, () => {
       sortType: SortingType.DEFAULT,
     },
     [NameSpace.DATA]: {
+      allOffers: testOffers,
       commentsList: testComments,
       offersNearby: testOffers[0].offers,
     },
@@ -32,13 +32,14 @@ it(`Should render DetailedOffer for authorized user correctly`, () => {
   });
   const tree = renderer
     .create(
-        <Router history={history}>
+        <BrowserRouter>
           <Provider store={store}>
             <DetailedOffer
-              offer={testOffers[0].offers[0]}
+              id={1}
+              offers={testOffers[0].offers}
             />
           </Provider>
-        </Router>
+        </BrowserRouter>
     )
     .toJSON();
 
@@ -52,8 +53,9 @@ it(`Should render DetailedOffer for unauthorized user correctly`, () => {
       sortType: SortingType.DEFAULT,
     },
     [NameSpace.DATA]: {
+      allOffers: testOffers,
       commentsList: testComments,
-      offersNearby: testOffers[0].offers,
+      offersNearby: testOffers[1].offers,
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -62,13 +64,14 @@ it(`Should render DetailedOffer for unauthorized user correctly`, () => {
   });
   const tree = renderer
     .create(
-        <Router history={history}>
+        <BrowserRouter>
           <Provider store={store}>
             <DetailedOffer
-              offer={testOffers[0].offers[0]}
+              id={1}
+              offers={testOffers[0].offers}
             />
           </Provider>
-        </Router>
+        </BrowserRouter>
     )
     .toJSON();
 

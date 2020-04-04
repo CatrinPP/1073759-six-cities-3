@@ -31,7 +31,6 @@ describe(`Events`, () => {
               city={testOffers[0].city}
               handleBookmarkButtonClick={store.dispatch}
               handlePlaceCardHover={store.dispatch}
-              handlePlaceCardNameClick={store.dispatch}
               handleSortTypeClick={store.dispatch}
               isCitiesClass={true}
               offers={testOffers[0].offers}
@@ -60,7 +59,6 @@ describe(`Events`, () => {
               city={testOffers[0].city}
               handleBookmarkButtonClick={store.dispatch}
               handlePlaceCardHover={store.dispatch}
-              handlePlaceCardNameClick={store.dispatch}
               handleSortTypeClick={store.dispatch}
               isCitiesClass={true}
               offers={testOffers[0].offers}
@@ -71,35 +69,6 @@ describe(`Events`, () => {
     );
 
     offersList.find(`.place-card`).first().simulate(`mouseLeave`);
-    expect(store.dispatch).toHaveBeenCalledTimes(1);
-  });
-
-  it(`Get function on title click`, () => {
-    const store = mockStore({
-      [NameSpace.APP]: {
-        sortType: SortingType.DEFAULT,
-      },
-    });
-    store.dispatch = jest.fn();
-
-    const offersList = mount(
-        <BrowserRouter>
-          <Provider store={store}>
-            <OffersList
-              city={testOffers[0].city}
-              handleBookmarkButtonClick={store.dispatch}
-              handlePlaceCardHover={store.dispatch}
-              handlePlaceCardNameClick={store.dispatch}
-              handleSortTypeClick={store.dispatch}
-              isCitiesClass={true}
-              offers={testOffers[0].offers}
-              placeCardType={PlaceCardType.CITIES}
-            />
-          </Provider>
-        </BrowserRouter>
-    );
-
-    offersList.find(`.place-card__name a`).first().simulate(`click`);
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
