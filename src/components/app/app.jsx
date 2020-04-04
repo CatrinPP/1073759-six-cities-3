@@ -14,34 +14,29 @@ import Error from '../error/error.jsx';
 import history from '../../history.js';
 import Favorites from '../favorites/favorites.jsx';
 import PrivateRoute from '../private-route/private-route.jsx';
+import {getLoadedState} from '../../reducer/data/selectors.js';
+import EmptyContainer from '../../components/empty-container/empty-container.jsx';
 
 class App extends PureComponent {
-  _renderApp() {
-    const {
-      serverError,
-    } = this.props;
+  render() {
+    const {authorizationStatus, isLoaded, loadCardDetailedData, login, serverError} = this.props;
 
-    if (serverError) {
+    if (!isLoaded && serverError) {
       return (
         <Error />
       );
+    } else if (!isLoaded) {
+      return (
+        <EmptyContainer />
+      );
     }
-    return (
-      <Main />
-    );
-  }
-
-  render() {
-    const {authorizationStatus, loadCardDetailedData, login} = this.props;
 
     return (
       <Router
         history={history}
       >
         <Switch>
-          <Route exact path={AppRoute.ROOT}>
-            {this._renderApp()}
-          </Route>
+          <Route exact path={AppRoute.ROOT} component={Main} />
           <Route exact path={`${AppRoute.OFFER}/:id`}
             render={({match}) => {
               loadCardDetailedData(+match.params.id);
@@ -77,6 +72,7 @@ class App extends PureComponent {
 
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
   loadCardDetailedData: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   serverError: PropTypes.bool.isRequired
@@ -84,6 +80,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
+  isLoaded: getLoadedState(state),
   serverError: getServerError(state)
 });
 

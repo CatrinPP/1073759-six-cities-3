@@ -4,7 +4,7 @@ import {getCurrentId} from '../data/selectors.js';
 import {ActionCreator as DataActionCreator} from '../data/data.js';
 
 const initialState = {
-  authorizationStatus: AuthorizationStatus.AUTH,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
   favorites: [],
   isSignInRequired: false,
   userName: null,
