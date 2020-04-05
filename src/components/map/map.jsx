@@ -7,6 +7,12 @@ class Map extends PureComponent {
   _renderMarkers() {
     const {currentOffer, offerOnHover, offers} = this.props;
 
+    if (this.markers) {
+      this.markers.clearLayers();
+    }
+
+    this.markers = leaflet.layerGroup().addTo(this.map);
+
     if (offers.length) {
       const placesCoords = offers.map((offer) => offer.coords);
 
@@ -23,7 +29,7 @@ class Map extends PureComponent {
       placesCoords.map((coords) => {
         leaflet
           .marker(coords, {icon: this.regularIcon})
-          .addTo(this.map);
+          .addTo(this.markers);
       });
 
       if (currentOffer) {
