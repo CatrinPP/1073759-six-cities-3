@@ -22,6 +22,16 @@ const withBlockStatus = (Component) => {
       this.uncheckCommentFilled = this.uncheckCommentFilled.bind(this);
     }
 
+    componentDidUpdate() {
+      const {isCommentFilled, isRatingSet} = this.state;
+
+      if (isCommentFilled && isRatingSet) {
+        this.unblockButton();
+      } else {
+        this.blockButton();
+      }
+    }
+
     blockButton() {
       this.setState({
         isSubmitButtonBlocked: true,
@@ -63,16 +73,6 @@ const withBlockStatus = (Component) => {
       this.setState({
         isRatingSet: true
       });
-    }
-
-    componentDidUpdate() {
-      const {isCommentFilled, isRatingSet} = this.state;
-
-      if (isCommentFilled && isRatingSet) {
-        this.unblockButton();
-      } else {
-        this.blockButton();
-      }
     }
 
     render() {

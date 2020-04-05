@@ -4,6 +4,21 @@ import {offerShape, MAP_ICON_SIZE, ZOOM_VALUE, cityShape} from '../../const.js';
 import leaflet from 'leaflet';
 
 class Map extends PureComponent {
+  componentDidMount() {
+    this._renderMap();
+  }
+
+  componentDidUpdate(prevProps) {
+    const {city, currentOffer, offers, offerOnHover} = this.props;
+
+    if (prevProps.currentOffer !== currentOffer || prevProps.city !== city) {
+      this.map.remove();
+      this._renderMap();
+    } else if (offers.length || prevProps.offerOnHover !== offerOnHover) {
+      this._renderMarkers();
+    }
+  }
+
   _renderMarkers() {
     const {currentOffer, offerOnHover, offers} = this.props;
 
@@ -64,21 +79,6 @@ class Map extends PureComponent {
       })
       .addTo(this.map);
     this._renderMarkers();
-  }
-
-  componentDidMount() {
-    this._renderMap();
-  }
-
-  componentDidUpdate(prevProps) {
-    const {city, currentOffer, offers, offerOnHover} = this.props;
-
-    if (prevProps.currentOffer !== currentOffer || prevProps.city !== city) {
-      this.map.remove();
-      this._renderMap();
-    } else if (offers.length || prevProps.offerOnHover !== offerOnHover) {
-      this._renderMarkers();
-    }
   }
 
   render() {
