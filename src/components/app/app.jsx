@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Router, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -17,59 +17,55 @@ import PrivateRoute from '../private-route/private-route.jsx';
 import {getLoadedState} from '../../reducer/data/selectors.js';
 import EmptyContainer from '../../components/empty-container/empty-container.jsx';
 
-class App extends PureComponent {
-  render() {
-    const {authorizationStatus, isLoaded, loadCardDetailedData, login, serverError} = this.props;
-
-    if (!isLoaded && serverError) {
-      return (
-        <Error />
-      );
-    } else if (!isLoaded) {
-      return (
-        <EmptyContainer />
-      );
-    }
-
+const App = ({authorizationStatus, isLoaded, loadCardDetailedData, login, serverError}) => {
+  if (!isLoaded && serverError) {
     return (
-      <Router
-        history={history}
-      >
-        <Switch>
-          <Route exact path={AppRoute.ROOT} component={Main} />
-          <Route exact path={`${AppRoute.OFFER}/:id`}
-            render={({match}) => {
-              const id = parseInt(match.params.id, RADIX);
-              loadCardDetailedData(id);
-              return (
-                <DetailedOffer
-                  id={id}/>
-              );
-            }}
-          />
-          <Route exact path={AppRoute.LOGIN}
-            render={() => {
-              return (
-                <SignIn
-                  authorizationStatus={authorizationStatus}
-                  handleFormSubmit={login}
-                />
-              );
-            }} />
-          <PrivateRoute
-            exact
-            path={AppRoute.FAVORITES}
-            render={() => {
-              return (
-                <Favorites />
-              );
-            }}
-          />
-        </Switch>
-      </Router>
+      <Error />
+    );
+  } else if (!isLoaded) {
+    return (
+      <EmptyContainer />
     );
   }
-}
+
+  return (
+    <Router
+      history={history}
+    >
+      <Switch>
+        <Route exact path={AppRoute.ROOT} component={Main} />
+        <Route exact path={`${AppRoute.OFFER}/:id`}
+          render={({match}) => {
+            const id = parseInt(match.params.id, RADIX);
+            loadCardDetailedData(id);
+            return (
+              <DetailedOffer
+                id={id}/>
+            );
+          }}
+        />
+        <Route exact path={AppRoute.LOGIN}
+          render={() => {
+            return (
+              <SignIn
+                authorizationStatus={authorizationStatus}
+                handleFormSubmit={login}
+              />
+            );
+          }} />
+        <PrivateRoute
+          exact
+          path={AppRoute.FAVORITES}
+          render={() => {
+            return (
+              <Favorites />
+            );
+          }}
+        />
+      </Switch>
+    </Router>
+  );
+};
 
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
