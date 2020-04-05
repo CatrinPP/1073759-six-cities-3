@@ -13,15 +13,15 @@ const getFavorites = (state) => {
 const getSortedFavorites = createSelector(
     getFavorites,
     (offers) => {
-      const arr = [];
+      const favorites = [];
       const cities = Array.from(new Set(offers.map((offer) => offer.city.name)));
-      cities.map((it) => {
-        arr.push({
-          city: it,
-          offers: offers.filter((offer) => offer.city.name === it).map((el) => transformOfferShape(el))
+      cities.map((item) => {
+        favorites.push({
+          city: item,
+          offers: offers.filter((offer) => offer.city.name === item).map((element) => transformOfferShape(element))
         });
       });
-      return arr;
+      return favorites;
     }
 );
 

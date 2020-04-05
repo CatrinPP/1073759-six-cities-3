@@ -10,14 +10,14 @@ const Cities = ({city, handleCityClick}) => {
 
   return (
     <ul className="locations__list tabs__list">
-      {cities.map((it) => (
+      {cities.map((item) => (
         <li className="locations__item"
-          key={it.name}
+          key={item.name}
         >
-          <a className={`locations__item-link tabs__item ${it.name === city.name ? `tabs__item--active` : ``}`} href="#"
-            onClick={handleCityNameClick(it)}
+          <a className={`locations__item-link tabs__item ${item.name === city.name ? `tabs__item--active` : ``}`} href="#"
+            onClick={handleCityNameClick(item)}
           >
-            <span>{it.name}</span>
+            <span>{item.name}</span>
           </a>
         </li>
       ))}

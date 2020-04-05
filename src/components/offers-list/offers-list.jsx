@@ -42,13 +42,13 @@ const OffersList = ({city, handleBookmarkButtonClick, handlePlaceCardHover, hand
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
         }
         <div className={`places__list ${isCitiesClass ? `cities__places-list tabs__content` : `near-places__list`}`}>
-          {sortedOffers.map((it) => (
+          {sortedOffers.map((item) => (
             <Offer
               placeCardType={placeCardType}
-              key={it.id}
-              offer={it}
-              handleBookmarkButtonClick={handleButtonClick(it)}
-              onMouseEnter={handleCardHover(it)}
+              key={item.id}
+              offer={item}
+              handleBookmarkButtonClick={handleButtonClick(item)}
+              onMouseEnter={handleCardHover(item)}
               onMouseLeave={handleCardHover(null)}
             />
           ))}

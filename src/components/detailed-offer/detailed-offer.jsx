@@ -19,7 +19,7 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, handleBookmarkB
   const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);
   const ReviewsFormWrapped = withBlockStatus(ReviewsForm);
   const getOfferById = () => {
-    return offers.find((it) => it.id === id);
+    return offers.find((item) => item.id === id);
   };
   const offer = getOfferById();
   const ratingInPercent = getRatingInPercent(offer.rating);
@@ -32,9 +32,9 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, handleBookmarkB
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {offer.images.map((it, i) => (
-                <div className="property__image-wrapper" key={offer.id + it + i}>
-                  <img className="property__image" src={it} alt="Photo studio"/>
+              {offer.images.map((item, i) => (
+                <div className="property__image-wrapper" key={offer.id + item + i}>
+                  <img className="property__image" src={item} alt="Photo studio"/>
                 </div>
               ))}
             </div>
@@ -83,8 +83,8 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, handleBookmarkB
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {offer.features.map((it, i) => (
-                    <li className="property__inside-item" key={offer.id + it + i}>
+                  {offer.features.map((item, i) => (
+                    <li className="property__inside-item" key={offer.id + item + i}>
                       {offer.features[i]}
                     </li>
                   ))}

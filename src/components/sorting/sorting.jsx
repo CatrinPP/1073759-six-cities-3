@@ -17,11 +17,11 @@ const Sorting = ({handleShowUpClick, handleSortTypeClick, isCollapsed, sortType}
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${isCollapsed ? `` : `places__options--opened`}`}>
-        {sortTypes.map((it) => (
-          <li className={`places__option ${it === sortType ? `places__option--active` : ``}`}
-            key={it}
-            onClick={handleTypeClick(it)}
-            tabIndex="0">{it}
+        {sortTypes.map((item) => (
+          <li className={`places__option ${item === sortType ? `places__option--active` : ``}`}
+            key={item}
+            onClick={handleTypeClick(item)}
+            tabIndex="0">{item}
           </li>
         ))}
       </ul>

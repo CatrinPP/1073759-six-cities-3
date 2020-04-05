@@ -54,9 +54,9 @@ const Operation = {
     return axios.all([api.get(`comments/${id}`),
       api.get(`hotels/${id}/nearby`)])
     .then(axios.spread((firstResponse, secondResponse) => {
-      const transformedComments = firstResponse.data.map((it) => transformCommentShape(it));
+      const transformedComments = firstResponse.data.map((item) => transformCommentShape(item));
       dispatch(ActionCreator.getComments(transformedComments));
-      const transformedOffers = secondResponse.data.map((it) => transformOfferShape(it));
+      const transformedOffers = secondResponse.data.map((item) => transformOfferShape(item));
       dispatch(ActionCreator.getOffersNearby(transformedOffers));
       dispatch(ActionCreator.saveId(id));
     }));
@@ -66,8 +66,8 @@ const Operation = {
     const status = offer.isFavorite ? FavoriteRequiredAction.DELETE : FavoriteRequiredAction.ADD;
     return api.post(`/favorite/${offer.id}/${status}`)
     .then(dispatch(Operation.loadOffers()))
-    .catch((err) => {
-      if (err.response.status === Error.UNAUTHORIZED) {
+    .catch((error) => {
+      if (error.response.status === Error.UNAUTHORIZED) {
         history.push(AppRoute.LOGIN);
       }
     });

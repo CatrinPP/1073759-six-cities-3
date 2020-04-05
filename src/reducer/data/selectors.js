@@ -26,15 +26,15 @@ const getOffers = createSelector(
     getAllOffers,
     getCurrentCity,
     (allOffers, city) => {
-      const cityOffers = allOffers.filter((it) => it.city.name === city.name);
-      return cityOffers.map((it) => transformOfferShape(it));
+      const cityOffers = allOffers.filter((item) => item.city.name === city.name);
+      return cityOffers.map((item) => transformOfferShape(item));
     }
 );
 
 const getAllOffersTransformed = createSelector(
     getAllOffers,
     (allOffers) => {
-      return allOffers.map((it) => transformOfferShape(it));
+      return allOffers.map((item) => transformOfferShape(item));
     }
 );
 

@@ -12,10 +12,10 @@ const ReviewsList = ({commentsList}) => {
     <React.Fragment>
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{commentsList.length}</span></h2>
       <ul className="reviews__list">
-        {commentsToShow.map((it) => (
+        {commentsToShow.map((item) => (
           <ReviewsItem
-            comment={it}
-            key={it.id}
+            comment={item}
+            key={item.id}
           />
         )
         )}

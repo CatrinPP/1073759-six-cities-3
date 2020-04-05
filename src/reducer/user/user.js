@@ -52,8 +52,8 @@ const Operation = {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.saveUserName(response.data.email));
       })
-      .catch((err) => {
-        if (err.response.status === Error.UNAUTHORIZED) {
+      .catch((error) => {
+        if (error.response.status === Error.UNAUTHORIZED) {
           dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
         }
       });
@@ -75,8 +75,8 @@ const Operation = {
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       dispatch(ActionCreator.saveUserName(authData.login));
     })
-    .catch((err) => {
-      throw err;
+    .catch((error) => {
+      throw error;
     });
   },
 
@@ -92,12 +92,12 @@ const Operation = {
       return api.get(`/comments/${offerId}`);
     })
     .then((response) => {
-      const transformedComments = response.data.map((it) => transformCommentShape(it));
+      const transformedComments = response.data.map((item) => transformCommentShape(item));
       dispatch(DataActionCreator.getComments(transformedComments));
     })
-    .catch((err) => {
+    .catch((error) => {
       onError();
-      throw err;
+      throw error;
     });
   }
 };

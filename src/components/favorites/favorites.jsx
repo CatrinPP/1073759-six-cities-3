@@ -38,18 +38,18 @@ class Favorites extends PureComponent {
               <section className="favorites">
                 <h1 className="favorites__title">Saved listing</h1>
                 <ul className="favorites__list">
-                  {favorites.map((it) => {
+                  {favorites.map((item) => {
                     return (
-                      <li className="favorites__locations-items" key={it.city}>
+                      <li className="favorites__locations-items" key={item.city}>
                         <div className="favorites__locations locations locations--current">
                           <div className="locations__item">
                             <a className="locations__item-link" href="#">
-                              <span>{it.city}</span>
+                              <span>{item.city}</span>
                             </a>
                           </div>
                         </div>
                         <div className="favorites__places">
-                          {it.offers.map((offer) => (
+                          {item.offers.map((offer) => (
                             <Offer
                               key={offer.id}
                               offer={offer}

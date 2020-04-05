@@ -30,7 +30,7 @@ describe(`Events`, () => {
           />
         </Provider>
     );
-    reviewForm.find(`.form__rating-input`).forEach((el) => el.simulate(`click`));
+    reviewForm.find(`.form__rating-input`).forEach((element) => element.simulate(`click`));
     expect(setRatingMock).toHaveBeenCalledTimes(5);
 
   });
