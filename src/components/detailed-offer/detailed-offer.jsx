@@ -4,20 +4,26 @@ import {connect} from 'react-redux';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
-import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape, AuthorizationStatus} from '../../const.js';
+import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape, AuthorizationStatus, PlaceCardType} from '../../const.js';
 import {getRatingInPercent} from '../../utils.js';
 import {getCity} from '../../reducer/app/selectors.js';
-import {getCommentsList, getCurrentOffer, getOffersNearby} from '../../reducer/data/selectors.js';
+import {getCommentsList, getOffersNearby, getAllOffersTransformed} from '../../reducer/data/selectors.js';
 import Header from '../header/header.jsx';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 import ReviewsForm from '../reviews-form/reviews-form.jsx';
-import {Operation} from '../../reducer/user/user.js';
+import {Operation as UserOperation} from '../../reducer/user/user.js';
+import {Operation as DataOperation} from '../../reducer/data/data.js';
 import withBlockStatus from '../../hocs/with-block-status/with-block-status.js';
 
-const DetailedOffer = ({authorizationStatus, city, commentsList, offer, offersNearby, sendComment}) => {
-  const ratingInPercent = getRatingInPercent(offer.rating);
+const DetailedOffer = ({authorizationStatus, city, commentsList, handleBookmarkButtonClick, id, offers, offersNearby, sendComment}) => {
   const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);
   const ReviewsFormWrapped = withBlockStatus(ReviewsForm);
+  const getOfferById = () => {
+    return offers.find((it) => it.id === id);
+  };
+  const offer = getOfferById();
+  const ratingInPercent = getRatingInPercent(offer.rating);
+  const handleButtonClick = () => handleBookmarkButtonClick(offer);
 
   return (
     <div className="page">
@@ -43,8 +49,10 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, offer, offersNe
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
+                <button className={`property__bookmark-button button ${offer.isFavorite ? `property__bookmark-button--active` : ``}`}
+                  onClick={handleButtonClick}
+                  type="button">
+                  <svg className="property__bookmark-icon place-card__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
                   <span className="visually-hidden">To bookmarks</span>
@@ -86,7 +94,7 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, offer, offersNe
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
                   <div className={`property__avatar-wrapper user__avatar-wrapper ${offer.host.isStar && `property__avatar-wrapper--pro`}`}>
-                    <img className="property__avatar user__avatar" src={offer.host.avatar} width="74" height="74" alt="Host avatar"/>
+                    <img className="property__avatar user__avatar" src={`/${offer.host.avatar}`} width="74" height="74" alt="Host avatar"/>
                   </div>
                   <span className="property__user-name">
                     {offer.host.name}
@@ -123,6 +131,7 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, offer, offersNe
           <OffersList
             city={city}
             offers={offersNearbyToShow}
+            placeCardType={PlaceCardType.NEAR_PLACES}
           />
         </div>
       </main>
@@ -131,11 +140,12 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, offer, offersNe
 };
 
 DetailedOffer.propTypes = {
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   city: PropTypes.shape(cityShape).isRequired,
   commentsList: PropTypes.arrayOf(PropTypes.shape(commentShape)),
-  currentOffer: PropTypes.shape(offerShape),
-  offer: PropTypes.shape(offerShape),
+  handleBookmarkButtonClick: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
   offersNearby: PropTypes.arrayOf(PropTypes.shape(offerShape)),
   sendComment: PropTypes.func.isRequired,
 };
@@ -144,14 +154,18 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   city: getCity(state),
   commentsList: getCommentsList(state),
-  currentOffer: getCurrentOffer(state),
+  offers: getAllOffersTransformed(state),
   offersNearby: getOffersNearby(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   sendComment(formData, blockForm, onError) {
-    dispatch(Operation.sendComment(formData, blockForm, onError));
-  }
+    dispatch(UserOperation.sendComment(formData, blockForm, onError));
+  },
+
+  handleBookmarkButtonClick(offer) {
+    dispatch(DataOperation.toggleFavorite(offer));
+  },
 });
 
 export {DetailedOffer};

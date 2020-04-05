@@ -10,12 +10,11 @@ import {sortOffers} from '../../utils.js';
 import withShowControl from '../../hocs/with-show-control/with-show-control.js';
 import {getSortType} from '../../reducer/app/selectors.js';
 
-const OffersList = ({city, handleBookmarkButtonClick, handlePlaceCardHover, handlePlaceCardNameClick, handleSortTypeClick, isCitiesClass, offers, sortType}) => {
+const OffersList = ({city, handleBookmarkButtonClick, handlePlaceCardHover, handleSortTypeClick, isCitiesClass, offers, placeCardType, sortType}) => {
   const sortedOffers = JSON.parse(JSON.stringify(offers));
   const SortingWrapped = withShowControl(Sorting);
 
   const handleButtonClick = (offer) => () => handleBookmarkButtonClick(offer);
-  const handleCardNameClick = (offer) => () => handlePlaceCardNameClick(offer);
   const handleCardHover = (offer) => () => handlePlaceCardHover(offer);
 
   sortOffers(sortType, sortedOffers, offers);
@@ -45,11 +44,10 @@ const OffersList = ({city, handleBookmarkButtonClick, handlePlaceCardHover, hand
         <div className={`places__list ${isCitiesClass ? `cities__places-list tabs__content` : `near-places__list`}`}>
           {sortedOffers.map((it) => (
             <Offer
-              isCitiesClass={isCitiesClass}
+              placeCardType={placeCardType}
               key={it.id}
               offer={it}
               handleBookmarkButtonClick={handleButtonClick(it)}
-              handlePlaceCardNameClick={handleCardNameClick(it)}
               onMouseEnter={handleCardHover(it)}
               onMouseLeave={handleCardHover(null)}
             />
@@ -63,10 +61,10 @@ OffersList.propTypes = {
   city: PropTypes.shape(cityShape).isRequired,
   handleBookmarkButtonClick: PropTypes.func.isRequired,
   handlePlaceCardHover: PropTypes.func.isRequired,
-  handlePlaceCardNameClick: PropTypes.func.isRequired,
   handleSortTypeClick: PropTypes.func.isRequired,
   isCitiesClass: PropTypes.bool,
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  placeCardType: PropTypes.string.isRequired,
   sortType: PropTypes.string.isRequired,
 };
 
@@ -76,16 +74,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleBookmarkButtonClick(offer) {
-    dispatch(Operation.toggleIsFavorite(offer));
+    dispatch(Operation.toggleFavorite(offer));
     dispatch(Operation.loadOffers());
   },
 
   handlePlaceCardHover(offer) {
     dispatch(ActionCreator.changeCardOnHover(offer));
-  },
-
-  handlePlaceCardNameClick(offer) {
-    dispatch(Operation.openDetailedOffer(offer));
   },
 
   handleSortTypeClick(selectedSortType) {

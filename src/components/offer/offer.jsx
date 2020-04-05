@@ -1,13 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {offerShape} from '../../const.js';
+import {FavoriteImageSize, offerShape, PlaceCardType} from '../../const.js';
 import {getRatingInPercent} from '../../utils.js';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const.js';
 
-const Offer = ({handleBookmarkButtonClick, handlePlaceCardNameClick, isCitiesClass, offer, onMouseEnter, onMouseLeave}) => {
+const Offer = ({handleBookmarkButtonClick, placeCardType, offer, onMouseEnter, onMouseLeave}) => {
   const ratingInPercent = getRatingInPercent(offer.rating);
 
+  const getCardClass = () => {
+    switch (placeCardType) {
+      case PlaceCardType.CITIES:
+        return `cities__place-card place-card `;
+      case PlaceCardType.NEAR_PLACES:
+        return `near-places__card place-card `;
+      case PlaceCardType.FAVORITES:
+        return `favorites__card place-card `;
+      default:
+        return `place-card`;
+    }
+  };
+
   return (
-    <article className={`place-card ${isCitiesClass ? `cities__place-card` : `near-places__card`}`}
+    <article className={getCardClass()}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -16,12 +31,12 @@ const Offer = ({handleBookmarkButtonClick, handlePlaceCardNameClick, isCitiesCla
           <span>Premium</span>
         </div>}
 
-      <div className={`place-card__image-wrapper ${isCitiesClass ? `cities__image-wrapper` : `near-places__image-wrapper`}`}>
+      <div className={`place-card__image-wrapper ${placeCardType}__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={offer.previewImage} width={placeCardType === PlaceCardType.FAVORITES ? FavoriteImageSize.WIDTH : `260`} height={placeCardType === PlaceCardType.FAVORITES ? FavoriteImageSize.HEIGHT : `200`} alt="Place image"/>
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`place-card__info ${placeCardType === PlaceCardType.FAVORITES ? `favorites__card-info` : ``}`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{offer.price}&nbsp;</b>
@@ -44,11 +59,11 @@ const Offer = ({handleBookmarkButtonClick, handlePlaceCardNameClick, isCitiesCla
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#"
-            onClick={handlePlaceCardNameClick}
+          <Link
+            to={`${AppRoute.OFFER}/${offer.id}`}
           >
             {offer.title}
-          </a>
+          </Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
@@ -58,11 +73,10 @@ const Offer = ({handleBookmarkButtonClick, handlePlaceCardNameClick, isCitiesCla
 
 Offer.propTypes = {
   handleBookmarkButtonClick: PropTypes.func.isRequired,
-  handlePlaceCardNameClick: PropTypes.func.isRequired,
-  isCitiesClass: PropTypes.bool,
+  placeCardType: PropTypes.string.isRequired,
   offer: PropTypes.shape(offerShape).isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
 };
 
 export default Offer;

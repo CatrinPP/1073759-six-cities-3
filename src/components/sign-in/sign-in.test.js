@@ -1,6 +1,5 @@
 import React from 'react';
-import {Router} from "react-router-dom";
-import history from "../../history.js";
+import {BrowserRouter} from "react-router-dom";
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
@@ -18,14 +17,14 @@ it(`Should render SignIn page correctly`, () => {
   });
   const tree = renderer
   .create(
-      <Router history={history}>
+      <BrowserRouter>
         <Provider store={store}>
           <SignIn
             authorizationStatus={AuthorizationStatus.NO_AUTH}
             handleFormSubmit={() => {}}
           />
         </Provider>
-      </Router>
+      </BrowserRouter>
   )
     .toJSON();
 
@@ -40,14 +39,14 @@ it(`Should render SignIn page correctly for authorized user`, () => {
   });
   const tree = renderer
   .create(
-      <Router history={history}>
+      <BrowserRouter>
         <Provider store={store}>
           <SignIn
             authorizationStatus={AuthorizationStatus.AUTH}
             handleFormSubmit={() => {}}
           />
         </Provider>
-      </Router>
+      </BrowserRouter>
   )
     .toJSON();
 

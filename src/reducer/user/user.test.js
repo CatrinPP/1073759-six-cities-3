@@ -4,10 +4,12 @@ import {AuthorizationStatus} from '../../const';
 import {createAPI} from '../../api.js';
 import MockAdapter from 'axios-mock-adapter';
 import NameSpace from '../name-space.js';
+import {testOffers} from '../../test-mocks.js';
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    favorites: [],
     isSignInRequired: false,
     userName: null,
   });
@@ -16,6 +18,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
 it(`Reducer should change authorization status to opposite`, () => {
   expect(reducer({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    favorites: [],
     isSignInRequired: false,
     userName: null,
   }, {
@@ -23,6 +26,7 @@ it(`Reducer should change authorization status to opposite`, () => {
     payload: AuthorizationStatus.AUTH,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.AUTH,
+    favorites: [],
     isSignInRequired: false,
     userName: null,
   });
@@ -31,6 +35,7 @@ it(`Reducer should change authorization status to opposite`, () => {
 it(`Reducer should change isSignInRequired status to opposite`, () => {
   expect(reducer({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    favorites: [],
     isSignInRequired: false,
     userName: null,
   }, {
@@ -38,6 +43,7 @@ it(`Reducer should change isSignInRequired status to opposite`, () => {
     payload: true,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    favorites: [],
     isSignInRequired: true,
     userName: null,
   });
@@ -46,6 +52,7 @@ it(`Reducer should change isSignInRequired status to opposite`, () => {
 it(`Reducer should change user name with given value`, () => {
   expect(reducer({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    favorites: [],
     isSignInRequired: false,
     userName: null,
   }, {
@@ -53,6 +60,24 @@ it(`Reducer should change user name with given value`, () => {
     payload: `Catrin`,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    favorites: [],
+    isSignInRequired: false,
+    userName: `Catrin`,
+  });
+});
+
+it(`Reducer should update favorites with given value`, () => {
+  expect(reducer({
+    authorizationStatus: AuthorizationStatus.AUTH,
+    favorites: [],
+    isSignInRequired: false,
+    userName: `Catrin`,
+  }, {
+    type: ActionType.GET_FAVORITES,
+    payload: testOffers,
+  })).toEqual({
+    authorizationStatus: AuthorizationStatus.AUTH,
+    favorites: testOffers,
     isSignInRequired: false,
     userName: `Catrin`,
   });
@@ -77,6 +102,13 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.saveUserName(`Catrin`)).toEqual({
       type: ActionType.SAVE_USERNAME,
       payload: `Catrin`
+    });
+  });
+
+  it(`Action creator for getting favorites returns correct action`, () => {
+    expect(ActionCreator.getFavorites(testOffers)).toEqual({
+      type: ActionType.GET_FAVORITES,
+      payload: testOffers,
     });
   });
 });
@@ -144,40 +176,7 @@ describe(`Operations work correctly`, () => {
   it(`Should make a correct API call to comments/offerId`, function () {
     const state = {
       [NameSpace.DATA]: {
-        currentOffer: {
-          'bedrooms': 3,
-          'city': {
-            'location': {
-              'latitude': 52.370216,
-              'longitude': 4.895168,
-              'zoom': 10
-            },
-            'name': `Amsterdam`
-          },
-          'description': `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
-          'goods': [`Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
-          'host': {
-            'avatar_url': `img/1.png`,
-            'id': 3,
-            'is_pro': true,
-            'name': `Angelina`
-          },
-          'id': 10,
-          'images': [`img/1.png`, `img/2.png`],
-          'is_favorite': false,
-          'is_premium': false,
-          'location': {
-            'latitude': 52.35514938496378,
-            'longitude': 4.673877537499948,
-            'zoom': 8
-          },
-          'max_adults': 4,
-          'preview_image': `img/1.png`,
-          'price': 120,
-          'rating': 4.8,
-          'title': `Beautiful & luxurious studio at great location`,
-          'type': `apartment`
-        }
+        currentId: 10
       },
     };
 
@@ -237,6 +236,25 @@ describe(`Operations work correctly`, () => {
             'text': `My New Comment - What an amazing view!`,
             'date': `2020-02-24T22:52:54.373Z`,
           }]
+        });
+      });
+  });
+
+  it(`Should make a correct get API call to /favorite`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const favoritesLoader = Operation.getFavorites();
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, testOffers);
+
+    return favoritesLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.GET_FAVORITES,
+          payload: testOffers,
         });
       });
   });

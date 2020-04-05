@@ -7,13 +7,15 @@ const MIN_COMMENT_LENGTH = 50;
 const MAP_ICON_SIZE = 30;
 const MAX_OFFERS_NEARBY = 3;
 const MAP_SIZE_DETAILED_OFFER = `1144px`;
+const RADIX = 10;
 const TIMEOUT = 5000;
 const ZOOM_VALUE = 13;
 
 const AppRoute = {
-  LOGIN: `/login`,
-  ROOT: `/`,
   FAVORITES: `/favorites`,
+  LOGIN: `/login`,
+  OFFER: `/offer`,
+  ROOT: `/`,
 };
 
 const AuthorizationStatus = {
@@ -30,6 +32,18 @@ const Error = {
 const FavoriteRequiredAction = {
   ADD: 1,
   DELETE: 0
+};
+
+const FavoriteImageSize = {
+  WIDTH: `150`,
+  HEIGHT: `110`,
+};
+
+const PlaceCardType = {
+  CITIES: `cities`,
+  FAVORITES: `favorites`,
+  NEAR_PLACES: `near-places`,
+  DEFAULT: ``,
 };
 
 const PlaceType = {
@@ -88,6 +102,11 @@ const offerShape = {
   type: PropTypes.oneOf([PlaceType.APARTMENT, PlaceType.HOTEL, PlaceType.HOUSE, PlaceType.ROOM]).isRequired,
 };
 
+const favoritesShape = {
+  city: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape).isRequired).isRequired,
+};
+
 const userShape = {
   avatar: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -118,7 +137,9 @@ export {
   cityShape,
   commentShape,
   Error,
+  FavoriteImageSize,
   FavoriteRequiredAction,
+  favoritesShape,
   MAX_COMMENT_LENGTH,
   MAX_COMMENTS_VALUE,
   MIN_COMMENT_LENGTH,
@@ -126,6 +147,8 @@ export {
   MAX_OFFERS_NEARBY,
   MAP_SIZE_DETAILED_OFFER,
   offerShape,
+  PlaceCardType,
+  RADIX,
   SortingType,
   sortTypes,
   TIMEOUT,

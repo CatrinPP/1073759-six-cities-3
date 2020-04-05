@@ -3,24 +3,28 @@ import {BrowserRouter} from "react-router-dom";
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
-import Header from './header.jsx';
+import {Favorites} from './favorites.jsx';
+import {testFavorites} from '../../test-mocks.js';
 import NameSpace from '../../reducer/name-space.js';
 import {AuthorizationStatus} from '../../const.js';
 
 const mockStore = configureStore([]);
 
-it(`Should render Header for authorized user correctly`, () => {
+it(`Should render Favorites correctly for authorized user`, () => {
   const store = mockStore({
     [NameSpace.USER]: {
-      authorizationStatus: AuthorizationStatus.AUTH
+      authorizationStatus: AuthorizationStatus.AUTH,
     },
   });
+
   const tree = renderer
     .create(
         <BrowserRouter>
           <Provider store={store}>
-            <Header
-              handleSignInLinkClick={() => {}}
+            <Favorites
+              favorites={testFavorites}
+              getFavoriteOffers={() => {}}
+              handleBookmarkButtonClick={() => {}}
             />
           </Provider>
         </BrowserRouter>
@@ -30,18 +34,21 @@ it(`Should render Header for authorized user correctly`, () => {
   expect(tree).toMatchSnapshot();
 });
 
-it(`Should render Header for unauthorized user correctly`, () => {
+it(`Should render Favorites correctly for unauthorized user`, () => {
   const store = mockStore({
     [NameSpace.USER]: {
-      authorizationStatus: AuthorizationStatus.NO_AUTH
+      authorizationStatus: AuthorizationStatus.AUTH,
     },
   });
+
   const tree = renderer
     .create(
         <BrowserRouter>
           <Provider store={store}>
-            <Header
-              handleSignInLinkClick={() => {}}
+            <Favorites
+              favorites={testFavorites}
+              getFavoriteOffers={() => {}}
+              handleBookmarkButtonClick={() => {}}
             />
           </Provider>
         </BrowserRouter>

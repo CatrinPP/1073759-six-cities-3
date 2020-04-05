@@ -11,12 +11,12 @@ class Map extends PureComponent {
       const placesCoords = offers.map((offer) => offer.coords);
 
       this.regularIcon = leaflet.icon({
-        iconUrl: `img/pin.svg`,
+        iconUrl: `/img/pin.svg`,
         iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
       });
 
       this.activeIcon = leaflet.icon({
-        iconUrl: `img/pin-active.svg`,
+        iconUrl: `/img/pin-active.svg`,
         iconSize: [MAP_ICON_SIZE, MAP_ICON_SIZE]
       });
 
@@ -65,12 +65,12 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const {city, currentOffer, offerOnHover} = this.props;
+    const {city, currentOffer, offers, offerOnHover} = this.props;
 
     if (prevProps.currentOffer !== currentOffer || prevProps.city !== city) {
       this.map.remove();
       this._renderMap();
-    } else if (prevProps.offerOnHover !== offerOnHover) {
+    } else if (offers.length || prevProps.offerOnHover !== offerOnHover) {
       this._renderMarkers();
     }
   }

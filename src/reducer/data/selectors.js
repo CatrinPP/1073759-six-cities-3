@@ -10,8 +10,8 @@ const getCommentsList = (state) => {
   return state[NameSpace.DATA].commentsList;
 };
 
-const getCurrentOffer = (state) => {
-  return state[NameSpace.DATA].currentOffer;
+const getCurrentId = (state) => {
+  return state[NameSpace.DATA].currentId;
 };
 
 const getCurrentCity = (state) => {
@@ -31,8 +31,15 @@ const getOffers = createSelector(
     }
 );
 
+const getAllOffersTransformed = createSelector(
+    getAllOffers,
+    (allOffers) => {
+      return allOffers.map((it) => transformOfferShape(it));
+    }
+);
+
 const getOffersNearby = (state) => {
   return state[NameSpace.DATA].offersNearby;
 };
 
-export {getCommentsList, getCurrentOffer, getLoadedState, getOffers, getOffersNearby};
+export {getAllOffers, getAllOffersTransformed, getCommentsList, getCurrentId, getLoadedState, getOffers, getOffersNearby};
