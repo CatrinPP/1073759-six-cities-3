@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Private Route component correctly (authorized user) 1`] = `null`;
+
+exports[`Should render Private Route component correctly (unauthorized user) 1`] = `null`;
