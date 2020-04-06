@@ -47,6 +47,10 @@ const transformOfferShape = (offer) => {
   return {
     bedrooms: offer.bedrooms,
     coords: [offer.location.latitude, offer.location.longitude],
+    city: {
+      name: offer.city.name,
+      coords: [offer.city.location.latitude, offer.city.location.longitude],
+    },
     description: offer.description,
     features: offer.goods,
     guests: offer.max_adults,

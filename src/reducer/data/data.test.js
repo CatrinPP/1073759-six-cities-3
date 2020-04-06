@@ -276,6 +276,10 @@ describe(`Operations work correctly`, () => {
           type: ActionType.GET_OFFERS_NEARBY,
           payload: [{
             'bedrooms': 3,
+            'city': {
+              'name': `Amsterdam`,
+              'coords': [52.370216, 4.895168],
+            },
             'coords': [52.35514938496378, 4.673877537499948],
             'description': `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
             'features': [`Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
@@ -297,6 +301,10 @@ describe(`Operations work correctly`, () => {
             'type': `apartment`
           }, {
             'bedrooms': 1,
+            'city': {
+              'name': `Amsterdam`,
+              'coords': [52.370216, 4.895168],
+            },
             'coords': [52.35514938496378, 4.673877537499948],
             'description': `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
             'features': [`Heating`, `Kitchen`],

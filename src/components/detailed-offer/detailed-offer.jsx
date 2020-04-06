@@ -4,9 +4,8 @@ import {connect} from 'react-redux';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
-import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape, AuthorizationStatus, PlaceCardType} from '../../const.js';
-import {getRatingInPercent} from '../../utils.js';
-import {getCity} from '../../reducer/app/selectors.js';
+import {offerShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape, AuthorizationStatus, PlaceCardType} from '../../const.js';
+import {getRatingInPercent, extend} from '../../utils.js';
 import {getCommentsList, getOffersNearby, getAllOffersTransformed} from '../../reducer/data/selectors.js';
 import Header from '../header/header.jsx';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
@@ -15,13 +14,14 @@ import {Operation as UserOperation} from '../../reducer/user/user.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import withBlockStatus from '../../hocs/with-block-status/with-block-status.js';
 
-const DetailedOffer = ({authorizationStatus, city, commentsList, handleBookmarkButtonClick, id, offers, offersNearby, sendComment}) => {
+const DetailedOffer = ({authorizationStatus, commentsList, handleBookmarkButtonClick, id, offers, offersNearby, sendComment}) => {
   const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);
   const ReviewsFormWrapped = withBlockStatus(ReviewsForm);
   const getOfferById = () => {
     return offers.find((item) => item.id === id);
   };
   const offer = getOfferById();
+  const city = extend(offer.city);
   const ratingInPercent = getRatingInPercent(offer.rating);
   const handleButtonClick = () => handleBookmarkButtonClick(offer);
 
@@ -142,7 +142,6 @@ const DetailedOffer = ({authorizationStatus, city, commentsList, handleBookmarkB
 DetailedOffer.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  city: PropTypes.shape(cityShape).isRequired,
   commentsList: PropTypes.arrayOf(PropTypes.shape(commentShape)),
   handleBookmarkButtonClick: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
@@ -152,7 +151,6 @@ DetailedOffer.propTypes = {
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
-  city: getCity(state),
   commentsList: getCommentsList(state),
   offers: getAllOffersTransformed(state),
   offersNearby: getOffersNearby(state),
