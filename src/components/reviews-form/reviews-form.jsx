@@ -9,12 +9,12 @@ class ReviewsForm extends PureComponent {
     this.commentRef = createRef();
 
     this.rating = null;
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
     this.handleTextareaInput = this.handleTextareaInput.bind(this);
   }
 
-  handleSubmit(evt) {
+  handleFormSubmit(evt) {
     const {onSubmit, blockForm, showError} = this.props;
     evt.preventDefault();
 
@@ -45,7 +45,7 @@ class ReviewsForm extends PureComponent {
     const {isError, isReviewFormBlocked, isSubmitButtonBlocked} = this.props;
 
     return (
-      <form className="reviews__form form" action="#" method="post" onSubmit={this.handleSubmit}>
+      <form className="reviews__form form" action="#" method="post" onSubmit={this.handleFormSubmit}>
         <fieldset disabled={isReviewFormBlocked === true} style={{border: `none`}}>
           <label className="reviews__label form__label" htmlFor="review">Your review</label>
           <div className="reviews__rating-form form__rating">

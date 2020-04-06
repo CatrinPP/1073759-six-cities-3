@@ -11,15 +11,15 @@ class SignIn extends PureComponent {
     this.loginRef = createRef();
     this.passwordRef = createRef();
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  handleSubmit(evt) {
-    const {handleFormSubmit} = this.props;
+  handleFormSubmit(evt) {
+    const {onSubmit} = this.props;
 
     evt.preventDefault();
 
-    handleFormSubmit({
+    onSubmit({
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,
     });
@@ -39,7 +39,7 @@ class SignIn extends PureComponent {
           <div className="page__login-container container">
             <section className="login">
               <h1 className="login__title">Sign in</h1>
-              <form className="login__form form" action="#" method="post" onSubmit={this.handleSubmit}>
+              <form className="login__form form" action="#" method="post" onSubmit={this.handleFormSubmit}>
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
                   <input className="login__input form__input" type="email" name="email" placeholder="Email" required=""
@@ -71,7 +71,7 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  handleFormSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default SignIn;

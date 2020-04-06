@@ -49,7 +49,7 @@ const App = ({authorizationStatus, isLoaded, loadCardDetailedData, login, server
             return (
               <SignIn
                 authorizationStatus={authorizationStatus}
-                handleFormSubmit={login}
+                onSubmit={login}
               />
             );
           }} />

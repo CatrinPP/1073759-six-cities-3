@@ -29,7 +29,7 @@ it(`Click to submit form calls callbalk`, () => {
         <Provider store={store}>
           <SignIn
             authorizationStatus={AuthorizationStatus.NO_AUTH}
-            handleFormSubmit={handleFormSubmitMock}
+            onSubmit={handleFormSubmitMock}
           />
         </Provider>
       </Router>

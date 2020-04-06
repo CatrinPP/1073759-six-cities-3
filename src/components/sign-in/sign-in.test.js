@@ -21,7 +21,7 @@ it(`Should render SignIn page correctly`, () => {
         <Provider store={store}>
           <SignIn
             authorizationStatus={AuthorizationStatus.NO_AUTH}
-            handleFormSubmit={() => {}}
+            onSubmit={() => {}}
           />
         </Provider>
       </BrowserRouter>
@@ -43,7 +43,7 @@ it(`Should render SignIn page correctly for authorized user`, () => {
         <Provider store={store}>
           <SignIn
             authorizationStatus={AuthorizationStatus.AUTH}
-            handleFormSubmit={() => {}}
+            onSubmit={() => {}}
           />
         </Provider>
       </BrowserRouter>

@@ -8,8 +8,8 @@ it(`Should render Sorting component correctly`, () => {
   const tree = renderer
     .create(<Sorting
       handleShowUpClick={() => {}}
-      handleSortTypeClick={() => {}}
       isCollapsed={true}
+      onClick={() => {}}
       sortType={SortingType.DEFAULT}
     />
     )

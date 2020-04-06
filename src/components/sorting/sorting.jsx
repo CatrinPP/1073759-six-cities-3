@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {sortTypes} from '../../const.js';
 
-const Sorting = ({handleShowUpClick, handleSortTypeClick, isCollapsed, sortType}) => {
-  const handleTypeClick = (selectedSortType) => () => handleSortTypeClick(selectedSortType);
+const Sorting = ({handleShowUpClick, onClick, isCollapsed, sortType}) => {
+  const handleTypeClick = (selectedSortType) => () => onClick(selectedSortType);
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -31,7 +31,7 @@ const Sorting = ({handleShowUpClick, handleSortTypeClick, isCollapsed, sortType}
 
 Sorting.propTypes = {
   handleShowUpClick: PropTypes.func.isRequired,
-  handleSortTypeClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   isCollapsed: PropTypes.bool.isRequired,
   sortType: PropTypes.string.isRequired,
 };

@@ -34,8 +34,8 @@ const OffersList = ({city, handleBookmarkButtonClick, handlePlaceCardHover, hand
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{sortedOffers.length} places to stay in {city.name}</b>
             <SortingWrapped
+              onClick={handleSortTypeClick}
               sortType={sortType}
-              handleSortTypeClick={handleSortTypeClick}
             />
           </React.Fragment>
           :
